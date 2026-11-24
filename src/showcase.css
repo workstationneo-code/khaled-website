@@ -469,3 +469,69 @@
 .vx-pricing-savebar .vx-btn-dark,.vx-pricing-savebar .vx-btn-outline{white-space:nowrap}
 @media(max-width:760px){.vx-pricing-cards{grid-template-columns:1fr}.vx-pricing-titlebar{align-items:flex-start;flex-direction:column}.vx-pricing-summary{gap:7px}.vx-pricing-summary>div{padding:12px}.vx-pricing-summary b{font-size:21px}}
 @media(max-width:540px){.vx-pricing-toolbar{align-items:stretch;flex-direction:column}.vx-pricing-search{width:100%}.vx-pricing-savebar{align-items:stretch;flex-wrap:wrap}.vx-pricing-savebar>div{flex-basis:100%;padding:0 2px 4px}.vx-pricing-savebar .vx-btn-dark{flex:1}.vx-pricing-savebar .vx-btn-outline{padding-left:10px;padding-right:10px}.vx-pricing-fields{grid-template-columns:1fr 1fr}.vx-pricing-summary span{font-size:8px}}
+
+
+/* VELTRIX DESIGN SYSTEM — unified visual language across the full showcase */
+.vx-design-system{
+ --vx-ink:#1e2c22;--vx-muted:#748071;--vx-line:rgba(108,132,94,.18);
+ --vx-glass:rgba(255,255,250,.72);--vx-glass-strong:rgba(255,255,252,.88);
+ --vx-shadow:0 22px 65px rgba(37,57,39,.09);
+ position:relative;isolation:isolate;min-height:100vh;color:var(--vx-ink);
+ background:
+  radial-gradient(ellipse at 8% 8%,rgba(216,238,157,.22),transparent 30%),
+  radial-gradient(ellipse at 94% 32%,rgba(194,211,179,.24),transparent 28%),
+  linear-gradient(145deg,#f8f9f4 0%,#f0f3eb 52%,#faf8f2 100%);
+}
+.vx-design-system:after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.14;background-image:radial-gradient(#6c805e .65px,transparent .65px);background-size:20px 20px;mask-image:linear-gradient(180deg,black,transparent 85%)}
+.vx-design-system .vx-nav{background:rgba(250,251,247,.78);border-bottom:1px solid rgba(255,255,255,.85);box-shadow:0 8px 35px rgba(41,61,41,.045);backdrop-filter:blur(22px) saturate(1.2);-webkit-backdrop-filter:blur(22px) saturate(1.2)}
+.vx-design-system .vx-brand span{border-radius:12px;box-shadow:0 7px 18px #23392a24}
+.vx-design-system .vx-nav-cta,.vx-design-system .vx-demo-contact{border-color:#d6e0ce;background:rgba(255,255,255,.52);transition:all .28s ease}
+.vx-design-system .vx-nav-cta:hover,.vx-design-system .vx-demo-contact:hover{background:#263d2d;color:#fff;transform:translateY(-2px);box-shadow:0 10px 24px #263d2d20}
+.vx-design-system .vx-hero{position:relative}
+.vx-design-system .vx-hero-copy{position:relative;z-index:2}
+.vx-design-system .vx-hero h1,.vx-design-system .vx-inner-title{color:#1f3024;text-wrap:balance}
+.vx-design-system .vx-hero-art{filter:drop-shadow(0 24px 35px rgba(42,62,39,.10))}
+.vx-design-system .vx-marquee{border-block:1px solid rgba(255,255,255,.8);background:linear-gradient(90deg,rgba(216,238,157,.82),rgba(232,240,217,.86),rgba(216,238,157,.82));backdrop-filter:blur(12px)}
+.vx-design-system .vx-work,.vx-design-system .vx-visual-gallery,.vx-design-system .vx-studio,.vx-design-system .vx-inner{position:relative}
+.vx-design-system .vx-section-top,.vx-design-system .vx-gallery-head{margin-bottom:30px}
+.vx-design-system .vx-concept,.vx-design-system .vx-plan,.vx-design-system .vx-care,.vx-design-system .vx-selected-package,.vx-design-system .vx-contact-form,.vx-design-system .vx-success,.vx-design-system .vx-demo-end,.vx-design-system .vx-admin-panel,.vx-design-system .vx-portal-card{
+ border:1px solid rgba(255,255,255,.9);background:var(--vx-glass);box-shadow:var(--vx-shadow);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+}
+.vx-design-system .vx-concept{border-radius:16px;overflow:hidden}
+.vx-design-system .vx-concept-photo{border-radius:10px;overflow:hidden}
+.vx-design-system .vx-concept-bottom{border-top:1px solid var(--vx-line)}
+.vx-design-system .vx-gallery-item{border:1px solid rgba(255,255,255,.82);border-radius:17px;overflow:hidden;box-shadow:0 18px 45px rgba(36,54,37,.10)}
+.vx-design-system .vx-gallery-item img{transition:transform .8s cubic-bezier(.2,.8,.2,1),filter .6s}
+.vx-design-system .vx-gallery-item:hover img{transform:scale(1.035);filter:saturate(1.08)}
+.vx-design-system .vx-studio{padding:clamp(28px,5vw,58px);border:1px solid rgba(255,255,255,.85);border-radius:22px;background:linear-gradient(130deg,rgba(255,255,255,.78),rgba(239,245,231,.65));box-shadow:var(--vx-shadow);backdrop-filter:blur(18px)}
+.vx-design-system .vx-studio-points>div{border-bottom:1px solid var(--vx-line)}
+.vx-design-system .vx-cta-band{border:1px solid rgba(255,255,255,.75);border-radius:20px;background:linear-gradient(115deg,#263d2d,#4c6840);box-shadow:0 25px 65px rgba(35,57,40,.18);overflow:hidden}
+.vx-design-system .vx-cta-band h2,.vx-design-system .vx-cta-band .vx-kicker{color:#f4f7ed}
+.vx-design-system .vx-cta-band h2 em{color:#d8ee9d}
+.vx-design-system .vx-btn-dark,.vx-design-system .vx-btn-light,.vx-design-system .vx-btn-outline,.vx-design-system .vx-plan button{border-radius:8px;transition:transform .25s ease,box-shadow .25s ease,background .25s ease}
+.vx-design-system .vx-btn-dark:hover,.vx-design-system .vx-btn-light:hover,.vx-design-system .vx-btn-outline:hover,.vx-design-system .vx-plan button:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(35,57,40,.16)}
+.vx-design-system .vx-inner{min-height:calc(100vh - 80px)}
+.vx-design-system .vx-plan{border-radius:18px;padding:clamp(22px,3vw,34px)}
+.vx-design-system .vx-plan.hot{background:linear-gradient(155deg,rgba(250,255,242,.96),rgba(228,239,214,.9));border-color:#b8cc9d;box-shadow:0 24px 65px rgba(87,119,65,.16)}
+.vx-design-system .vx-care{border-radius:13px}
+.vx-design-system .vx-contact-form{border-radius:18px;padding:clamp(20px,4vw,38px)}
+.vx-design-system .vx-contact-form input,.vx-design-system .vx-contact-form select,.vx-design-system .vx-contact-form textarea,.vx-design-system input,.vx-design-system select,.vx-design-system textarea{border-color:#dce5d6;border-radius:8px}
+.vx-design-system .vx-contact-form input:focus,.vx-design-system .vx-contact-form select:focus,.vx-design-system .vx-contact-form textarea:focus{outline:2px solid #b9cf9c;outline-offset:2px}
+.vx-design-system .vx-demo-tabs button,.vx-design-system .vx-mobile{backdrop-filter:blur(16px)}
+.vx-design-system .vx-demo-nav{background:rgba(255,255,255,.72);backdrop-filter:blur(18px)}
+.vx-design-system footer{border-top:1px solid rgba(116,139,102,.18)}
+.vx-design-system .vx-brand-intro{background:radial-gradient(circle at 50% 42%,#536e47 0%,#263c2e 55%,#18281e 100%)}
+.vx-design-system .vx-experience-lab{margin-top:clamp(52px,7vw,92px);margin-bottom:clamp(52px,7vw,92px);border:1px solid rgba(255,255,255,.75);border-radius:28px;box-shadow:0 28px 80px rgba(40,60,39,.08)}
+/* The same glass, spacing and interaction language carries into concept, portal, proposal and admin views. */
+.vx-design-system [class*="portal"] [class*="card"],.vx-design-system [class*="admin"] [class*="card"],.vx-design-system [class*="dashboard"] [class*="card"]{border-radius:13px}
+.vx-design-system [class*="portal"] button,.vx-design-system [class*="admin"] button,.vx-design-system [class*="dashboard"] button{transition:transform .2s ease,box-shadow .2s ease}
+.vx-design-system [class*="portal"] button:hover,.vx-design-system [class*="admin"] button:hover,.vx-design-system [class*="dashboard"] button:hover{transform:translateY(-1px)}
+.vx-design-system .vx-demo,.vx-design-system .vx-proposal-pricing,.vx-design-system .vx-demo-end{border-radius:18px}
+@media(max-width:760px){
+ .vx-design-system .vx-nav{height:66px;padding-inline:18px}
+ .vx-design-system .vx-hero{padding-top:54px}
+ .vx-design-system .vx-studio{padding:24px;border-radius:16px}
+ .vx-design-system .vx-cta-band{border-radius:15px}
+ .vx-design-system .vx-experience-lab{border-radius:18px}
+}
+@media(prefers-reduced-motion:reduce){.vx-design-system *,.vx-design-system *:before,.vx-design-system *:after{scroll-behavior:auto!important;transition-duration:.01ms!important}}
