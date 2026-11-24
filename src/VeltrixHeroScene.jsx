@@ -43,13 +43,14 @@ function Orb({mobile}){
   </group>;
 }
 
-const vertexShader=`varying vec3 vNormal;
+const vertexShader=`uniform float uTime;
+varying vec3 vNormal;
 varying vec3 vPosition;
 varying vec2 vUv;
 void main(){
   vUv=uv;
   vec3 transformed=position;
-  float wave=sin(position.y*5.0+position.x*3.0)*0.018;
+  float wave=sin(position.y*5.0+position.x*3.0+uTime*.45)*0.018+cos(position.z*4.0-uTime*.32)*0.012;
   transformed+=normal*wave;
   vNormal=normalize(normalMatrix*normal);
   vPosition=(modelViewMatrix*vec4(transformed,1.0)).xyz;
