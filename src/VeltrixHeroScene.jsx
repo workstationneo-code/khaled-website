@@ -1,4 +1,4 @@
-import React,{useEffect,useMemo,useState} from 'react';
+import React,{useEffect,useMemo,useRef,useState} from 'react';
 import {Canvas,useFrame} from '@react-three/fiber';
 import * as THREE from 'three';
 import './VeltrixHeroScene.css';
@@ -122,11 +122,14 @@ function Scene({mobile}){
 }
 
 export default function VeltrixHeroScene(){
+  const host=useRef(null);
+  const [eventSource,setEventSource]=useState(null);
   const [ready,setReady]=useState(false);
   const [webgl,setWebgl]=useState(false);
   const [mobile,setMobile]=useState(false);
   const [lite,setLite]=useState(false);
   useEffect(()=>{
+    setEventSource(host.current?.parentElement||null);
     const update=()=>{
       const isMobile=window.matchMedia('(max-width: 760px), (pointer: coarse)').matches;
       const cores=navigator.hardwareConcurrency||8;
@@ -140,9 +143,10 @@ export default function VeltrixHeroScene(){
     window.addEventListener('resize',update,{passive:true});
     return()=>window.removeEventListener('resize',update);
   },[]);
-  return <div className={`vx-hero-scene ${mobile?'is-mobile':'is-desktop'}`} aria-hidden="true">
+  return <div ref={host} className={`vx-hero-scene ${mobile?'is-mobile':'is-desktop'}`} aria-hidden="true">
     {ready&&webgl?<Canvas
       camera={{position:[0,0,6],fov:42}}
+      eventSource={eventSource||undefined}
       dpr={lite?1:[1,1.5]}
       gl={{alpha:true,antialias:!mobile,powerPreference:'high-performance',stencil:false,depth:true}}
       performance={{min:lite ? 0.45 : 0.65}}
