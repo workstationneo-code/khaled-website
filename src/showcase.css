@@ -300,3 +300,57 @@
 .vx-client-project-form>button{align-self:end;min-height:42px}.vx-client-project-form>small{grid-column:1/-1}
 .vx-portal-admin-note{font-size:10px;line-height:1.6;color:#8a9585;margin:0}
 @media(max-width:650px){.vx-portal-link{display:none}.vx-client-portal{padding:22px 17px 70px}.vx-portal-top{margin-bottom:38px}.vx-portal-login{padding:27px 22px}.vx-portal-welcome{align-items:flex-start;flex-direction:column}.vx-client-project-form{grid-template-columns:1fr}}
+
+
+/* Client workspace: timeline, shared deliverables, approvals and admin tools */
+.vx-client-project-admin{margin-top:24px}
+.vx-client-project-form textarea,.vx-project-action-form textarea,.vx-project-feedback textarea{width:100%;border:1px solid #dfe6d9;border-radius:7px;padding:13px;background:#fff;color:#29382c;font:12px/1.6 Manrope;resize:vertical}
+.vx-client-project-form .vx-project-wide{grid-column:1/-1}
+.vx-admin-project-list{display:grid;gap:8px;margin-top:16px}
+.vx-admin-project-row{display:flex;align-items:center;justify-content:space-between;gap:16px;text-align:left;width:100%;border:1px solid #e6ebdf;border-radius:8px;padding:15px;background:#fff;color:#344333;cursor:pointer}
+.vx-admin-project-row.active{border-color:#91a975;background:#f6f8f1}
+.vx-admin-project-row>span:first-child{display:grid;gap:5px}
+.vx-admin-project-row b{font-size:12px}.vx-admin-project-row small,.vx-admin-project-row>span:nth-child(2){font-size:9px;color:#82907c}
+.vx-project-manager{margin-top:22px}
+.vx-project-action-form{display:grid;gap:10px;border-top:1px solid #e8ede3;padding:20px 0}
+.vx-project-action-form h3{font:700 16px Manrope;color:#354633;margin:0 0 4px}
+.vx-project-action-form input:not([type=file]),.vx-project-action-form textarea{width:100%;border:1px solid #dfe6d9;border-radius:7px;padding:12px;font:12px Manrope;color:#29382c}
+.vx-project-action-form input[type=file]{font-size:11px;color:#71806d}
+.vx-project-action-form>small{font-size:9px;color:#879381}
+.vx-project-action-form .vx-btn-dark{justify-self:start}
+.vx-portal-project.selected{border-color:#91a975;box-shadow:0 12px 35px #6f8c4e18}
+.vx-project-workspace{margin-top:28px;background:#fff;border:1px solid #e3e9dc;border-radius:12px;padding:clamp(18px,3vw,32px);box-shadow:0 15px 45px #263b2608}
+.vx-project-workspace-head{display:flex;justify-content:space-between;align-items:center;gap:15px;padding-bottom:20px;border-bottom:1px solid #edf0e9}
+.vx-project-workspace-head h2{font:700 clamp(24px,3vw,34px) Manrope;letter-spacing:-.05em;color:#29392c;margin:8px 0 0}
+.vx-project-workspace-head>span{font-size:9px;text-transform:uppercase;letter-spacing:.1em;font-weight:800;color:#6f8755;background:#eff4e8;border-radius:30px;padding:8px 12px}
+.vx-project-workspace>section{padding:22px 0;border-bottom:1px solid #edf0e9}
+.vx-project-workspace>section:last-child{border-bottom:0;padding-bottom:0}
+.vx-project-workspace h3{font:700 16px Manrope;color:#344632;margin:0 0 13px}
+.vx-project-workspace>section>p{font-size:11px;line-height:1.8;color:#778374;white-space:pre-wrap}
+.vx-portal-muted{font-size:10px;color:#929d8c}
+.vx-portal-timeline{display:grid;gap:0}
+.vx-portal-timeline article{display:grid;grid-template-columns:14px 1fr;gap:13px;padding:5px 0 20px}
+.vx-portal-timeline article>i{width:9px;height:9px;border-radius:50%;background:#91aa70;margin-top:5px;box-shadow:0 0 0 4px #eff4e8}
+.vx-portal-timeline article>div{padding-bottom:12px;border-bottom:1px solid #f0f2ed}
+.vx-portal-timeline b{font-size:12px;color:#344632}
+.vx-portal-timeline p{font-size:10px;line-height:1.7;color:#788575;white-space:pre-wrap;margin:6px 0}
+.vx-portal-timeline small,.vx-portal-approvals small{font-size:9px;color:#98a191}
+.vx-portal-files{display:grid;gap:8px}
+.vx-portal-files a{display:flex;align-items:center;gap:12px;padding:13px;border:1px solid #e7ecdf;border-radius:8px;color:#718b50;text-decoration:none}
+.vx-portal-files a>span{display:grid;gap:4px;flex:1}
+.vx-portal-files b{font-size:11px;color:#394a37}.vx-portal-files small{font-size:9px;color:#8b9785}
+.vx-portal-approvals{display:grid;gap:10px}
+.vx-portal-approvals article{border:1px solid #e5eadf;border-radius:8px;padding:16px}
+.vx-portal-approvals article>div:first-child{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.vx-portal-approvals article>div:first-child b{font-size:12px;color:#354633}
+.vx-portal-approvals article>p{font-size:10px;line-height:1.7;color:#788575}
+.vx-portal-approvals article>a{display:inline-flex;align-items:center;gap:5px;font-size:10px;color:#718b50;text-decoration:none;margin:5px 0 12px}
+.vx-approval-status{font-size:8px;text-transform:uppercase;letter-spacing:.08em;border-radius:30px;padding:6px 9px;background:#f0f2ed;color:#7d8877;font-weight:800}
+.vx-approval-status.pending{background:#fff5df;color:#a47c35}.vx-approval-status.approved{background:#edf5e7;color:#66844c}.vx-approval-status.changes_requested{background:#f9eeea;color:#a56b58}
+.vx-approval-actions{display:flex;flex-wrap:wrap;gap:9px;margin:13px 0}
+.vx-approval-actions .vx-btn-dark,.vx-approval-actions .vx-btn-outline{font-size:9px;padding:10px 13px}
+.vx-portal-approvals article>small{display:block;margin-top:10px}
+.vx-project-feedback{display:grid;gap:10px}
+.vx-project-feedback select{border:1px solid #dfe6d9;border-radius:7px;padding:12px;background:white;color:#52604d;font:11px Manrope}
+.vx-project-feedback .vx-btn-dark{justify-self:start}
+@media(max-width:650px){.vx-admin-project-row{align-items:flex-start;flex-wrap:wrap}.vx-project-workspace{padding:17px}.vx-approval-actions{display:grid}.vx-approval-actions button{width:100%}}
