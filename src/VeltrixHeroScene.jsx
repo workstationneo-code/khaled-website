@@ -26,7 +26,7 @@ function Orb({mobile}){
   return <group ref={group}>
     <mesh scale={mobile?1.28:1.55}>
       <icosahedronGeometry args={[1, mobile?5:7]}/>
-      <shaderMaterial ref={material} uniforms={uniforms} vertexShader={vertexShader} fragmentShader={fragmentShader} transparent roughness={0.18}/>
+      <shaderMaterial ref={material} uniforms={uniforms} vertexShader={vertexShader} fragmentShader={fragmentShader} transparent/>
     </mesh>
     <mesh rotation={[.85,.35,-.45]} scale={mobile?1.62:1.92}>
       <torusGeometry args={[1,.009,8,mobile?100:180]}/>
@@ -107,7 +107,7 @@ function ParticleField({mobile}){
   });
   return <points ref={points}>
     <bufferGeometry><bufferAttribute attach="attributes-position" args={[positions,3]}/></bufferGeometry>
-    <pointsMaterial color="#8ea978" size={mobile?.018:.024} transparent opacity={.68} sizeAttenuation depthWrite={false}/>
+    <pointsMaterial color="#8ea978" size={mobile ? 0.018 : 0.024} transparent opacity={.68} sizeAttenuation depthWrite={false}/>
   </points>;
 }
 
@@ -128,7 +128,7 @@ export default function VeltrixHeroScene(){
   useEffect(()=>{
     const update=()=>{
       setMobile(window.matchMedia('(max-width: 760px), (pointer: coarse)').matches);
-      setWebgl(hasWebGL());
+      setWebgl(hasWebGL()&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches);
       setReady(true);
     };
     update();
@@ -140,7 +140,7 @@ export default function VeltrixHeroScene(){
       camera={{position:[0,0,6],fov:42}}
       dpr={mobile?1:[1,1.5]}
       gl={{alpha:true,antialias:!mobile,powerPreference:'high-performance',stencil:false,depth:true}}
-      performance={{min:mobile?.45:.65}}
+      performance={{min:mobile ? 0.45 : 0.65}}
       frameloop="always"
     ><Scene mobile={mobile}/></Canvas>:<div className="vx-scene-fallback"><span className="vx-fallback-orb"/><i/><b/></div>}
   </div>;
