@@ -1,4 +1,5 @@
 import React,{useEffect,useMemo,useState} from 'react';
+import './ShowcaseExperiences.css';
 import {ArrowUpRight,ArrowRight,Check,Monitor,Tablet,Smartphone,Sparkles,Plus,Minus} from 'lucide-react';
 
 const stories=[
