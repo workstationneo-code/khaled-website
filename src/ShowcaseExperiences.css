@@ -1,7 +1,7 @@
 /* Scroll-led storytelling visuals */
-.vx-experience-lab .vx-lab-story,.vx-experience-lab .vx-story-card,.vx-experience-lab .vx-lab-compare,.vx-experience-lab .vx-lab-cases,.vx-experience-lab .vx-case-feature,.vx-experience-lab .vx-lab-device,.vx-experience-lab .vx-lab-pricing{opacity:0;transform:translateY(42px);transition:opacity .85s cubic-bezier(.2,.7,.2,1),transform .85s cubic-bezier(.2,.7,.2,1)}
+.vx-experience-lab .vx-lab-story,.vx-experience-lab .vx-lab-compare,.vx-experience-lab .vx-lab-cases,.vx-experience-lab .vx-lab-device,.vx-experience-lab .vx-lab-pricing{opacity:0;transform:translateY(18px);transition:opacity .48s cubic-bezier(.2,.7,.2,1),transform .48s cubic-bezier(.2,.7,.2,1)}
 .vx-experience-lab .vx-scroll-in{opacity:1;transform:translateY(0)}
-.vx-experience-lab .vx-story-card{transition-delay:var(--story-delay,0ms),0ms}
+.vx-experience-lab .vx-story-card{transition:transform .45s cubic-bezier(.2,.7,.2,1),box-shadow .45s ease}
 .vx-experience-lab .vx-story-art{position:relative;overflow:hidden;border-radius:18px;isolation:isolate}
 .vx-experience-lab .vx-story-art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.42;mix-blend-mode:multiply;z-index:0;transform:scale(1.08);transition:transform 1s cubic-bezier(.2,.7,.2,1),opacity .6s ease;z-index:-1}
 .vx-experience-lab .vx-story-card:hover .vx-story-art img{transform:scale(1);opacity:.62}
@@ -18,7 +18,7 @@
  .vx-experience-lab .vx-story-card{flex:0 0 min(82vw,340px)!important;scroll-snap-align:start!important}
 }
 @media(prefers-reduced-motion:reduce){
- .vx-experience-lab .vx-lab-story,.vx-experience-lab .vx-story-card,.vx-experience-lab .vx-lab-compare,.vx-experience-lab .vx-lab-cases,.vx-experience-lab .vx-case-feature,.vx-experience-lab .vx-lab-device,.vx-experience-lab .vx-lab-pricing{opacity:1!important;transform:none!important;transition:none!important}
+ .vx-experience-lab .vx-lab-story,.vx-experience-lab .vx-lab-compare,.vx-experience-lab .vx-lab-cases,.vx-experience-lab .vx-lab-device,.vx-experience-lab .vx-lab-pricing{opacity:1!important;transform:none!important;transition:none!important}
 }
 
 .vx-experience-lab .vx-story-art i{z-index:1;}
