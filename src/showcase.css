@@ -546,3 +546,85 @@
 .vx-created-client>button{display:inline-flex;align-items:center;justify-content:center}
 .vx-created-client>small{display:block;margin-top:13px;color:#6c7867;font-size:11px;line-height:1.5}
 @media(max-width:620px){.vx-created-client dl{grid-template-columns:1fr;gap:4px}.vx-created-client dd{margin-bottom:8px}}
+
+
+/* Client portal usability improvements: plain language, clear actions and comfortable reading */
+.vx-client-portal{scroll-behavior:smooth}
+.vx-portal-login{border-radius:18px;padding:clamp(25px,5vw,42px)}
+.vx-portal-login h1{font-size:clamp(34px,5vw,48px);line-height:1.08}
+.vx-portal-login>p{font-size:14px;line-height:1.75}
+.vx-portal-login label{font-size:12px;gap:9px}
+.vx-portal-login input{min-height:48px;font-size:14px}
+.vx-portal-login form>.vx-btn-dark{min-height:49px;font-size:13px}
+.vx-login-help{display:grid;gap:5px;margin-top:22px;padding:14px 16px;border-radius:10px;background:#f4f7f0}
+.vx-login-help b{font-size:12px;color:#40533b}
+.vx-login-help span{font-size:11px;line-height:1.6;color:#788575}
+.vx-portal-dashboard{max-width:1080px}
+.vx-portal-welcome{margin-bottom:24px}
+.vx-portal-welcome h1{font-size:clamp(34px,4.5vw,48px)}
+.vx-portal-welcome p{font-size:14px}
+.vx-portal-howto{display:flex;align-items:flex-start;gap:13px;padding:17px 19px;margin:0 0 30px;border:1px solid #e0e9d7;border-radius:12px;background:#f7faf3}
+.vx-portal-howto>span{display:grid;place-items:center;flex:none;width:30px;height:30px;border-radius:50%;background:#e7f0dd;color:#64834e}
+.vx-portal-howto b{font-size:13px;color:#344632}
+.vx-portal-howto p{margin:5px 0 0;font-size:12px;line-height:1.65;color:#788575}
+.vx-portal-section-heading{display:flex;justify-content:space-between;align-items:flex-end;gap:15px;margin-bottom:15px}
+.vx-portal-section-heading h2{margin:7px 0 0;font:700 26px Manrope;letter-spacing:-.04em;color:#29392c}
+.vx-portal-section-heading>span{font-size:11px;color:#788575}
+.vx-portal-project{border-radius:14px;padding:23px}
+.vx-portal-project-top{font-size:10px;letter-spacing:0;text-transform:none}
+.vx-portal-project h2{margin:19px 0 8px;font-size:25px}
+.vx-portal-project>p{font-size:12px;line-height:1.6}
+.vx-portal-progress>div{font-size:12px}
+.vx-portal-next small{font-size:9px;letter-spacing:.06em}
+.vx-portal-next b{font-size:12px;line-height:1.5}
+.vx-portal-project .vx-btn-dark{min-height:45px;font-size:11px}
+.vx-project-workspace{scroll-margin-top:18px}
+.vx-project-workspace-head{align-items:flex-start}
+.vx-project-workspace-head h2{font-size:clamp(25px,3.5vw,36px)}
+.vx-project-workspace-head p{max-width:650px;margin:9px 0 0;font-size:12px;line-height:1.7;color:#788575}
+.vx-client-quicklinks{position:sticky;top:10px;z-index:8;display:flex;flex-wrap:wrap;gap:8px;padding:12px;margin:16px 0 4px;border:1px solid #e7ecdf;border-radius:11px;background:#fffffff0;backdrop-filter:blur(14px)}
+.vx-client-quicklinks button{display:inline-flex;align-items:center;gap:7px;min-height:40px;padding:0 13px;border:1px solid #e3eadd;border-radius:8px;background:#fff;color:#52664a;font:700 11px Manrope;cursor:pointer}
+.vx-client-quicklinks button:hover{background:#f2f6ed;border-color:#b8caa8}
+.vx-client-quicklinks button small{display:grid;place-items:center;min-width:18px;height:18px;padding:0 5px;border-radius:20px;background:#e9f0e2;color:#526d41;font-size:9px}
+.vx-project-workspace>section{scroll-margin-top:80px;padding:25px 0}
+.vx-project-workspace h3{font-size:18px;margin-bottom:7px}
+.vx-section-help{font-size:12px!important;line-height:1.65!important;color:#859080!important;margin:0 0 15px}
+.vx-project-workspace>section>p{font-size:12px;line-height:1.8}
+.vx-portal-muted{font-size:12px;line-height:1.7}
+.vx-portal-timeline b{font-size:13px}
+.vx-portal-timeline p{font-size:12px;line-height:1.7}
+.vx-portal-timeline small{font-size:10px}
+.vx-portal-files a{min-height:58px;padding:14px}
+.vx-portal-files b{font-size:12px}
+.vx-portal-files small{font-size:10px}
+.vx-portal-approvals article{padding:18px}
+.vx-portal-approvals article>div:first-child b{font-size:13px}
+.vx-portal-approvals article>p{font-size:12px;line-height:1.7}
+.vx-approval-status{font-size:9px}
+.vx-approval-actions .vx-btn-dark,.vx-approval-actions .vx-btn-outline{min-height:42px;font-size:10px}
+.vx-approval-reply{display:grid;gap:10px;margin-top:14px;padding:14px;border-radius:9px;background:#f7f9f4}
+.vx-approval-reply label{font-size:11px;font-weight:700;color:#52634b}
+.vx-approval-reply textarea{width:100%;padding:12px;border:1px solid #dfe6d9;border-radius:7px;background:#fff;font:12px/1.6 Manrope;resize:vertical}
+.vx-approval-reply>div{display:flex;flex-wrap:wrap;gap:8px}
+.vx-approval-reply button{min-height:40px;font-size:10px}
+.vx-project-feedback select,.vx-project-feedback textarea{font-size:12px;min-height:46px}
+.vx-project-feedback textarea{line-height:1.7}
+.vx-project-feedback .vx-btn-dark{min-height:44px;font-size:11px}
+.vx-portal-notice{max-width:1080px;margin:18px auto 0;padding:13px 15px;border:1px solid #e1e9d9;border-radius:9px;background:#f6f9f2;color:#526b45;font-size:12px;line-height:1.6}
+.vx-portal-loading{padding:32px;border-radius:12px;background:#fff;color:#788575;font-size:13px;text-align:center}
+.vx-portal-empty{padding:38px 24px;border-radius:14px}
+.vx-portal-empty h2{font-size:25px}
+.vx-portal-empty p{max-width:540px;margin:9px auto;font-size:13px;line-height:1.7}
+@media(max-width:650px){
+ .vx-portal-howto{padding:14px}
+ .vx-portal-section-heading h2{font-size:23px}
+ .vx-client-quicklinks{position:static;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));padding:9px}
+ .vx-client-quicklinks button{justify-content:center;padding:0 8px}
+ .vx-project-workspace-head{flex-direction:column}
+ .vx-portal-project{padding:19px}
+ .vx-portal-welcome{gap:15px}
+ .vx-portal-welcome h1{font-size:34px}
+ .vx-approval-reply>div{display:grid}
+ .vx-approval-reply button{width:100%}
+}
+@media(prefers-reduced-motion:reduce){.vx-client-portal{scroll-behavior:auto}}
