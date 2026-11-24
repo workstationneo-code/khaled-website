@@ -133,3 +133,16 @@
  .subject-contact{padding:22px;margin-bottom:45px}
  .subject-price-row{grid-template-columns:1fr;gap:8px}
 }
+
+
+/* Preview motion polish — transform/opacity only; no layout or content changes */
+html{scroll-behavior:smooth}
+.nav nav a,.nav-actions a,.nav-actions button,.portal-nav a,.portal-footer button{transition:opacity .18s ease,transform .18s ease,color .18s ease}
+.nav nav a:hover,.portal-nav a:hover,.portal-footer button:hover{opacity:.72}
+.lime,.outline,.watch,.dark,.portal-choice,.plans article,.audiences article,.subject-grid article,.care-card,.capability{transition:transform .2s cubic-bezier(.2,.7,.2,1),opacity .2s ease,background-color .2s ease,border-color .2s ease,box-shadow .2s ease}
+.lime:hover,.outline:hover,.dark:hover{transform:translateY(-2px)}
+.watch:hover{transform:translateX(3px)}
+html.motion-enabled .vx-reveal{opacity:0;transform:translateY(14px);transition:opacity .52s cubic-bezier(.22,1,.36,1),transform .52s cubic-bezier(.22,1,.36,1);transition-delay:var(--reveal-delay,0ms);will-change:transform,opacity}
+html.motion-enabled .vx-reveal.vx-revealed{opacity:1;transform:translateY(0);will-change:auto}
+@media(hover:hover) and (pointer:fine){.portal-choice:hover,.audiences article:hover,.subject-grid article:hover,.care-card:hover{transform:translateY(-4px)}.capability:hover{transform:translateY(-2px);opacity:.92}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}html.motion-enabled .vx-reveal{opacity:1!important;transform:none!important;transition:none!important;will-change:auto!important}.lime,.outline,.watch,.dark,.portal-choice,.plans article,.audiences article,.subject-grid article,.care-card,.capability,.nav nav a,.nav-actions a,.nav-actions button{transition:none!important;transform:none!important}}
