@@ -36,3 +36,17 @@ Do not put a Supabase secret/service-role key in browser code. Only the publisha
 - Complete Care: EGP 10,000 every 3 months
 
 Care plans are separate from the one-time development fees.
+
+## Visitor live chat
+
+The website includes a visitor chat widget and an administrator inbox at `/admin`. Chat visitors use Supabase anonymous authentication so each visitor can read only their own conversation. Administrators are authorized through the protected `app_metadata.role = "admin"` claim.
+
+Before enabling chat:
+1. In Supabase, open **Authentication → Sign In / Providers**.
+2. Enable **Allow anonymous sign-ins**.
+3. Keep the existing administrator account on normal email/password authentication.
+4. Sign out and back in to refresh the admin JWT after assigning the admin role.
+
+The chat tables (`chat_conversations` and `chat_messages`) have RLS enabled. Visitors can only read and send messages in their own conversation; administrators can view and reply to all conversations. Do not expose a Supabase secret/service-role key in browser code.
+
+For public production traffic, add CAPTCHA/Turnstile to reduce automated anonymous sign-ins.
