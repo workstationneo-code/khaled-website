@@ -129,6 +129,15 @@ function Scene({mobile}){
   </>;
 }
 
+class SceneErrorBoundary extends React.Component{
+  constructor(props){super(props);this.state={failed:false};}
+  static getDerivedStateFromError(){return {failed:true};}
+  render(){
+    if(this.state.failed)return <div className="vx-scene-fallback"><span className="vx-fallback-orb"/><i/><b/></div>;
+    return this.props.children;
+  }
+}
+
 export default function VeltrixHeroScene(){
   const host=useRef(null);
   const [eventSource,setEventSource]=useState(null);
@@ -158,13 +167,13 @@ export default function VeltrixHeroScene(){
     return()=>{window.removeEventListener('resize',update);observer?.disconnect()};
   },[]);
   return <div ref={host} className={`vx-hero-scene ${mobile?'is-mobile':'is-desktop'}`} aria-hidden="true">
-    {ready&&webgl?<Canvas
+    {ready&&webgl?<SceneErrorBoundary><Canvas
       camera={{position:[0,0,6],fov:42}}
       eventSource={eventSource||undefined}
       dpr={lite?1:[1,1.5]}
       gl={{alpha:true,antialias:!lite,powerPreference:'high-performance',stencil:false,depth:true}}
       performance={{min:lite ? 0.45 : 0.65}}
       frameloop={visible?'always':'never'}
-    ><Scene mobile={lite}/></Canvas>:<div className="vx-scene-fallback"><span className="vx-fallback-orb"/><i/><b/></div>}
+    ><Scene mobile={lite}/></Canvas></SceneErrorBoundary>:<div className="vx-scene-fallback"><span className="vx-fallback-orb"/><i/><b/></div>}
   </div>;
 }
