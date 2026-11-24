@@ -1,0 +1,56 @@
+/* Veltrix motion system — lightweight CSS/SVG effects, no extra runtime dependency. */
+.vx.motion-enabled{--motion-ease:cubic-bezier(.22,1,.36,1);--motion-duration:720ms;scroll-behavior:smooth;scrollbar-gutter:stable}
+.vx.motion-enabled::before{content:"";position:fixed;inset:0;z-index:80;pointer-events:none;opacity:.22;background:radial-gradient(420px circle at var(--pointer-x,50%) var(--pointer-y,35%),rgba(205,229,160,.14),transparent 72%);transition:opacity .25s}
+.motion-scroll-progress{position:fixed;z-index:120;top:0;left:0;height:2px;width:100%;pointer-events:none;transform:scaleX(var(--scroll-progress,0));transform-origin:left;background:linear-gradient(90deg,#8fae62,#d8ee9d);box-shadow:0 0 12px #a9c77a88}
+.motion-spotlight{position:fixed;inset:0;z-index:79;pointer-events:none;opacity:.18;background:radial-gradient(260px circle at var(--pointer-x,50%) var(--pointer-y,35%),rgba(216,238,157,.08),transparent 75%);mix-blend-mode:screen}
+.motion-orbit-svg{position:fixed;right:-110px;bottom:-110px;width:280px;height:280px;z-index:0;pointer-events:none;color:#91aa70;opacity:.18}
+.vx.motion-enabled .motion-reveal{opacity:0;transform:translate3d(0,34px,0);filter:blur(5px);transition:opacity var(--motion-duration) var(--motion-ease),transform var(--motion-duration) var(--motion-ease),filter var(--motion-duration) var(--motion-ease)}
+.vx.motion-enabled .motion-reveal.is-revealed{opacity:1;transform:translate3d(0,0,0);filter:blur(0)}
+.vx.motion-enabled .vx-concepts>.motion-reveal:nth-child(2n){transition-delay:90ms}
+.vx.motion-enabled .vx-concepts>.motion-reveal:nth-child(3n){transition-delay:160ms}
+.vx.motion-enabled .vx-concept{transform-style:preserve-3d;transition:transform .55s var(--motion-ease),box-shadow .55s var(--motion-ease)}
+.vx.motion-enabled .vx-concept:hover{transform:translateY(-9px) rotateX(1.5deg);box-shadow:0 24px 55px rgba(31,52,36,.13)}
+.vx.motion-enabled .vx-concept-photo img{transition:transform 1.1s var(--motion-ease),filter .7s ease}
+.vx.motion-enabled .vx-concept:hover .vx-concept-photo img{transform:scale(1.075);filter:saturate(1.08)}
+.vx.motion-enabled .vx-btn-dark,.vx.motion-enabled .vx-btn-light,.vx.motion-enabled .vx-nav-cta,.vx.motion-enabled .vx-concept-bottom{transition:transform .24s var(--motion-ease),box-shadow .24s ease,background-color .24s ease}
+.vx.motion-enabled .motion-magnetic.is-active{transform:translate3d(var(--mag-x,0),var(--mag-y,0),0)}
+.vx.motion-enabled .vx-hero-art{transform:translate3d(0,var(--parallax-y,0),0);will-change:transform}
+.vx.motion-enabled .vx-hero h1,.vx.motion-enabled .demo-edu-hero h1,.vx.motion-enabled .demo-grade h1,.vx.motion-enabled .shop-hero h1,.vx.motion-enabled .school-hero h1,.vx.motion-enabled .corp-hero h1,.vx.motion-enabled .port-hero h1{animation:kinetic-title 950ms var(--motion-ease) both}
+.vx.motion-enabled .vx-hero h1 em,.vx.motion-enabled .vx-section-top h2 em{background:linear-gradient(100deg,#81965c 15%,#b1c98b 48%,#81965c 80%);background-size:220% auto;background-clip:text;-webkit-background-clip:text;color:transparent;animation:kinetic-shimmer 8s linear infinite}
+.vx.motion-enabled .vx-3d-object{transform-style:preserve-3d;animation:object-float 8s ease-in-out infinite}
+.vx.motion-enabled .vx-3d-ring{transform-style:preserve-3d;animation:ring-orbit 14s linear infinite}
+.vx.motion-enabled .vx-3d-core{animation:core-morph 8s ease-in-out infinite alternate}
+.vx.motion-enabled .vx-art-card{transition:transform .8s var(--motion-ease),box-shadow .8s ease}
+.vx.motion-enabled .vx-hero-art:hover .vx-art-card{transform:rotate(1.5deg) translateY(-5px);box-shadow:0 40px 95px #20362945}
+.vx.motion-enabled .vx-marquee-track{will-change:transform}
+.vx.motion-enabled .vx-package-card,.vx.motion-enabled .vx-package-card li,.vx.motion-enabled .vx-care-options>div{transition:transform .45s var(--motion-ease),box-shadow .45s ease}
+.vx.motion-enabled .vx-package-card:hover{transform:translateY(-8px);box-shadow:0 25px 60px rgba(26,44,29,.12)}
+.vx.motion-enabled .vx-package-card li:hover{transform:translateX(5px)}
+.vx.motion-enabled .vx-care-options>div:hover{transform:translateY(-5px)}
+.vx.motion-enabled .vx-nav nav button,.vx.motion-enabled .vx-mobile button,.vx.motion-enabled .vx-demo-tabs button,.vx.motion-enabled .shop-cats button{position:relative}
+.vx.motion-enabled .vx-nav nav button::after,.vx.motion-enabled .vx-demo-tabs button::after,.vx.motion-enabled .shop-cats button::after{content:"";position:absolute;left:0;right:100%;bottom:-5px;height:1px;background:currentColor;transition:right .35s var(--motion-ease)}
+.vx.motion-enabled .vx-nav nav button:hover::after,.vx.motion-enabled .vx-demo-tabs button:hover::after,.vx.motion-enabled .shop-cats button:hover::after{right:0}
+.vx.motion-enabled .vx-hero-art .vx-art-float,.vx.motion-enabled .vx-art-mini{animation:float-soft 6s ease-in-out infinite}
+.vx.motion-enabled .vx-hero-art .vx-art-float-b{animation-delay:-2.8s}
+.vx.motion-enabled .vx-demo .vx-demo-nav{backdrop-filter:blur(14px)}
+.vx.motion-enabled .vx-demo-end button:hover,.vx.motion-enabled .vx-text-btn:hover{gap:17px}
+.vx.motion-enabled .vx-care-modal{animation:modal-rise .5s var(--motion-ease) both}
+.vx.motion-enabled .vx-brand-intro .vx-intro-symbol{animation:intro-spin 12s linear infinite}
+.vx.motion-enabled .vx-brand-intro .vx-intro-progress span{transform-origin:left;animation:intro-progress 3.4s linear both}
+.vx.motion-enabled .vx-chat-panel{transform-origin:bottom right;animation:modal-rise .35s var(--motion-ease) both}
+.vx.motion-enabled.route-enter main{animation:route-enter .58s var(--motion-ease) both}
+.vx.motion-enabled .vx-scroll-story{position:sticky;top:90px;min-height:70vh}
+.vx.motion-enabled .vx-skeleton{background:linear-gradient(100deg,#e8ecdf 20%,#f7f8f3 38%,#e8ecdf 56%);background-size:200% 100%;animation:skeleton-shimmer 1.35s ease-in-out infinite}
+@keyframes kinetic-title{from{opacity:0;clip-path:inset(0 0 100% 0);transform:translateY(22px)}to{opacity:1;clip-path:inset(0 0 0 0);transform:translateY(0)}}
+@keyframes kinetic-shimmer{to{background-position:220% center}}
+@keyframes object-float{0%,100%{transform:translateY(0) rotateX(0) rotateY(0)}50%{transform:translateY(-12px) rotateX(7deg) rotateY(-8deg)}}
+@keyframes ring-orbit{to{transform:rotateY(360deg) rotateZ(360deg)}}
+@keyframes core-morph{0%{border-radius:46% 54% 62% 38%/44% 40% 60% 56%;transform:rotate(0) scale(.94)}100%{border-radius:62% 38% 43% 57%/55% 62% 38% 45%;transform:rotate(35deg) scale(1.06)}}
+@keyframes float-soft{0%,100%{translate:0 0}50%{translate:0 -9px}}
+@keyframes route-enter{from{opacity:.45;filter:blur(5px);transform:translateY(8px)}to{opacity:1;filter:blur(0);transform:translateY(0)}}
+@keyframes modal-rise{from{opacity:0;transform:translateY(16px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes intro-spin{to{transform:rotate(360deg)}}
+@keyframes intro-progress{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes skeleton-shimmer{to{background-position:-200% 0}}
+@media(max-width:760px){.motion-orbit-svg{width:180px;height:180px;right:-85px;bottom:-85px}.vx.motion-enabled::before,.motion-spotlight{display:none}.vx.motion-enabled .vx-hero-art{transform:none}.vx.motion-enabled .motion-reveal{transform:translateY(20px);filter:none}}
+@media(prefers-reduced-motion:reduce){.vx.motion-enabled *, .vx.motion-enabled *::before,.vx.motion-enabled *::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}.vx.motion-enabled .motion-reveal{opacity:1!important;transform:none!important;filter:none!important}}
