@@ -6,24 +6,33 @@ export default function ChatWidget({ db, admin }) {
   const [session, setSession] = useState(null);
   const [conversation, setConversation] = useState(null);
   const [messages, setMessages] = useState([]);
-  const [name, setName] = useState('');
   const [draft, setDraft] = useState('');
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
 
   useEffect(() => {
-    if (!open || !db || admin) return;
+    if (!open || admin) return;
+    if (!db) {
+      setError('Live chat is temporarily unavailable. Please use the enquiry form below.');
+      return;
+    }
     let alive = true;
     (async () => {
       setError('');
-      let { data: { session: current } } = await db.auth.getSession();
+      let { data: { session: current }, error: sessionError } = await db.auth.getSession();
+      if (sessionError) { setError(sessionError.message); return; }
       if (current && !current.user.is_anonymous) {
-        setError('Please use a private visitor session to start a chat.');
+        setError('Please open the website in a private visitor session to start a chat.');
         return;
       }
       if (!current) {
         const { data, error: authError } = await db.auth.signInAnonymously();
-        if (authError) { setError(authError.message); return; }
+        if (authError) {
+          setError(authError.message.includes('anonymous') || authError.message.includes('disabled')
+            ? 'Visitor chat is not enabled yet. Please contact the website administrator.'
+            : authError.message);
+          return;
+        }
         current = data.session;
       }
       if (!alive || !current) return;
@@ -35,7 +44,7 @@ export default function ChatWidget({ db, admin }) {
       let active = existing?.[0];
       if (!active) {
         const { data, error: createError } = await db.from('chat_conversations')
-          .insert({ owner_id: current.user.id, visitor_name: name.trim() || 'Website visitor' })
+          .insert({ owner_id: current.user.id, visitor_name: 'Website visitor' })
           .select().single();
         if (createError) { setError(createError.message); return; }
         active = data;
@@ -46,7 +55,7 @@ export default function ChatWidget({ db, admin }) {
   }, [open, db, admin]);
 
   useEffect(() => {
-    if (!conversation || !session) return;
+    if (!conversation || !session || !db) return;
     let alive = true;
     const load = async () => {
       const { data, error: loadError } = await db.from('chat_messages').select('*')
@@ -65,27 +74,31 @@ export default function ChatWidget({ db, admin }) {
   const send = async e => {
     e.preventDefault();
     const body = draft.trim();
-    if (!body || !conversation || !session || busy) return;
+    if (!body || !conversation || !session || busy || !db) return;
     setBusy(true); setError('');
     const { error: sendError } = await db.from('chat_messages').insert({
       conversation_id: conversation.id, sender_id: session.user.id, sender_role: 'visitor', body
     });
     if (sendError) setError(sendError.message);
-    else { await db.from('chat_conversations').update({ last_message_at: new Date().toISOString() }).eq('id', conversation.id); setDraft(''); }
+    else {
+      await db.from('chat_conversations').update({ last_message_at: new Date().toISOString() }).eq('id', conversation.id);
+      setDraft('');
+    }
     setBusy(false);
   };
 
-  if (!db || admin) return null;
+  if (admin) return null;
   return <div className="vel-chat">
     {open && <section className="vel-chat-panel" aria-label="Chat with Veltrix">
       <header><div><b>Talk to Veltrix</b><small>We usually reply as soon as possible</small></div><button onClick={() => setOpen(false)} aria-label="Close chat"><X size={18}/></button></header>
-      {!conversation ? <div className="vel-chat-loading"><LoaderCircle size={18}/>{error || 'Connecting securely…'}</div> :
+      {!db ? <div className="vel-chat-loading">{error}</div> :
+        !conversation ? <div className="vel-chat-loading"><LoaderCircle size={18}/>{error || 'Connecting securely…'}</div> :
         <><div className="vel-chat-messages">
           {!messages.length && <div className="vel-chat-welcome">Hi there! 👋 Tell us what you need for your SAT teaching platform.</div>}
           {messages.map(m => <div className={'vel-chat-bubble ' + (m.sender_role === 'visitor' ? 'mine' : '')} key={m.id}>{m.body}<small>{new Date(m.created_at).toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'})}</small></div>)}
         </div>
         <form onSubmit={send}><input value={draft} onChange={e=>setDraft(e.target.value)} placeholder="Write a message…" maxLength={2000}/><button disabled={busy || !draft.trim()} aria-label="Send message"><Send size={17}/></button></form></>}
-      {error && <p className="vel-chat-error">{error}</p>}
+      {error && db && <p className="vel-chat-error">{error}</p>}
     </section>}
     <button className="vel-chat-launch" onClick={() => setOpen(v => !v)} aria-label={open ? 'Close chat' : 'Open live chat'}>
       {open ? <X size={21}/> : <><MessageCircle size={20}/> <span>Chat with us</span></>}
