@@ -125,9 +125,14 @@ export default function VeltrixHeroScene(){
   const [ready,setReady]=useState(false);
   const [webgl,setWebgl]=useState(false);
   const [mobile,setMobile]=useState(false);
+  const [lite,setLite]=useState(false);
   useEffect(()=>{
     const update=()=>{
-      setMobile(window.matchMedia('(max-width: 760px), (pointer: coarse)').matches);
+      const isMobile=window.matchMedia('(max-width: 760px), (pointer: coarse)').matches;
+      const cores=navigator.hardwareConcurrency||8;
+      const memory=navigator.deviceMemory||8;
+      setMobile(isMobile);
+      setLite(isMobile||cores<=4||memory<=4);
       setWebgl(hasWebGL()&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches);
       setReady(true);
     };
@@ -138,10 +143,10 @@ export default function VeltrixHeroScene(){
   return <div className={`vx-hero-scene ${mobile?'is-mobile':'is-desktop'}`} aria-hidden="true">
     {ready&&webgl?<Canvas
       camera={{position:[0,0,6],fov:42}}
-      dpr={mobile?1:[1,1.5]}
+      dpr={lite?1:[1,1.5]}
       gl={{alpha:true,antialias:!mobile,powerPreference:'high-performance',stencil:false,depth:true}}
-      performance={{min:mobile ? 0.45 : 0.65}}
+      performance={{min:lite ? 0.45 : 0.65}}
       frameloop="always"
-    ><Scene mobile={mobile}/></Canvas>:<div className="vx-scene-fallback"><span className="vx-fallback-orb"/><i/><b/></div>}
+    ><Scene mobile={lite}/></Canvas>:<div className="vx-scene-fallback"><span className="vx-fallback-orb"/><i/><b/></div>}
   </div>;
 }
