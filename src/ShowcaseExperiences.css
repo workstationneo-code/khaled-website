@@ -51,3 +51,31 @@
   .vx-experience-lab .vx-lab-cases .vx-case-visual{min-height:260px !important}
   .vx-experience-lab .vx-lab-cases .vx-case-copy{min-height:0 !important}
 }
+
+
+/* Case-study switching fix: keep the visual layer present while the selected image changes. */
+.vx-experience-lab .vx-lab-cases .vx-case-visual{
+  background-size:cover !important;
+  background-position:center !important;
+  background-repeat:no-repeat !important;
+  background-color:#cbd9bd !important;
+  position:relative !important;
+  overflow:hidden !important;
+  isolation:isolate !important;
+  min-height:360px !important;
+}
+.vx-experience-lab .vx-lab-cases .vx-case-photo{
+  position:absolute !important;
+  inset:0 !important;
+  width:100% !important;
+  height:100% !important;
+  object-fit:cover !important;
+  opacity:.72 !important;
+  mix-blend-mode:normal !important;
+  z-index:0 !important;
+  display:block !important;
+}
+.vx-experience-lab .vx-lab-cases .vx-case-visual>span,
+.vx-experience-lab .vx-lab-cases .vx-case-visual-shape{position:relative;z-index:2}
+.vx-experience-lab .vx-lab-cases .vx-case-visual-shape{pointer-events:none}
+@media(max-width:760px){.vx-experience-lab .vx-lab-cases .vx-case-visual{min-height:260px!important}}
