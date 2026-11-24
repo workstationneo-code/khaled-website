@@ -87,11 +87,24 @@ export default function BuildProjectWizard({db,onClose}){
    e.preventDefault();setError('');
    if(!db){setError('The enquiry service is not connected yet. Please contact Veltrix directly.');return}
    setBusy(true);
-   const message=summary+'\n\nEstimated range (indicative): EGP '+estimate.toLocaleString('en-US')+'\nSuggested package: '+recommendation+'\nContact preference: '+consultation;
-   const {error:dbError}=await db.from('leads').insert({name:name.trim(),email:email.trim(),whatsapp:phone.trim()||null,service_type:project,package_name:recommendation+' — project discovery',concept_name:project,message,status:'New'});
-   setBusy(false);
-   if(dbError){setError('We could not send your project brief. Please try again or contact Veltrix directly.');return}
-   setDone(true);
+   const message=(summary+'\n\nEstimated range (indicative): EGP '+estimate.toLocaleString('en-US')+'\nSuggested package: '+recommendation+'\nContact preference: '+consultation).slice(0,3000);
+   try{
+     const {error:dbError}=await db.from('leads').insert({
+       name:name.trim(),email:email.trim(),whatsapp:phone.trim()||null,
+       service_type:project,package_name:recommendation,concept_name:project,message,status:'New'
+     });
+     if(dbError){
+       console.error('Veltrix project brief submission failed:',dbError);
+       setError('We could not send your project brief. Please try again or contact Veltrix directly.');
+       return;
+     }
+     setDone(true);
+   }catch(submitError){
+     console.error('Veltrix project brief submission failed:',submitError);
+     setError('A connection problem stopped your brief from being sent. Please check your connection and try again.');
+   }finally{
+     setBusy(false);
+   }
  };
  const next=()=>setStep(v=>Math.min(6,v+1));
  return <main className="vx-inner vx-wizard-page">
