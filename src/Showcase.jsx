@@ -4,6 +4,7 @@ import {createClient} from '@supabase/supabase-js';
 import {ArrowUpRight,ArrowLeft,ArrowRight,BookOpen,Calculator,GraduationCap,ShoppingBag,Building2,Briefcase,UserRound,Check,Menu,X,Plus,Minus,Search,Star,Sparkles,ChartNoAxesCombined,Users,Globe,Mail,Play,ChevronDown,ShoppingCart,Heart,Download,CalendarDays,ShieldCheck,MessageCircle,Send,Bot,Headphones} from 'lucide-react';
 import './showcase.css';
 import './veltrix-reference.css';
+import './veltrix-global.css';
 import MotionLayer from './MotionLayer.jsx';
 import ShowcaseExperiences from './ShowcaseExperiences.jsx';
 
