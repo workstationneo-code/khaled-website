@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { MessageCircle, X, Send, LoaderCircle } from 'lucide-react';
 
-export default function ChatWidget({ db, admin }) {
+export default function ChatWidget({ db, admin, subject = 'proposal' }) {
   const [open, setOpen] = useState(false);
   const [session, setSession] = useState(null);
   const [conversation, setConversation] = useState(null);
@@ -39,12 +39,12 @@ export default function ChatWidget({ db, admin }) {
       setSession(current);
       const { data: existing, error: findError } = await db
         .from('chat_conversations').select('*').eq('owner_id', current.user.id)
-        .eq('status', 'open').order('last_message_at', { ascending: false }).limit(1);
+        .eq('status', 'open').eq('subject', subject).order('last_message_at', { ascending: false }).limit(1);
       if (findError) { setError(findError.message); return; }
       let active = existing?.[0];
       if (!active) {
         const { data, error: createError } = await db.from('chat_conversations')
-          .insert({ owner_id: current.user.id, visitor_name: 'Website visitor' })
+          .insert({ owner_id: current.user.id, visitor_name: 'Website visitor', subject })
           .select().single();
         if (createError) { setError(createError.message); return; }
         active = data;
@@ -52,7 +52,7 @@ export default function ChatWidget({ db, admin }) {
       if (alive) setConversation(active);
     })();
     return () => { alive = false; };
-  }, [open, db, admin]);
+  }, [open, db, admin, subject]);
 
   useEffect(() => {
     if (!conversation || !session || !db) return;
