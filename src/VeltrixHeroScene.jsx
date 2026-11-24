@@ -13,6 +13,9 @@ function hasWebGL(){
 function Orb({mobile}){
   const group=React.useRef();
   const material=React.useRef();
+  const ringA=React.useRef();
+  const ringB=React.useRef();
+  const ringC=React.useRef();
   useFrame((state,delta)=>{
     if(!group.current)return;
     const targetX=state.pointer.y*.2;
@@ -20,6 +23,9 @@ function Orb({mobile}){
     group.current.rotation.x=THREE.MathUtils.damp(group.current.rotation.x,targetX,2.2,delta);
     group.current.rotation.y=THREE.MathUtils.damp(group.current.rotation.y,targetY+state.clock.elapsedTime*.075,2.2,delta);
     group.current.position.y=Math.sin(state.clock.elapsedTime*.65)*.075;
+    if(ringA.current)ringA.current.rotation.z+=delta*.11;
+    if(ringB.current)ringB.current.rotation.x-=delta*.075;
+    if(ringC.current)ringC.current.rotation.y+=delta*.06;
     if(material.current)material.current.uniforms.uTime.value=state.clock.elapsedTime;
   });
   const uniforms=useMemo(()=>({uTime:{value:0},uColorA:{value:new THREE.Color('#d9e8c8')},uColorB:{value:new THREE.Color('#557b5a')}}),[]);
@@ -28,15 +34,15 @@ function Orb({mobile}){
       <icosahedronGeometry args={[1, mobile?5:7]}/>
       <shaderMaterial ref={material} uniforms={uniforms} vertexShader={vertexShader} fragmentShader={fragmentShader} transparent/>
     </mesh>
-    <mesh rotation={[.85,.35,-.45]} scale={mobile?1.62:1.92}>
+    <mesh ref={ringA} rotation={[.85,.35,-.45]} scale={mobile?1.62:1.92}>
       <torusGeometry args={[1,.009,8,mobile?100:180]}/>
       <meshBasicMaterial color="#a7c48b" transparent opacity={.68}/>
     </mesh>
-    <mesh rotation={[-.65,-.5,.5]} scale={mobile?1.78:2.08}>
+    <mesh ref={ringB} rotation={[-.65,-.5,.5]} scale={mobile?1.78:2.08}>
       <torusGeometry args={[1,.006,8,mobile?100:180]}/>
       <meshBasicMaterial color="#6e916d" transparent opacity={.38}/>
     </mesh>
-    <mesh rotation={[1.2,.2,.1]} scale={mobile?1.48:1.72}>
+    <mesh ref={ringC} rotation={[1.2,.2,.1]} scale={mobile?1.48:1.72}>
       <torusGeometry args={[1,.004,8,mobile?90:160]}/>
       <meshBasicMaterial color="#f4f6e9" transparent opacity={.75}/>
     </mesh>
@@ -90,10 +96,11 @@ function ParticleField({mobile}){
   const count=mobile?260:900;
   const positions=useMemo(()=>{
     const values=new Float32Array(count*3);
+    const random=(seed)=>{const value=Math.sin(seed*127.1+311.7)*43758.5453;return value-Math.floor(value)};
     for(let i=0;i<count;i++){
-      const radius=2.1+Math.random()*2.8;
-      const theta=Math.random()*Math.PI*2;
-      const phi=Math.acos(2*Math.random()-1);
+      const radius=2.1+random(i+1)*2.8;
+      const theta=random(i+count+1)*Math.PI*2;
+      const phi=Math.acos(2*random(i+count*2+1)-1);
       values[i*3]=radius*Math.sin(phi)*Math.cos(theta);
       values[i*3+1]=radius*Math.sin(phi)*Math.sin(theta);
       values[i*3+2]=radius*Math.cos(phi);
