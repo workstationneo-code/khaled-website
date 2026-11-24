@@ -628,3 +628,49 @@
  .vx-approval-reply button{width:100%}
 }
 @media(prefers-reduced-motion:reduce){.vx-client-portal{scroll-behavior:auto}}
+
+
+/* Private project live chat */
+.vx-live-chat{margin-top:24px;padding:22px;border:1px solid #e4eadf;border-radius:15px;background:#fff}
+.vx-live-chat-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;padding-bottom:17px;border-bottom:1px solid #edf0e9}
+.vx-live-chat-head h3{margin:7px 0 5px;font-size:20px;color:#29392c}
+.vx-live-chat-head p{margin:0;max-width:570px;font-size:12px;line-height:1.65;color:#7d8978}
+.vx-live-chat-status{display:inline-flex;align-items:center;gap:7px;flex:none;padding:7px 10px;border-radius:20px;background:#f1f6eb;color:#617b50;font-size:10px;font-weight:700}
+.vx-live-chat-status i{width:7px;height:7px;border-radius:50%;background:#86a96a}
+.vx-chat-messages{display:flex;flex-direction:column;gap:12px;max-height:420px;min-height:190px;overflow-y:auto;padding:18px 3px}
+.vx-chat-empty{margin:auto;max-width:390px;text-align:center;font-size:12px;line-height:1.7;color:#899484}
+.vx-chat-message{display:flex;width:100%}
+.vx-chat-message.mine{justify-content:flex-end}
+.vx-chat-message.theirs{justify-content:flex-start}
+.vx-chat-bubble{max-width:min(78%,520px);padding:11px 13px;border:1px solid #e7ecdf;border-radius:12px 12px 12px 3px;background:#f7f9f4}
+.vx-chat-message.mine .vx-chat-bubble{border-color:#dce8d2;border-radius:12px 12px 3px 12px;background:#eef4e8}
+.vx-chat-bubble>small{display:block;margin-bottom:5px;color:#728269;font-size:9px;font-weight:800}
+.vx-chat-bubble p{margin:0;color:#3f4b3b;font-size:12px;line-height:1.65;white-space:pre-wrap;overflow-wrap:anywhere}
+.vx-chat-bubble time{display:block;margin-top:7px;color:#929b8d;font-size:9px;text-align:right}
+.vx-chat-image-link{display:block;max-width:280px;margin:5px 0 7px}
+.vx-chat-image-link img{display:block;max-width:100%;max-height:230px;border-radius:8px;object-fit:contain}
+.vx-chat-compose{display:flex;align-items:flex-end;gap:9px;padding-top:13px;border-top:1px solid #edf0e9}
+.vx-chat-compose textarea{flex:1;min-width:0;min-height:46px;max-height:120px;padding:12px;border:1px solid #dfe6d9;border-radius:9px;background:#fbfcfa;color:#344432;font:12px/1.6 Manrope;resize:vertical}
+.vx-chat-attach{display:grid;place-items:center;flex:none;width:44px;height:44px;border:1px solid #dfe6d9;border-radius:9px;color:#607850;background:#f8faf5;cursor:pointer}
+.vx-chat-attach:hover{background:#edf4e6}
+.vx-chat-attach input{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+.vx-chat-compose .vx-btn-dark{min-height:44px;padding:0 15px;font-size:11px}
+.vx-chat-footnote{display:block;margin-top:9px;color:#98a091;font-size:9px}
+.vx-chat-error{margin:10px 0 0;color:#a64c42;font-size:11px}
+.vx-chat-image-preview{display:flex;align-items:center;gap:10px;margin:0 0 12px;padding:9px;border:1px solid #e2e9dc;border-radius:9px;background:#f7f9f4}
+.vx-chat-image-preview img{width:48px;height:48px;object-fit:cover;border-radius:6px}
+.vx-chat-image-preview span{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:11px;color:#596651}
+.vx-chat-image-preview button{display:grid;place-items:center;width:30px;height:30px;border:0;border-radius:50%;background:#e9eee4;color:#687660;cursor:pointer}
+.vx-chat-quick-replies{display:flex;flex-wrap:wrap;gap:7px;padding:12px 0 3px}
+.vx-chat-quick-replies>span{width:100%;color:#87927f;font-size:10px;font-weight:800}
+.vx-chat-quick-replies button{padding:8px 10px;border:1px solid #e1e8da;border-radius:20px;background:#fafbf8;color:#5d7054;font:500 10px/1.4 Manrope;cursor:pointer}
+.vx-chat-quick-replies button:hover{border-color:#b9cba9;background:#f1f6eb}
+.vx-admin-chat-note{margin:10px 0 0;color:#83907b;font-size:10px}
+@media(max-width:600px){
+ .vx-live-chat{padding:15px}
+ .vx-live-chat-head{flex-direction:column}
+ .vx-chat-compose{gap:6px}
+ .vx-chat-compose .vx-btn-dark{padding:0 10px}
+ .vx-chat-bubble{max-width:88%}
+ .vx-chat-quick-replies{gap:6px}
+}
