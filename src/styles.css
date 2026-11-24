@@ -133,3 +133,28 @@
  .subject-contact{padding:22px;margin-bottom:45px}
  .subject-price-row{grid-template-columns:1fr;gap:8px}
 }
+
+/* Admin client account management */
+.admin-clients{margin:28px 0;padding:26px;border:1px solid #e4e8df;border-radius:18px;background:#fff}
+.admin-clients-head{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;margin-bottom:22px}
+.admin-clients-kicker{font-size:10px;letter-spacing:.16em;color:#71816d;font-weight:800}
+.admin-clients-head h3{display:flex;align-items:center;gap:9px;margin:8px 0;font-size:21px}
+.admin-clients-head p{margin:0;color:#70776f;font-size:13px;max-width:540px;line-height:1.6}
+.admin-clients-secure{display:flex;align-items:center;gap:6px;font-size:11px;color:#53644f;background:#eef3e9;padding:8px 11px;border-radius:30px;white-space:nowrap}
+.admin-client-form{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.admin-client-form label{display:flex;flex-direction:column;gap:7px;font-size:12px;font-weight:700;color:#343b33}
+.admin-client-form input,.admin-client-form select{width:100%;min-width:0;border:1px solid #dce1d8;border-radius:9px;padding:12px 13px;background:#fbfcfa;color:#20271f;font:inherit;font-weight:400;outline:none}
+.admin-client-form input:focus,.admin-client-form select:focus{border-color:#819477;box-shadow:0 0 0 3px #81947720}
+.admin-client-password{grid-column:1/-1}
+.admin-client-password small{font-weight:400;color:#777f75}
+.admin-client-form>button{justify-self:start;display:flex;align-items:center;gap:8px;border:0;border-radius:9px;padding:12px 17px;cursor:pointer}
+.admin-client-form>button:disabled{opacity:.6;cursor:wait}
+.admin-client-notice{font-size:13px;color:#58674e;margin:16px 0 0}
+.admin-client-created{margin-top:18px;padding:18px;border-radius:13px;background:#f1f5ed;border:1px solid #dce7d5}
+.admin-client-created>div{display:flex;align-items:center;gap:8px;color:#3f6038}
+.admin-client-created p{font-size:13px;color:#5d6858}
+.admin-client-created dl{display:grid;grid-template-columns:150px 1fr;gap:8px;margin:14px 0;font-size:13px}
+.admin-client-created dt{color:#737c70}.admin-client-created dd{margin:0;font-weight:700;overflow-wrap:anywhere}
+.admin-client-created button{display:inline-flex;align-items:center;gap:7px;background:#fff;border:1px solid #d2dccb;border-radius:8px;padding:9px 12px;cursor:pointer}
+.admin-client-created>small{display:block;margin-top:12px;color:#727c6d;font-size:11px}
+@media(max-width:650px){.admin-clients{padding:18px}.admin-clients-head{flex-direction:column}.admin-client-form{grid-template-columns:1fr}.admin-client-password{grid-column:auto}.admin-client-created dl{grid-template-columns:1fr;gap:4px}.admin-client-created dd{margin-bottom:8px}}
