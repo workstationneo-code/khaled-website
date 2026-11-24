@@ -112,7 +112,7 @@ export default function BuildProjectWizard({db,onClose}){
       <Field label="Color direction"><select value={palette} onChange={e=>setPalette(e.target.value)}>{palettes.map(x=><option key={x}>{x}</option>)}</select></Field>
       <Field label="Device priorities" wide><ChoiceList items={devices} value={devicesSelected} onChange={setDevicesSelected}/></Field>
       <Field label="Brand assets"><select value={contentReady} onChange={e=>setContentReady(e.target.value)}>{['Everything is ready','Some content is ready','I need help creating content','I need branding as well'].map(x=><option key={x}>{x}</option>)}</select></Field>
-      <Field label="Upload inspiration (images, PDF, logo)"><input type="file" multiple accept="image/*,.pdf,.svg" onChange={e=>setUploads(Array.from(e.target.files||[]).map(f=>f.name))}/></Field>
+      <Field label="Choose inspiration files (optional)"><input type="file" multiple accept="image/*,.pdf,.svg" onChange={e=>setUploads(Array.from(e.target.files||[]).map(f=>f.name))}/><small className="vx-wizard-file-note">Selected filenames are listed in your brief. File uploads need a configured secure storage destination.</small></Field>
       <Field label="Reference website links" wide><textarea rows="2" value={references} onChange={e=>setReferences(e.target.value)} placeholder="Paste links to websites you like (one per line)"/></Field>
     </div>}
     {step===3&&<div className="vx-wizard-structure">
