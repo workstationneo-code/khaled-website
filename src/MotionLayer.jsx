@@ -1,22 +1,8 @@
 import React,{useEffect,useRef} from 'react';
 import './motion.css';
 
-const revealTargets = [
-  '.vx main > section',
-  '.vx-work',
-  '.vx-concept',
-  '.vx-section-top',
-  '.vx-studio',
-  '.vx-cta-band',
-  '.vx-proposal-pricing',
-  '.vx-demo-end',
-  '.demo-edu-content',
-  '.demo-grade',
-  '.shop-products',
-  '.school-info',
-  '.corp-services',
-  '.port-work'
-].join(',');
+// Animate only top-level page sections. Avoid nested targets that can be hidden twice.
+const revealTargets = '.vx main > section';
 
 export default function MotionLayer({page}) {
   const frame = useRef(0);
@@ -40,8 +26,10 @@ export default function MotionLayer({page}) {
             observer.unobserve(entry.target);
           }
         });
-      }, {threshold: 0.12,rootMargin: '0px 0px -48px 0px'});
+      }, {threshold: 0,rootMargin: '0px 0px 120px 0px'});
       nodes.forEach((node) => observer.observe(node));
+      // Fail-safe: never leave page content hidden if an observer misses an element.
+      window.setTimeout(() => nodes.forEach((node) => node.classList.add('is-revealed')), 1600);
     } else {
       nodes.forEach((node) => node.classList.add('is-revealed'));
     }
