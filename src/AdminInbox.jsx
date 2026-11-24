@@ -54,7 +54,7 @@ export default function AdminInbox({ db, session }) {
       conversation_id: active.id, sender_id: session.user.id, sender_role: 'admin', body
     });
     if (error) setNotice(error.message);
-    else { setDraft(''); await load(); }
+    else { await db.from('chat_conversations').update({ last_message_at: new Date().toISOString() }).eq('id', active.id); setDraft(''); await load(); }
     setBusy(false);
   };
 
