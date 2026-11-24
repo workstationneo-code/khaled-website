@@ -112,7 +112,8 @@ function ChatWidget(){
   <button className={'vx-chat-launch '+(open?'is-open':'')} onClick={()=>setOpen(v=>!v)} aria-label={open?'Close support chat':'Open Veltrix support chat'}>{open?<X size={22}/>:<><MessageCircle size={21}/><span>Chat with us</span></>}</button>
  </div>
 }
-\nfunction Footer({go}){return <footer className="vx-footer"><button className="vx-brand" onClick={()=>go('home')}><span>v.</span> VELTRIX</button><p>Thoughtful digital experiences, built around people.</p><span>© 2026 VELTRIX STUDIO</span></footer>}
+
+function Footer({go}){return <footer className="vx-footer"><button className="vx-brand" onClick={()=>go('home')}><span>v.</span> VELTRIX</button><p>Thoughtful digital experiences, built around people.</p><span>© 2026 VELTRIX STUDIO</span></footer>}
 function ConceptPage({item,go,prices,onChoosePackage,cart,addCart,products,category,setCategory,students,grades,setGrades,dept,setDept,klass,setKlass,avg}){
  const Icon=item.icon;const [tab,setTab]=useState('Overview');const [careModal,setCareModal]=useState(null);const [selectedCare,setSelectedCare]=useState('');
  const [open,setOpen]=useState(false);
