@@ -1,6 +1,5 @@
 import React,{useEffect,useMemo,useState} from 'react';
 import {createClient} from '@supabase/supabase-js';
-import {createRoot} from 'react-dom/client';
 import {ArrowUpRight,ArrowLeft,ArrowRight,BookOpen,Calculator,GraduationCap,ShoppingBag,Building2,Briefcase,UserRound,Check,Menu,X,Plus,Minus,Search,Star,Sparkles,ChartNoAxesCombined,Users,Globe,Mail,Play,ChevronDown,ShoppingCart,Heart,Download,CalendarDays,ShieldCheck} from 'lucide-react';
 import './showcase.css';
 
@@ -73,4 +72,4 @@ function ConceptPage({item,go,cart,addCart,products,category,setCategory,student
  {item.id==='portfolio'&&<section className="demo-portfolio"><div className="port-nav"><b>ALEX MORGAN<span>.</span></b><span>DESIGNER · CREATIVE DEVELOPER</span><button onClick={()=>go('contact')}>Get in touch <ArrowUpRight size={15}/></button></div><div className="port-hero"><div className="vx-kicker">INDEPENDENT DESIGNER & CREATIVE THINKER</div><h1>Making digital<br/>feel more <em>human.</em></h1><p>I’m Alex — a multidisciplinary designer who turns complex ideas into simple, engaging digital experiences.</p><div className="vx-actions"><button className="vx-btn-dark" onClick={()=>setTab('Projects')}>Explore projects <ArrowRight size={16}/></button><button className="vx-text-btn" onClick={()=>setTab('About')}>A little about me</button></div><div className="port-portrait"><div className="port-portrait-shape">AM</div><span>CREATIVE BY NATURE<br/>CURIOUS BY DEFAULT</span></div></div><div className="port-work"><div className="vx-kicker">SELECTED WORK / 2023—2026</div><h2>{tab==='About'?'A little context.':'A few things I’ve made.'}</h2><div className="port-projects">{[['01','NOVA / Digital product','Product design'],['02','Common Ground / Brand','Brand identity'],['03','Fieldnotes / Web experience','Web design']].map((x,i)=><article><div className={'port-project-art art-'+i}><span>{x[0]}</span><b>{['NOVA','common ground','fieldnotes'][i]}</b></div><small>{x[2]}</small><h3>{x[1]}</h3></article>)}</div></div><div className="port-skills"><span>UI / UX DESIGN</span><span>BRAND IDENTITY</span><span>CREATIVE DEVELOPMENT</span><span>DESIGN SYSTEMS</span><span>ART DIRECTION</span></div></section>}
  <div className="vx-demo-end"><span>LIKE THIS DIRECTION?</span><button onClick={()=>go('contact')}>Let’s build your version <ArrowUpRight size={15}/></button></div></main><Footer go={go}/></>
 }
-createRoot(document.getElementById('root')).render(<App/>);
+export default App;
