@@ -1,11 +1,11 @@
 /* Veltrix motion system — lightweight CSS/SVG effects, no extra runtime dependency. */
-.vx.motion-enabled{--motion-ease:cubic-bezier(.22,1,.36,1);--motion-duration:720ms;scroll-behavior:smooth;scrollbar-gutter:stable}
+.vx.motion-enabled{--motion-ease:cubic-bezier(.22,1,.36,1);--motion-duration:480ms;scrollbar-gutter:stable}
 .vx.motion-enabled::before{content:"";position:fixed;inset:0;z-index:80;pointer-events:none;opacity:.22;background:radial-gradient(420px circle at var(--pointer-x,50%) var(--pointer-y,35%),rgba(205,229,160,.14),transparent 72%);transition:opacity .25s}
 .motion-scroll-progress{position:fixed;z-index:120;top:0;left:0;height:2px;width:100%;pointer-events:none;transform:scaleX(var(--scroll-progress,0));transform-origin:left;background:linear-gradient(90deg,#8fae62,#d8ee9d);box-shadow:0 0 12px #a9c77a88}
 .motion-spotlight{position:fixed;inset:0;z-index:79;pointer-events:none;opacity:.18;background:radial-gradient(260px circle at var(--pointer-x,50%) var(--pointer-y,35%),rgba(216,238,157,.08),transparent 75%);mix-blend-mode:screen}
 .motion-orbit-svg{position:fixed;right:-110px;bottom:-110px;width:280px;height:280px;z-index:0;pointer-events:none;color:#91aa70;opacity:.18}
-.vx.motion-enabled .motion-reveal{opacity:0;transform:translate3d(0,34px,0);filter:blur(5px);transition:opacity var(--motion-duration) var(--motion-ease),transform var(--motion-duration) var(--motion-ease),filter var(--motion-duration) var(--motion-ease)}
-.vx.motion-enabled .motion-reveal.is-revealed{opacity:1;transform:translate3d(0,0,0);filter:blur(0)}
+.vx.motion-enabled .motion-reveal{opacity:0;transform:translate3d(0,16px,0);transition:opacity var(--motion-duration) var(--motion-ease),transform var(--motion-duration) var(--motion-ease);}
+.vx.motion-enabled .motion-reveal.is-revealed{opacity:1;transform:translate3d(0,0,0)}
 .vx.motion-enabled .vx-concepts>.motion-reveal:nth-child(2n){transition-delay:90ms}
 .vx.motion-enabled .vx-concepts>.motion-reveal:nth-child(3n){transition-delay:160ms}
 .vx.motion-enabled .vx-concept{transform-style:preserve-3d;transition:transform .55s var(--motion-ease),box-shadow .55s var(--motion-ease)}
