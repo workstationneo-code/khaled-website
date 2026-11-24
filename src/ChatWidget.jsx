@@ -71,7 +71,7 @@ export default function ChatWidget({ db, admin }) {
       conversation_id: conversation.id, sender_id: session.user.id, sender_role: 'visitor', body
     });
     if (sendError) setError(sendError.message);
-    else setDraft('');
+    else { await db.from('chat_conversations').update({ last_message_at: new Date().toISOString() }).eq('id', conversation.id); setDraft(''); }
     setBusy(false);
   };
 
