@@ -173,6 +173,7 @@ export default function VeltrixHeroScene(){
       dpr={lite?1:[1,1.5]}
       gl={{alpha:true,antialias:!lite,powerPreference:'high-performance',stencil:false,depth:true}}
       performance={{min:lite ? 0.45 : 0.65}}
+      onCreated={({gl})=>gl.domElement.addEventListener('webglcontextlost',event=>{event.preventDefault();setWebgl(false)},{once:true})}
       frameloop={visible?'always':'never'}
     ><Scene mobile={lite}/></Canvas></SceneErrorBoundary>:<div className="vx-scene-fallback"><span className="vx-fallback-orb"/><i/><b/></div>}
   </div>;
