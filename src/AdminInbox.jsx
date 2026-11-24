@@ -70,13 +70,13 @@ export default function AdminInbox({ db, session }) {
     <div className="admin-chat-layout">
       <div className="admin-chat-list">
         {conversations.map(c => <button key={c.id} className={'admin-chat-thread ' + (active?.id === c.id ? 'active' : '')} onClick={() => setActive(c)}>
-          <b>{c.visitor_name || 'Website visitor'}</b><small>{new Date(c.last_message_at).toLocaleString()}</small><span>{c.status === 'resolved' ? 'Resolved' : 'Open'}</span>
+          <b>{c.visitor_name || 'Website visitor'}</b><em className="chat-subject-tag">{c.subject === 'english' ? 'SAT English' : c.subject === 'math' ? 'SAT Math' : 'Website Proposal'}</em><small>{new Date(c.last_message_at).toLocaleString()}</small><span>{c.status === 'resolved' ? 'Resolved' : 'Open'}</span>
         </button>)}
         {!conversations.length && <div className="admin-chat-empty">No visitor conversations yet.</div>}
       </div>
       <div className="admin-chat-room">
         {active ? <>
-          <div className="admin-chat-room-head"><div><b>{active.visitor_name || 'Website visitor'}</b><small>{active.status === 'resolved' ? 'Resolved conversation' : 'Conversation open'}</small></div><button className="outline" onClick={resolve}><CheckCircle2 size={14}/>{active.status === 'resolved' ? 'Reopen' : 'Resolve'}</button></div>
+          <div className="admin-chat-room-head"><div><b>{active.visitor_name || 'Website visitor'}</b><small>{active.subject === 'english' ? 'SAT English' : active.subject === 'math' ? 'SAT Math' : 'Website Proposal'} · {active.status === 'resolved' ? 'Resolved conversation' : 'Conversation open'}</small></div><button className="outline" onClick={resolve}><CheckCircle2 size={14}/>{active.status === 'resolved' ? 'Reopen' : 'Resolve'}</button></div>
           <div className="admin-chat-room-messages">{messages.map(m => <div key={m.id} className={'admin-chat-message ' + (m.sender_role === 'admin' ? 'sent' : '')}><span>{m.body}</span><small>{m.sender_role === 'admin' ? 'Veltrix team' : 'Visitor'} · {new Date(m.created_at).toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'})}</small></div>)}</div>
           <form className="admin-chat-reply" onSubmit={send}><input value={draft} onChange={e=>setDraft(e.target.value)} placeholder="Write your reply…" maxLength={2000}/><button className="dark" disabled={busy || !draft.trim()}><Send size={15}/> Send</button></form>
         </> : <div className="admin-chat-empty">Select a conversation to read and reply.</div>}
