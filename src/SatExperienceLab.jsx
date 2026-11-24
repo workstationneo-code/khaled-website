@@ -20,7 +20,7 @@ const stories = [
   { title: 'A more confident academy', type: 'Academy management', text: 'Give growing teams a clearer view of people, learning activity and the work happening across the platform.', tag: 'GROW' }
 ];
 
-export default function SatExperienceLab({ onBack }) {
+export default function SatExperienceLab({ onBack, onContact }) {
   const [device, setDevice] = useState('desktop');
   const [activePackage, setActivePackage] = useState('Professional');
   const [questionIndex, setQuestionIndex] = useState(0);
@@ -105,7 +105,7 @@ export default function SatExperienceLab({ onBack }) {
       <div className="sat-before-demo"><div className="sat-before-images"><div className="sat-before-old"><small>BEFORE / DISCONNECTED</small><h3>Too many places<br/>to keep track.</h3><div className="sat-old-windows"><i>Assignments.xlsx</i><i>Class notes.doc</i><i>Scores-final-2.pdf</i><i>Messages</i></div></div><div className="sat-before-new" style={{clipPath:`inset(0 0 0 ${slider}%)`}}><small>AFTER / CONNECTED</small><h3>One space.<br/>A clearer path.</h3><div className="sat-new-dashboard"><span>v. VELTRIX LEARNING</span><b>Good morning, Mariam</b><i>My courses　　Progress　　Practice</i><div><em/><em/><em/></div></div></div><div className="sat-before-divider" style={{left:`${slider}%`}}><span>↔</span></div></div><label className="sat-before-range"><span>BEFORE</span><input aria-label="Before and after comparison" type="range" min="0" max="100" value={slider} onChange={event=>setSlider(Number(event.target.value))}/><span>AFTER</span></label></div>
     </section>
 
-    <section className="sat-lab-contact" id="sat-lab-contact"><div><span>READY TO MAKE IT REAL?</span><h2>Your teaching deserves<br/><em>a platform built around it.</em></h2><p>Let's turn this concept into a platform shaped around your students, teaching style and goals.</p></div><a href="mailto:hello@veltrix.studio?subject=SAT%20platform%20proposal">Start a conversation <ArrowUpRight size={16}/></a></section>
+    <section className="sat-lab-contact" id="sat-lab-contact"><div><span>READY TO MAKE IT REAL?</span><h2>Your teaching deserves<br/><em>a platform built around it.</em></h2><p>Let's turn this concept into a platform shaped around your students, teaching style and goals.</p></div><button className="sat-lab-contact-action" onClick={onContact}>Start a conversation <ArrowUpRight size={16}/></button></section>
     <footer className="sat-lab-footer"><span>VELTRIX / IDEAS INTO IMPACT</span><span>Concept demonstration · Final scope agreed during discovery</span></footer>
   </main>;
 }
