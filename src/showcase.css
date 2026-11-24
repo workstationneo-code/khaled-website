@@ -354,3 +354,9 @@
 .vx-project-feedback select{border:1px solid #dfe6d9;border-radius:7px;padding:12px;background:white;color:#52604d;font:11px Manrope}
 .vx-project-feedback .vx-btn-dark{justify-self:start}
 @media(max-width:650px){.vx-admin-project-row{align-items:flex-start;flex-wrap:wrap}.vx-project-workspace{padding:17px}.vx-approval-actions{display:grid}.vx-approval-actions button{width:100%}}
+
+
+/* Keep the support launcher anchored to the browser viewport on every page. */
+.vx-chat-widget{position:fixed!important;inset:auto 24px 24px auto!important;z-index:99990!important;width:max-content!important;max-width:calc(100vw - 28px)}
+.vx-chat-panel{position:absolute!important;right:0!important;bottom:68px!important;top:auto!important;left:auto!important}
+@media(max-width:520px){.vx-chat-widget{inset:auto 14px 14px auto!important}}
