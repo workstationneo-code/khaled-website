@@ -1,6 +1,5 @@
 import React,{useEffect,useRef} from 'react';
 import './motion.css';
-import ShowcaseExperiences from './ShowcaseExperiences.jsx';
 
 const revealTargets = [
   '.vx main > section',
@@ -109,7 +108,7 @@ export default function MotionLayer({page}) {
     return () => window.clearTimeout(timer);
   }, [page]);
 
-  return <><div className="motion-overlay" aria-hidden="true">
+  return <div className="motion-overlay" aria-hidden="true">
     <div className="motion-scroll-progress"/>
     <div className="motion-spotlight"/>
     <svg className="motion-orbit-svg" viewBox="0 0 240 240" fill="none">
@@ -120,5 +119,5 @@ export default function MotionLayer({page}) {
         <animate attributeName="d" dur="9s" repeatCount="indefinite" values="M120 34 C166 34 206 74 206 120 C206 166 166 206 120 206 C74 206 34 166 34 120 C34 74 74 34 120 34Z;M120 24 C182 24 216 68 216 120 C216 172 174 216 120 216 C66 216 24 172 24 120 C24 68 58 24 120 24Z;M120 34 C166 34 206 74 206 120 C206 166 166 206 120 206 C74 206 34 166 34 120 C34 74 74 34 120 34Z"/>
       </path>
     </svg>
-  </div>{page==='home'&&<ShowcaseExperiences/>}</>;
+  </div>;
 }
