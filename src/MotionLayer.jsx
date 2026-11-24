@@ -24,10 +24,10 @@ export default function MotionLayer({page}) {
       gsap.ticker.add(gsapFrame);
       gsap.ticker.lagSmoothing(0);
       motionContext = gsap.context(() => {
-        const scene = root.querySelector('.vx-hero-scene');
+        const heroArt = root.querySelector('.vx-hero-art');
         const hero = root.querySelector('.vx-hero');
-        if (scene && hero) {
-          gsap.to(scene,{y:72,scale:1.07,ease:'none',scrollTrigger:{trigger:hero,start:'top top',end:'bottom top',scrub:1}});
+        if (heroArt && hero) {
+          gsap.to(heroArt,{'--scene-y':'72px','--scene-scale':1.07,ease:'none',scrollTrigger:{trigger:hero,start:'top top',end:'bottom top',scrub:1}});
         }
         const studioPoints = root.querySelectorAll('.vx-studio-points > div');
         if (studioPoints.length) {
