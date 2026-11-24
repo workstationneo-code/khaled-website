@@ -1,5 +1,8 @@
 import React,{useEffect,useRef} from 'react';
 import './motion.css';
+import Lenis from 'lenis';
+import gsap from 'gsap';
+import {ScrollTrigger} from 'gsap/ScrollTrigger';
 
 // Animate only top-level page sections. Avoid nested targets that can be hidden twice.
 const revealTargets = '.vx main > section';
@@ -10,6 +13,28 @@ export default function MotionLayer({page}) {
     const root = document.querySelector('.vx');
     if (!root) return;
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let lenis;
+    let gsapFrame;
+    let motionContext;
+    if (!reduced) {
+      gsap.registerPlugin(ScrollTrigger);
+      lenis = new Lenis({duration:1.05,smoothWheel:true,syncTouch:false});
+      lenis.on('scroll',ScrollTrigger.update);
+      gsapFrame = (time) => lenis.raf(time * 1000);
+      gsap.ticker.add(gsapFrame);
+      gsap.ticker.lagSmoothing(0);
+      motionContext = gsap.context(() => {
+        const scene = root.querySelector('.vx-hero-scene');
+        const hero = root.querySelector('.vx-hero');
+        if (scene && hero) {
+          gsap.to(scene,{y:72,scale:1.07,ease:'none',scrollTrigger:{trigger:hero,start:'top top',end:'bottom top',scrub:1}});
+        }
+        const studioPoints = root.querySelectorAll('.vx-studio-points > div');
+        if (studioPoints.length) {
+          gsap.from(studioPoints,{y:22,opacity:0,duration:.7,stagger:.12,ease:'power3.out',scrollTrigger:{trigger:root.querySelector('.vx-studio-points'),start:'top 82%'}});
+        }
+      },root);
+    }
     root.classList.add('motion-enabled');
 
     const nodes = [...root.querySelectorAll(revealTargets)];
@@ -82,6 +107,9 @@ export default function MotionLayer({page}) {
       root.removeEventListener('pointermove', onPointerMove);
       root.removeEventListener('pointerleave', onPointerLeave);
       cancelAnimationFrame(frame.current);
+      if (lenis) lenis.destroy();
+      if (gsapFrame) gsap.ticker.remove(gsapFrame);
+      if (motionContext) motionContext.revert();
       root.classList.remove('motion-enabled','route-enter');
     };
   }, []);
