@@ -3,6 +3,7 @@ import {createPortal} from 'react-dom';
 import {createClient} from '@supabase/supabase-js';
 import {ArrowUpRight,ArrowLeft,ArrowRight,BookOpen,Calculator,GraduationCap,ShoppingBag,Building2,Briefcase,UserRound,Check,Menu,X,Plus,Minus,Search,Star,Sparkles,ChartNoAxesCombined,Users,Globe,Mail,Play,ChevronDown,ShoppingCart,Heart,Download,CalendarDays,ShieldCheck,MessageCircle,Send,Bot,Headphones} from 'lucide-react';
 import './showcase.css';
+import MotionLayer from './MotionLayer.jsx';
 
 const concepts=[
  {image:'https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=900&q=85',id:'english',n:'01',tag:'EDUCATION',title:'SAT English Academy',desc:'A focused learning experience for reading, writing and language mastery.',type:'Learning platform',icon:BookOpen,accent:'mint',features:['Course pathways','Practice library','Student progress','Teacher dashboard']},
@@ -48,7 +49,7 @@ function App(){
  const selected=concepts.find(c=>c.id===active);
  const addCart=id=>setCart(v=>[...v,id]);
  const nav=<><button onClick={()=>go('home')}>Showcase</button><button onClick={()=>document.getElementById('work')?.scrollIntoView({behavior:'smooth'})}>Our work</button><button onClick={()=>go('proposal')}>SAT proposal</button><button onClick={()=>go('portal')}>Client portal</button><button onClick={()=>go('home')}>About Veltrix</button></>;
- return <div className="vx"><ChatWidget/>
+ return <div className="vx" data-page={active}><MotionLayer page={active}/><ChatWidget/>
  {introVisible&&<div className="vx-brand-intro" aria-label="Veltrix" role="status"><div className="vx-intro-grain"></div><div className="vx-intro-orbit vx-intro-orbit-a"></div><div className="vx-intro-orbit vx-intro-orbit-b"></div><div className="vx-intro-mark"><span className="vx-intro-symbol">✳</span><span className="vx-intro-word">VELTRIX</span></div><div className="vx-intro-caption">IDEAS INTO IMPACT</div><div className="vx-intro-progress"><span></span></div></div>}
  <header className="vx-nav"><button className="vx-brand" onClick={()=>go('home')}><span>v.</span> VELTRIX</button><nav>{nav}</nav><button className="vx-nav-cta" onClick={()=>go('contact')}>Start a project <ArrowUpRight size={16}/></button><button className="vx-admin-link" onClick={()=>go('admin')}>Admin</button><button className="vx-menu" onClick={()=>setMobile(!mobile)}>{mobile?<X/>:<Menu/>}</button></header>
  {mobile&&<div className="vx-mobile">{nav}<button onClick={()=>go('contact')}>Start a project</button></div>}
