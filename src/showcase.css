@@ -207,3 +207,27 @@
 .vx-gallery-note{max-width:1320px;margin:19px auto 0;display:flex;justify-content:space-between;gap:12px;color:#84907c;font-size:8px;font-weight:800;letter-spacing:.15em}
 @media(max-width:760px){.vx-gallery-head{display:block}.vx-gallery-head>p{margin-top:18px}.vx-gallery-grid{grid-template-columns:1fr 1fr;grid-auto-rows:210px;gap:9px}.vx-gallery-item.gallery-wide{grid-column:span 2}.vx-gallery-item.gallery-tall{grid-row:span 1}.vx-gallery-item figcaption{left:13px;right:13px;bottom:12px}.vx-gallery-item figcaption b{font-size:16px}.vx-gallery-note{font-size:7px;letter-spacing:.08em}}
 @media(max-width:420px){.vx-gallery-grid{grid-auto-rows:165px}.vx-gallery-note{flex-direction:column}}
+
+/* Full-screen automatic Veltrix wordmark reveal */
+.vx-brand-intro{position:fixed;inset:0;z-index:99999;display:grid;place-items:center;overflow:hidden;background:radial-gradient(ellipse at 50% 48%,#20382d 0%,#101d17 48%,#09120e 100%);color:#f4f3e9;animation:introExit .85s cubic-bezier(.76,0,.24,1) 2.75s forwards}
+.vx-intro-grain{position:absolute;inset:-50%;opacity:.13;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.4'/%3E%3C/svg%3E");animation:grainShift .3s steps(3) infinite}
+.vx-intro-orbit{position:absolute;left:50%;top:50%;width:min(65vw,620px);aspect-ratio:1;border:1px solid #d4e4bd20;border-radius:50%;transform:translate(-50%,-50%) scale(.3);opacity:0;animation:orbitReveal 2.1s cubic-bezier(.16,1,.3,1) .2s forwards}
+.vx-intro-orbit:before,.vx-intro-orbit:after{content:"";position:absolute;inset:12%;border:1px solid #d4e4bd20;border-radius:50%}
+.vx-intro-orbit:after{inset:25%;border-color:#d4e4bd18}
+.vx-intro-orbit-b{width:min(82vw,790px);border-style:dashed;border-color:#d4e4bd13;animation:orbitReveal 2.4s cubic-bezier(.16,1,.3,1) .35s forwards,orbitRotate 24s linear 2.7s infinite}
+.vx-intro-mark{position:relative;display:flex;align-items:center;gap:clamp(10px,2vw,23px);z-index:2}
+.vx-intro-symbol{font-size:clamp(30px,5vw,58px);color:#b9d18d;opacity:0;transform:rotate(-120deg) scale(.1);filter:blur(12px);animation:symbolForm 1.25s cubic-bezier(.16,1,.3,1) .35s forwards}
+.vx-intro-word{font:800 clamp(42px,9vw,104px)/1 Manrope,Arial,sans-serif;letter-spacing:.42em;padding-left:.42em;color:#f5f4e9;opacity:0;filter:blur(24px);transform:scaleX(1.65) scaleY(.55);transform-origin:center;animation:wordMorph 1.5s cubic-bezier(.16,1,.3,1) .65s forwards;text-shadow:0 0 55px #b8d18d30}
+.vx-intro-caption{position:absolute;top:calc(50% + clamp(48px,8vw,90px));font:700 9px Manrope,sans-serif;letter-spacing:.42em;color:#b8c8a5;opacity:0;animation:captionReveal .7s ease 1.8s forwards}
+.vx-intro-progress{position:absolute;bottom:clamp(34px,7vh,64px);width:110px;height:1px;background:#ffffff24;overflow:hidden}
+.vx-intro-progress span{display:block;width:100%;height:100%;background:#c1d89b;transform:scaleX(0);transform-origin:left;animation:progressRun 2.5s cubic-bezier(.65,0,.35,1) .15s forwards}
+@keyframes introExit{0%{opacity:1;visibility:visible;clip-path:inset(0 0 0 0)}70%{opacity:1}100%{opacity:0;visibility:hidden;clip-path:inset(0 0 100% 0);pointer-events:none}}
+@keyframes wordMorph{0%{opacity:0;filter:blur(24px);letter-spacing:.8em;transform:scaleX(1.65) scaleY(.55)}55%{opacity:1;filter:blur(1px)}100%{opacity:1;filter:blur(0);letter-spacing:.18em;transform:scaleX(1) scaleY(1);padding-left:.18em}}
+@keyframes symbolForm{0%{opacity:0;filter:blur(12px);transform:rotate(-120deg) scale(.1)}70%{opacity:1;filter:blur(0);transform:rotate(15deg) scale(1.2)}100%{opacity:1;transform:rotate(0) scale(1)}}
+@keyframes captionReveal{from{opacity:0;transform:translateY(9px);letter-spacing:.7em}to{opacity:1;transform:translateY(0);letter-spacing:.42em}}
+@keyframes orbitReveal{0%{opacity:0;transform:translate(-50%,-50%) scale(.3) rotate(-40deg)}60%{opacity:.8}100%{opacity:.45;transform:translate(-50%,-50%) scale(1) rotate(0)}}
+@keyframes orbitRotate{to{transform:translate(-50%,-50%) scale(1) rotate(360deg)}}
+@keyframes progressRun{0%{transform:scaleX(0)}100%{transform:scaleX(1)}}
+@keyframes grainShift{0%{transform:translate(0,0)}100%{transform:translate(2%,-2%)}}
+@media(max-width:560px){.vx-intro-word{letter-spacing:.25em;padding-left:.25em}.vx-intro-caption{font-size:7px}}
+@media(prefers-reduced-motion:reduce){.vx-brand-intro{animation:introExit .2s linear .6s forwards}.vx-intro-word,.vx-intro-symbol,.vx-intro-caption,.vx-intro-progress span,.vx-intro-orbit{animation-duration:.01ms!important;animation-delay:0ms!important}}
