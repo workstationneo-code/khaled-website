@@ -1,4 +1,5 @@
 import React,{useEffect,useMemo,useState} from 'react';
+import {createPortal} from 'react-dom';
 import {createClient} from '@supabase/supabase-js';
 import {ArrowUpRight,ArrowLeft,ArrowRight,BookOpen,Calculator,GraduationCap,ShoppingBag,Building2,Briefcase,UserRound,Check,Menu,X,Plus,Minus,Search,Star,Sparkles,ChartNoAxesCombined,Users,Globe,Mail,Play,ChevronDown,ShoppingCart,Heart,Download,CalendarDays,ShieldCheck,MessageCircle,Send,Bot,Headphones} from 'lucide-react';
 import './showcase.css';
@@ -124,7 +125,7 @@ function ChatWidget(){
   if(error){setNotice('We could not send your message. Please try again.');setBusy(false);return}
   setNotice('Message sent. The Veltrix team has received your request and will follow up by email.');setMessage('');setBusy(false);
  };
- return <div className="vx-chat-widget">
+ return createPortal(<div className="vx-chat-widget">
   {open&&<section className="vx-chat-panel" aria-label="Veltrix support chat">
    <header className="vx-chat-head"><div className="vx-chat-avatar"><Bot size={19}/></div><div><b>Veltrix support</b><span><i/> Usually replies by email</span></div><button type="button" aria-label="Close chat" onClick={()=>setOpen(false)}><X size={18}/></button></header>
    <div className="vx-chat-tabs"><button className={mode==='bot'?'active':''} onClick={()=>setMode('bot')}><Bot size={14}/> AI assistant</button><button className={mode==='human'?'active':''} onClick={()=>setMode('human')}><Headphones size={14}/> Talk to our team</button></div>
@@ -132,7 +133,7 @@ function ChatWidget(){
    <div className="vx-chat-foot">Veltrix · Ideas into impact</div>
   </section>}
   <button className={'vx-chat-launch '+(open?'is-open':'')} onClick={()=>setOpen(v=>!v)} aria-label={open?'Close support chat':'Open Veltrix support chat'}>{open?<X size={22}/>:<><MessageCircle size={21}/><span>Chat with us</span></>}</button>
- </div>
+ </div>,document.body);
 }
 
 function Footer({go}){return <footer className="vx-footer"><button className="vx-brand" onClick={()=>go('home')}><span>v.</span> VELTRIX</button><p>Thoughtful digital experiences, built around people.</p><span>© 2026 VELTRIX STUDIO</span></footer>}
