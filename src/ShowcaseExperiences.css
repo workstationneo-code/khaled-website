@@ -23,3 +23,31 @@
 
 .vx-experience-lab .vx-story-art i{z-index:1;}
 .vx-experience-lab .vx-case-visual-shape{z-index:1;}
+
+
+/* Bug fix: case-study content must never remain hidden if an observer misses it. */
+.vx-experience-lab .vx-lab-cases .vx-case-feature{
+  opacity:1 !important;
+  visibility:visible !important;
+  transform:none !important;
+  display:grid !important;
+  min-height:360px !important;
+}
+.vx-experience-lab .vx-lab-cases .vx-case-visual,
+.vx-experience-lab .vx-lab-cases .vx-case-copy{
+  min-width:0;
+  min-height:360px;
+}
+.vx-experience-lab .vx-lab-cases .vx-case-photo{
+  display:block !important;
+  visibility:visible !important;
+}
+.vx-experience-lab .vx-lab-cases .vx-case-copy{
+  opacity:1 !important;
+  visibility:visible !important;
+}
+@media(max-width:760px){
+  .vx-experience-lab .vx-lab-cases .vx-case-feature{grid-template-columns:1fr !important}
+  .vx-experience-lab .vx-lab-cases .vx-case-visual{min-height:260px !important}
+  .vx-experience-lab .vx-lab-cases .vx-case-copy{min-height:0 !important}
+}
