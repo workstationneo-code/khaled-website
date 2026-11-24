@@ -1,4 +1,4 @@
-.vx-hero-scene{position:absolute;inset:-5% -4% 0;z-index:0;pointer-events:none;overflow:visible;isolation:isolate}
+.vx-hero-scene{position:absolute;inset:-5% -4% 0;z-index:1;pointer-events:none;overflow:visible;isolation:isolate}
 .vx-hero-scene{transform:translate3d(0,var(--scene-y,0px),0) scale(var(--scene-scale,1));transform-origin:center center;will-change:transform}
 .vx-hero-scene canvas{display:block!important;width:100%!important;height:100%!important;outline:0}
 .vx-hero-scene.is-mobile{inset:0 -8% 0}
