@@ -16,13 +16,13 @@ export default function MotionLayer({page}) {
     let lenis;
     let gsapFrame;
     let motionContext;
+    let revealFallback;
     if (!reduced) {
       gsap.registerPlugin(ScrollTrigger);
       lenis = new Lenis({duration:1.05,smoothWheel:true,syncTouch:false});
       lenis.on('scroll',ScrollTrigger.update);
       gsapFrame = (time) => lenis.raf(time * 1000);
       gsap.ticker.add(gsapFrame);
-      gsap.ticker.lagSmoothing(0);
       motionContext = gsap.context(() => {
         const heroArt = root.querySelector('.vx-hero-art');
         const hero = root.querySelector('.vx-hero');
@@ -54,7 +54,7 @@ export default function MotionLayer({page}) {
       }, {threshold: 0,rootMargin: '0px 0px 120px 0px'});
       nodes.forEach((node) => observer.observe(node));
       // Fail-safe: never leave page content hidden if an observer misses an element.
-      window.setTimeout(() => nodes.forEach((node) => node.classList.add('is-revealed')), 1600);
+      revealFallback = window.setTimeout(() => nodes.forEach((node) => node.classList.add('is-revealed')), 1600);
     } else {
       nodes.forEach((node) => node.classList.add('is-revealed'));
     }
@@ -103,6 +103,7 @@ export default function MotionLayer({page}) {
 
     return () => {
       observer?.disconnect();
+      if (revealFallback) window.clearTimeout(revealFallback);
       window.removeEventListener('scroll', updateScroll);
       root.removeEventListener('pointermove', onPointerMove);
       root.removeEventListener('pointerleave', onPointerLeave);
