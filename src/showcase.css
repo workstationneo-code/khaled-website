@@ -266,3 +266,37 @@
 .vx-chat-human>small{font-size:10px;line-height:1.5;color:#637b4e}
 .vx-chat-foot{text-align:center;padding:9px;border-top:1px solid #edf0e9;color:#98a191;font-size:8px;letter-spacing:.08em}
 @media(max-width:520px){.vx-chat-widget{right:14px;bottom:14px}.vx-chat-panel{right:-2px;width:calc(100vw - 28px);height:min(560px,calc(100dvh - 100px))}.vx-chat-launch{padding:13px 16px}}
+
+
+/* Veltrix private client portal */
+.vx-portal-link{border:0;background:transparent;color:#60734e;font-size:10px;font-weight:800}
+.vx-client-portal{min-height:calc(100vh - 78px);padding:30px max(24px,calc((100% - 1180px)/2)) 100px;background:linear-gradient(145deg,#f7f8f3,#eef2e9)}
+.vx-portal-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:55px}
+.vx-portal-top>span{font-size:9px;letter-spacing:.16em;color:#8a9585;font-weight:800}
+.vx-portal-login{width:min(100%,470px);margin:0 auto;background:#fff;border:1px solid #e4eadd;border-radius:12px;padding:42px;box-shadow:0 24px 70px #263b2610}
+.vx-portal-login h1,.vx-portal-welcome h1{font:700 clamp(38px,5vw,56px)/1.05 Manrope;letter-spacing:-.07em;margin:15px 0}
+.vx-portal-login h1 em,.vx-portal-welcome h1 em{font-style:normal;color:#829a58}
+.vx-portal-login>p,.vx-portal-welcome p{font-size:12px;line-height:1.8;color:#7b8678}
+.vx-portal-login form{display:grid;gap:14px;margin-top:28px}
+.vx-portal-login label,.vx-client-project-form label{display:grid;gap:7px;font-size:10px;font-weight:800;color:#53604f}
+.vx-portal-login input,.vx-client-project-form input,.vx-client-project-form select{width:100%;border:1px solid #dfe6d9;border-radius:6px;padding:13px;background:#fff;color:#29382c;font:12px Manrope}
+.vx-portal-login form>.vx-btn-dark{width:100%;margin-top:4px}
+.vx-portal-reset{border:0;background:none;color:#718b50;font-size:10px;font-weight:800;padding:5px}
+.vx-portal-login form>small,.vx-client-project-form>small{font-size:10px;line-height:1.5;color:#a45d4c}
+.vx-portal-invite{font-size:9px!important;color:#9aa395!important;margin-top:18px}
+.vx-portal-dashboard{max-width:1120px;margin:auto}
+.vx-portal-welcome{display:flex;justify-content:space-between;align-items:center;gap:24px;margin-bottom:38px}
+.vx-portal-empty{padding:55px 25px;text-align:center;background:#fff;border:1px solid #e4eadd;border-radius:10px;color:#83966c}
+.vx-portal-empty h2{font:700 24px Manrope;color:#29392c}.vx-portal-empty p{font-size:11px;color:#7b8678}
+.vx-portal-project-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.vx-portal-project{background:#fff;border:1px solid #e3e9dc;border-radius:10px;padding:24px;box-shadow:0 12px 35px #263b2608}
+.vx-portal-project-top{display:flex;justify-content:space-between;gap:12px;font-size:8px;letter-spacing:.08em;text-transform:uppercase;color:#7b8c6a;font-weight:800}
+.vx-portal-project h2{font:700 23px Manrope;letter-spacing:-.04em;margin:23px 0 8px;color:#26372b}
+.vx-portal-project>p{font-size:10px;color:#899487}
+.vx-portal-progress{margin:24px 0}.vx-portal-progress>div{display:flex;justify-content:space-between;font-size:10px;color:#71806d;margin-bottom:9px}
+.vx-portal-progress i{height:7px;background:#edf1e9;border-radius:20px;display:block;overflow:hidden}.vx-portal-progress i span{display:block;height:100%;background:#9fbd72;border-radius:20px;transition:width .4s}
+.vx-portal-next{display:grid;gap:6px;background:#f5f7f1;border-radius:7px;padding:13px;margin:18px 0}.vx-portal-next small{font-size:8px;letter-spacing:.12em;color:#8a967f;font-weight:800}.vx-portal-next b{font-size:11px;color:#3c4e39}
+.vx-client-project-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px;padding:20px 0}
+.vx-client-project-form>button{align-self:end;min-height:42px}.vx-client-project-form>small{grid-column:1/-1}
+.vx-portal-admin-note{font-size:10px;line-height:1.6;color:#8a9585;margin:0}
+@media(max-width:650px){.vx-portal-link{display:none}.vx-client-portal{padding:22px 17px 70px}.vx-portal-top{margin-bottom:38px}.vx-portal-login{padding:27px 22px}.vx-portal-welcome{align-items:flex-start;flex-direction:column}.vx-client-project-form{grid-template-columns:1fr}}
