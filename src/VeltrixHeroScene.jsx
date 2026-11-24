@@ -128,8 +128,14 @@ export default function VeltrixHeroScene(){
   const [webgl,setWebgl]=useState(false);
   const [mobile,setMobile]=useState(false);
   const [lite,setLite]=useState(false);
+  const [visible,setVisible]=useState(true);
   useEffect(()=>{
     setEventSource(host.current?.parentElement||null);
+    let observer;
+    if ('IntersectionObserver' in window && host.current) {
+      observer=new IntersectionObserver(([entry])=>setVisible(entry.isIntersecting),{rootMargin:'120px'});
+      observer.observe(host.current);
+    }
     const update=()=>{
       const isMobile=window.matchMedia('(max-width: 760px), (pointer: coarse)').matches;
       const cores=navigator.hardwareConcurrency||8;
@@ -141,16 +147,16 @@ export default function VeltrixHeroScene(){
     };
     update();
     window.addEventListener('resize',update,{passive:true});
-    return()=>window.removeEventListener('resize',update);
+    return()=>{window.removeEventListener('resize',update);observer?.disconnect()};
   },[]);
   return <div ref={host} className={`vx-hero-scene ${mobile?'is-mobile':'is-desktop'}`} aria-hidden="true">
     {ready&&webgl?<Canvas
       camera={{position:[0,0,6],fov:42}}
       eventSource={eventSource||undefined}
       dpr={lite?1:[1,1.5]}
-      gl={{alpha:true,antialias:!mobile,powerPreference:'high-performance',stencil:false,depth:true}}
+      gl={{alpha:true,antialias:!lite,powerPreference:'high-performance',stencil:false,depth:true}}
       performance={{min:lite ? 0.45 : 0.65}}
-      frameloop="always"
+      frameloop={visible?'always':'never'}
     ><Scene mobile={lite}/></Canvas>:<div className="vx-scene-fallback"><span className="vx-fallback-orb"/><i/><b/></div>}
   </div>;
 }
