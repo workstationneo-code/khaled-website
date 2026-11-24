@@ -60,3 +60,5 @@
  .vx-wizard-choicegrid .wide{grid-column:auto}
  .vx-wizard-contact-submit{grid-column:auto}
 }
+
+.vx-wizard-file-note{font-size:10px!important;line-height:1.5;color:#87907f;font-weight:400!important}
