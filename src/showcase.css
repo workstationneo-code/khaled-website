@@ -360,3 +360,14 @@
 .vx-chat-widget{position:fixed!important;inset:auto 24px 24px auto!important;z-index:99990!important;width:max-content!important;max-width:calc(100vw - 28px)}
 .vx-chat-panel{position:absolute!important;right:0!important;bottom:68px!important;top:auto!important;left:auto!important}
 @media(max-width:520px){.vx-chat-widget{inset:auto 14px 14px auto!important}}
+
+
+/* Continuous, seamless brand statement ticker */
+.vx-marquee{display:flex!important;overflow:hidden!important;white-space:nowrap!important;padding:17px 0!important;text-align:left!important}
+.vx-marquee-track{display:flex;width:max-content;flex:none;animation:vx-marquee-scroll 28s linear infinite;will-change:transform}
+.vx-marquee-group{display:flex;flex:none;align-items:center;gap:30px;padding-right:30px}
+.vx-marquee-group span{display:inline-block!important;flex:none;animation:none!important;margin:0!important}
+.vx-marquee-group i{font-style:normal;flex:none;font-size:13px;color:#718b4b}
+.vx-marquee:hover .vx-marquee-track{animation-play-state:paused}
+@keyframes vx-marquee-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.vx-marquee-track{animation:none}}
