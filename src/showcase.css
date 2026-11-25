@@ -807,3 +807,133 @@
 .sat-hero-float-b{bottom:58px;left:-8px}
 @media(max-width:850px){.sat-hero{grid-template-columns:1fr;gap:10px}.sat-hero-copy{max-width:720px}.sat-hero-visual{min-height:380px;max-width:580px;width:100%;margin:auto}}
 @media(max-width:640px){.sat-hero{padding-top:58px;padding-bottom:45px}.sat-hero-visual{min-height:340px}.sat-hero-card{padding:17px}.sat-hero-float-a{right:0;top:28px}.sat-hero-float-b{left:0;bottom:28px}.demo-edu-stats{gap:20px;flex-wrap:wrap}}
+
+
+/* Mobile-first refinement: public pages, demos, client portal and admin workspace */
+html{scroll-behavior:smooth;scroll-padding-top:82px}
+img,video,canvas,svg{max-width:100%}
+.vx,.vx-design-system{width:100%;min-width:0;overflow-x:clip}
+.vx-nav{gap:14px}
+.vx-nav nav{align-items:center}
+.vx-menu{width:42px;height:42px;align-items:center;justify-content:center;border:1px solid #dfe6d9;border-radius:7px;background:#fff;color:#26382c}
+.vx-mobile{position:fixed;z-index:29;top:78px;left:0;right:0;padding:16px 22px 22px;background:#f8f9f5;border-bottom:1px solid #e1e7dc;box-shadow:0 18px 30px #1f342018;display:grid;gap:8px}
+.vx-mobile button{width:100%;padding:13px 10px;text-align:left;border-bottom:1px solid #e9ede5}
+.vx-mobile button:last-child{margin-top:8px;border:0;border-radius:6px;background:#22382a;color:white;text-align:center}
+.vx-admin-link{border:0;background:none;color:#63725e;font-size:10px;font-weight:800}
+.vx-hero,.sat-hero{min-width:0}
+.vx-hero-copy,.vx-hero-art,.vx-inner,.vx-admin-content{min-width:0}
+.vx-hero-art,.vx-hero-scene{max-width:100%}
+.vx-concepts,.vx-plan-grid,.vx-gallery-grid,.vx-portal-project-grid{min-width:0}
+.vx-studio{min-width:0}
+.vx-admin-dashboard{width:100%;max-width:100%;min-width:0}
+.vx-admin-tabs{max-width:100%;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:thin}
+.vx-admin-tabs button{flex:0 0 auto;white-space:nowrap}
+.vx-admin-stats{grid-template-columns:repeat(4,minmax(0,1fr))}
+.vx-admin-shortcuts{grid-template-columns:repeat(4,minmax(0,1fr))}
+.vx-admin-project-list,.vx-admin-project-row,.vx-admin-recent,.vx-leads-panel,.vx-price-editor{min-width:0;max-width:100%}
+.vx-admin-project-row{overflow-wrap:anywhere}
+.vx-pricing-workspace,.vx-client-project-admin{min-width:0}
+.vx-admin-project-list,.vx-admin-inbox,.vx-admin-projects-view{min-width:0}
+.vx-demo-nav,.shop-nav,.school-nav,.corp-nav,.port-nav{gap:12px}
+.vx-demo-end{gap:14px}
+.vx-contact-form,.vx-client-project-form{width:100%;min-width:0}
+.vx-contact-form input,.vx-contact-form select,.vx-contact-form textarea,.vx-client-project-form input,.vx-client-project-form select,.vx-client-project-form textarea{min-width:0;max-width:100%}
+@media(max-width:1000px){
+ .vx-nav{padding:0 24px}
+ .vx-nav nav{gap:16px}
+ .vx-nav nav button{font-size:10px}
+ .vx-hero{grid-template-columns:1fr 1fr;gap:20px;padding-top:58px}
+ .vx-hero-art{transform:scale(.92);transform-origin:center}
+ .vx-concepts{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .vx-studio{gap:40px;padding:75px 28px}
+ .vx-plan-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .vx-admin-stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .vx-admin-shortcuts{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .shop-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:760px){
+ .vx-nav{height:68px;padding:0 18px}
+ .vx-nav nav,.vx-nav>.vx-nav-cta,.vx-nav>.vx-admin-link{display:none}
+ .vx-menu{display:flex}
+ .vx-mobile{top:68px}
+ .vx-hero{min-height:0;grid-template-columns:1fr;padding:54px 22px 45px;gap:22px}
+ .vx-hero h1,.vx-inner-title{font-size:clamp(39px,10vw,58px)}
+ .vx-hero-copy>p,.vx-section-top>p,.vx-studio>div:first-child>p,.vx-inner-intro{font-size:13px}
+ .vx-hero-art{height:350px;transform:none}
+ .vx-art-card{width:min(310px,78vw);height:340px;padding:22px}
+ .vx-art-type{font-size:56px}
+ .vx-art-float-a{right:0;top:24px}
+ .vx-art-float-b{left:0;bottom:24px}
+ .vx-work,.vx-inner{padding:65px 22px 75px}
+ .vx-section-top{display:block;margin-bottom:28px}
+ .vx-section-top h2,.vx-studio h2,.vx-cta-band h2{font-size:clamp(34px,8vw,48px)}
+ .vx-section-top>p{margin-top:15px}
+ .vx-concepts{grid-template-columns:1fr}
+ .vx-concept{min-height:245px}
+ .vx-studio{grid-template-columns:1fr;gap:28px;padding:65px 22px}
+ .vx-cta-band,.sat-final-cta{display:flex;flex-direction:column;align-items:flex-start;padding:60px 22px;gap:22px}
+ .vx-footer{padding:25px 22px;flex-wrap:wrap}
+ .vx-plan-grid{grid-template-columns:1fr}
+ .vx-plan{padding:22px}
+ .vx-demo-nav,.shop-nav,.school-nav,.corp-nav,.port-nav{height:60px;padding:0 18px}
+ .vx-demo-nav>span,.shop-nav>span,.school-nav>span,.corp-nav>span,.port-nav>span{font-size:7px}
+ .demo-edu-hero,.demo-grade,.shop-hero,.school-hero{padding:55px 20px}
+ .demo-edu-hero h1,.demo-grade h1,.shop-hero h1,.school-hero h1,.corp-hero h1,.port-hero h1{font-size:clamp(38px,9vw,54px)}
+ .demo-edu-content,.shop-products{padding:40px 20px 55px}
+ .demo-edu-panel,.school-hero,.school-info{grid-template-columns:1fr;gap:25px}
+ .demo-edu-panel{padding-top:25px}
+ .demo-edu-panel>div:last-child{width:100%}
+ .grade-shell{grid-template-columns:1fr}
+ .grade-shell aside{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+ .grade-shell aside>b:first-child,.grade-shell aside small,.grade-shell aside>b:last-child{grid-column:1/-1}
+ .grade-shell aside small{margin:10px 0 0}
+ .grade-main{padding:17px}
+ .grade-selects{grid-template-columns:1fr}
+ .grade-kpis{grid-template-columns:repeat(3,minmax(0,1fr))}
+ .grade-kpis div{padding:9px}
+ .grade-kpis b{font-size:18px}
+ .shop-hero{grid-template-columns:1fr;gap:28px}
+ .shop-hero-art,.school-visual{height:280px}
+ .shop-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+ .shop-products h2,.school-info h2,.corp-services h2{font-size:31px}
+ .school-links{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .school-links button{border-bottom:1px solid #e5e5dc}
+ .school-info{padding:55px 20px}
+ .vx-admin-dashboard .vx-admin-heading{align-items:flex-start;flex-direction:column;gap:18px}
+ .vx-admin-tabs{margin:0 -2px;padding-bottom:6px}
+ .vx-admin-welcome{flex-direction:column;align-items:flex-start;gap:12px}
+ .vx-admin-stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+ .vx-admin-shortcuts{grid-template-columns:1fr 1fr}
+ .vx-admin-project-row{grid-template-columns:minmax(0,1fr);gap:9px}
+ .vx-admin-project-row>span:first-child{grid-row:auto}
+ .vx-admin-projects-view>.vx-leads-panel,.vx-admin-inbox>.vx-leads-panel{overflow-x:auto}
+ .vx-pricing-workspace{padding:16px}
+ .vx-admin-dashboard .vx-client-project-admin{padding:16px}
+ .sat-hero{padding:55px 20px 40px}
+ .sat-hero-visual{min-height:320px}
+}
+@media(max-width:480px){
+ .vx-actions{align-items:stretch;flex-direction:column;gap:12px}
+ .vx-actions>*{width:100%;justify-content:center}
+ .vx-proof{gap:8px;flex-wrap:wrap;font-size:7px}
+ .vx-hero-art{height:300px}
+ .vx-art-card{height:295px;width:min(270px,78vw);padding:18px}
+ .vx-art-type{font-size:48px}
+ .vx-art-float{padding:10px;font-size:8px}
+ .vx-art-index{right:0}
+ .vx-concept{padding:18px}
+ .vx-admin-stats,.vx-admin-shortcuts{grid-template-columns:1fr 1fr}
+ .vx-admin-stats article{padding:13px}
+ .vx-admin-shortcuts button{min-width:0}
+ .vx-admin-date{font-size:8px}
+ .grade-kpis{grid-template-columns:1fr}
+ .grade-head{align-items:flex-start;flex-direction:column;gap:8px}
+ .shop-grid{grid-template-columns:1fr 1fr}
+ .shop-product-art{height:155px}
+ .shop-cart{right:10px;top:70px;width:calc(100% - 20px)}
+ .school-links{grid-template-columns:1fr}
+ .school-links button{border-right:0}
+ .vx-demo-end{align-items:flex-start;flex-direction:column;padding:22px 18px}
+ .vx-contact-form{padding:17px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
