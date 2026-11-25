@@ -1,5 +1,6 @@
 import React,{useMemo,useState} from 'react';
-import {Copy,MessageCircle,Mail,Hash,ExternalLink,Check,Link2,Sparkles,Eye,Plus,ArrowUpRight} from 'lucide-react';
+import {Copy,MessageCircle,Mail,Hash,Check,Sparkles,Eye,Plus,ArrowUpRight} from 'lucide-react';
+import './proposal-generator.css';
 
 const templates=[
  {id:'sat',name:'SAT / English Tutor Website',category:'Education',description:'A complete learning platform proposal with the approved SAT packages.',image:'https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=900&q=80',packages:[{name:'Starter',price:39000,features:['Professional website','Student and teacher dashboards','SAT English and Math course areas','Lessons, assignments and quizzes','Responsive design']},{name:'Professional',price:49000,featured:true,features:['Everything in Starter','Course and class management','Mock exams and question banks','Student progress analytics','Personal AI Study Coach','AI Presentation Generator']},{name:'Elite',price:60000,features:['Everything in Professional','Advanced AI Student Assistant','AI Teacher Agent','AI assignment feedback','Advanced learning insights']}]},
