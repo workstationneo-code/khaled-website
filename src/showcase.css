@@ -711,3 +711,68 @@
 .vx-client-next-step>span{display:inline-flex;align-items:center;justify-content:center;flex:none;padding:8px 11px;border-radius:30px;background:#eaf2e3;color:#5d784d;font-size:10px;font-weight:800;white-space:nowrap}
 .vx-client-next-step>span.needs-action{background:#fff2df;color:#94652d}
 @media(max-width:650px){.vx-client-next-step{align-items:flex-start;flex-direction:column;padding:16px}.vx-client-next-step>span{align-self:flex-start}}
+
+
+/* SAT academy concept — complete landing-page experience */
+.sat-pathways,.sat-outcomes{max-width:1180px;margin:auto;padding:82px 30px}
+.sat-section-heading{display:flex;align-items:end;justify-content:space-between;gap:45px;margin-bottom:30px}
+.sat-section-heading h2,.sat-workspace-copy h2,.sat-outcomes-heading h2{margin:15px 0 0;color:#29392c;font:700 clamp(34px,4.6vw,51px)/1.06 Manrope;letter-spacing:-.065em}
+.sat-section-heading h2 em,.sat-workspace-copy h2 em,.sat-outcomes-heading h2 em{color:#829a58;font-style:normal}
+.sat-section-heading>p{max-width:380px;margin:0 0 4px;color:#7c8778;font-size:12px;line-height:1.8}
+.sat-pathway-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.sat-pathway-card{display:flex;align-items:flex-start;gap:16px;min-height:125px;padding:20px;border:1px solid #e3e9de;border-radius:8px;background:#fff}
+.sat-pathway-card>span{display:grid;place-items:center;flex:none;width:34px;height:34px;border-radius:8px;background:#edf3e7;color:#718b5d;font-size:10px;font-weight:900}
+.sat-pathway-card>div{flex:1}
+.sat-pathway-card h3{margin:2px 0 7px;color:#344432;font:700 15px Manrope;letter-spacing:-.025em}
+.sat-pathway-card p{max-width:360px;margin:0;color:#7e8979;font-size:10px;line-height:1.7}
+.sat-pathway-card>svg{flex:none;color:#91a47e}
+.sat-workspace{display:grid;grid-template-columns:minmax(0,1fr) minmax(360px,.9fr);gap:65px;align-items:center;padding:90px max(30px,calc((100% - 1180px)/2));background:#eef2e9}
+.sat-workspace-copy>p{max-width:490px;margin:18px 0 25px;color:#778474;font-size:12px;line-height:1.85}
+.sat-role-list{display:grid;gap:17px}
+.sat-role-list>div{display:flex;align-items:flex-start;gap:12px}
+.sat-role-list>div>span{display:grid;place-items:center;flex:none;width:35px;height:35px;border-radius:9px;background:#fff;color:#789451}
+.sat-role-list>div>div{display:grid;gap:5px}
+.sat-role-list b{color:#354532;font-size:11px}
+.sat-role-list small{color:#7e8979;font-size:10px;line-height:1.6}
+.sat-dashboard{padding:20px;border:1px solid #e0e7d9;border-radius:12px;background:#fff;box-shadow:0 24px 60px #24382912}
+.sat-dashboard-top{display:flex;align-items:center;justify-content:space-between;padding-bottom:15px;border-bottom:1px solid #edf0e9}
+.sat-dashboard-top>span{display:flex;align-items:center;gap:7px;color:#536b49;font-size:8px;font-weight:900;letter-spacing:.12em}
+.sat-dashboard-top i{width:7px;height:7px;border-radius:50%;background:#9fc16e}
+.sat-dashboard-top>small{color:#9aa394;font-size:7px;letter-spacing:.1em}
+.sat-dashboard-welcome{display:flex;align-items:center;justify-content:space-between;padding:20px 0 15px}
+.sat-dashboard-welcome small,.sat-dashboard-kpis small,.sat-dashboard-progress small{color:#909b8b;font-size:7px;font-weight:900;letter-spacing:.1em}
+.sat-dashboard-welcome h3{margin:6px 0 3px;color:#30412e;font:700 20px Manrope;letter-spacing:-.04em}
+.sat-dashboard-welcome p{margin:0;color:#84907f;font-size:9px}
+.sat-avatar{display:grid;place-items:center;width:39px;height:39px;border-radius:50%;background:#e8efdf;color:#6c8555;font:800 15px Manrope}
+.sat-dashboard-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.sat-dashboard-kpis>div{display:grid;gap:7px;padding:12px 10px;border:1px solid #edf0e9;border-radius:7px;background:#fbfcfa}
+.sat-dashboard-kpis b{color:#344432;font:700 19px Manrope}
+.sat-dashboard-kpis b i{color:#87947f;font-size:9px;font-style:normal}
+.sat-dashboard-task{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:12px;padding:14px;border-radius:8px;background:#f0f4eb}
+.sat-dashboard-task>div{display:grid;gap:6px}
+.sat-dashboard-task>div>span{color:#899681;font-size:7px;font-weight:900;letter-spacing:.1em}
+.sat-dashboard-task b{color:#3c4d36;font-size:10px}
+.sat-dashboard-task small{color:#84907f;font-size:8px}
+.sat-task-arrow{display:grid;place-items:center;width:30px;height:30px;border-radius:7px;background:#fff;color:#718b5d}
+.sat-dashboard-progress{padding:16px 1px 12px}
+.sat-dashboard-progress>div:first-child{display:flex;justify-content:space-between;gap:10px}
+.sat-dashboard-progress>div:first-child b{color:#586e4b;font-size:8px}
+.sat-progress-track{height:5px;margin-top:10px;border-radius:10px;background:#edf1e8}
+.sat-progress-track span{display:block;width:80%;height:100%;border-radius:10px;background:#9fbd70}
+.sat-dashboard-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;padding-top:12px;border-top:1px solid #edf0e9;color:#718b5d;font-size:8px}
+.sat-dashboard-foot span:first-child{display:flex;align-items:center;gap:6px;font-weight:800}
+.sat-dashboard-foot span:last-child{color:#9aa394;font-size:7px}
+.sat-outcomes-heading{margin-bottom:28px}
+.sat-outcome-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.sat-outcome-grid article{min-height:190px;padding:20px;border:1px solid #e3e9de;border-radius:8px;background:#fff}
+.sat-outcome-grid article>svg{color:#819a5e}
+.sat-outcome-grid h3{margin:17px 0 8px;color:#354532;font:700 13px Manrope}
+.sat-outcome-grid p{margin:0;color:#7d8878;font-size:10px;line-height:1.7}
+.sat-final-cta{position:relative;display:flex;align-items:center;justify-content:space-between;gap:30px;padding:65px max(30px,calc((100% - 1180px)/2)) 75px;background:#22382a;color:#f6f7f0}
+.sat-final-cta .vx-kicker{color:#c3d6a2}
+.sat-final-cta h2{max-width:620px;margin:12px 0;color:#fff;font:700 clamp(31px,4.2vw,48px)/1.08 Manrope;letter-spacing:-.06em}
+.sat-final-cta h2 em{color:#d8ee9d;font-style:normal}
+.sat-final-cta p{margin:0;color:#bdc8b6;font-size:11px;line-height:1.7}
+.sat-final-cta>small{position:absolute;right:max(30px,calc((100% - 1180px)/2));bottom:18px;color:#aab9a1;font-size:7px;letter-spacing:.12em}
+@media(max-width:850px){.sat-workspace{grid-template-columns:1fr;gap:35px}.sat-dashboard{max-width:560px;width:100%;margin:auto}.sat-outcome-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:640px){.sat-pathways,.sat-outcomes{padding:60px 20px}.sat-section-heading{display:block}.sat-section-heading>p{margin-top:16px}.sat-pathway-grid{grid-template-columns:1fr}.sat-workspace{padding:60px 20px}.sat-dashboard{padding:14px}.sat-outcome-grid{grid-template-columns:1fr}.sat-outcome-grid article{min-height:0}.sat-final-cta{display:block;padding:55px 20px 75px}.sat-final-cta .vx-btn-light{margin-top:22px}.sat-final-cta>small{right:20px;left:20px;font-size:6px}}
