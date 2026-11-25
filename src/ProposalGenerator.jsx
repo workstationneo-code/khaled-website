@@ -123,7 +123,7 @@ We look forward to hearing what you think!
   delete record.clientEmail;
   const{error}=await db.from('client_proposals').update({client_name:record.clientName,client_email:clientEmail.trim()||null,business_name:record.businessName,project_title:record.projectTitle,template_id:record.templateId,proposal_data:record,updated_at:new Date().toISOString()}).eq('id',generated.id);
   if(error)setNotice('Could not save proposal changes: '+error.message);
-  else{setGenerated(v=>({...v,...record}));setSavedProposals(v=>v.map(p=>p.id===generated.id?{...p,...record,client_name:record.clientName,business_name:record.businessName,client_email:record.clientEmail,project_title:record.projectTitle,proposal_data:record}:p));setNotice('Proposal changes saved.');}
+  else{setGenerated(v=>({...v,...record}));setSavedProposals(v=>v.map(p=>p.id===generated.id?{...p,...record,client_name:record.clientName,business_name:record.businessName,client_email:clientEmail.trim()||null,project_title:record.projectTitle,proposal_data:record}:p));setNotice('Proposal changes saved.');}
   setSaving(false);
  };
  const copy=async value=>{try{await navigator.clipboard.writeText(value);setNotice('Copied to clipboard.')}catch{setNotice('Clipboard access was blocked. Please copy the text manually.')}};
