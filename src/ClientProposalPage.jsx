@@ -6,7 +6,7 @@ export default function ClientProposalPage({db,slug}){
  const [proposal,setProposal]=useState(null),[loading,setLoading]=useState(true),[error,setError]=useState(''),[packageChoice,setPackageChoice]=useState(''),[careChoice,setCareChoice]=useState(''),[clientName,setClientName]=useState(''),[clientEmail,setClientEmail]=useState(''),[message,setMessage]=useState(''),[busy,setBusy]=useState(false),[notice,setNotice]=useState('');
  useEffect(()=>{let live=true;(async()=>{if(!db){if(live){setError('This proposal is temporarily unavailable. Please contact Veltrix.');setLoading(false)}return}const{data,error}=await db.from('client_proposals').select('*').eq('slug',slug).eq('status','published').maybeSingle();if(!live)return;if(error||!data){setError('We could not find this proposal. Please check the link or contact Veltrix.')}else{setProposal(data);setClientName(data.client_name||'');setClientEmail(data.client_email||'')}setLoading(false)})();return()=>{live=false}},[db,slug]);
  const data=proposal?.proposal_data||{},packages=Array.isArray(data.packages)?data.packages:[],carePlans=Array.isArray(data.carePlans)?data.carePlans:[];
- const logoUrl=/^https?:\\/\\//i.test(data.logoUrl||'')?data.logoUrl:'';
+ const logoUrl=(()=>{try{const parsed=new URL(data.logoUrl||'');return ['http:','https:'].includes(parsed.protocol)?parsed.href:''}catch{return ''}})();
  const brandColor=/^#[0-9a-f]{6}$/i.test(data.brandColor||'')?data.brandColor:'#7d986a';
  const chosenPackage=packages.find(p=>p.name===packageChoice),chosenCare=carePlans.find(p=>p.name===careChoice);
  const money=n=>n===null||n===undefined||n===''?'Custom quote':'EGP '+Number(n).toLocaleString('en-US');
