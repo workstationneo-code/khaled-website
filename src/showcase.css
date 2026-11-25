@@ -700,3 +700,14 @@
  .vx-live-chat .vx-chat-compose textarea{grid-column:2;grid-row:1}
  .vx-live-chat .vx-chat-compose .vx-btn-dark{grid-column:1/-1;width:100%}
 }
+
+
+/* Clear, reassuring next-step panel for the client workspace */
+.vx-client-next-step{display:flex;align-items:center;justify-content:space-between;gap:20px;margin:17px 0 12px;padding:19px 21px;border:1px solid #dfe9d7;border-radius:13px;background:linear-gradient(110deg,#f7faf3,#fff);box-shadow:0 8px 24px rgba(42,62,39,.045)}
+.vx-client-next-step>div{min-width:0}
+.vx-client-next-step .vx-kicker{display:block;margin-bottom:7px;color:#78906a;font-size:9px;letter-spacing:.12em}
+.vx-client-next-step b{display:block;color:#344632;font-size:14px;line-height:1.5}
+.vx-client-next-step p{margin:5px 0 0;color:#7b8875;font-size:11px;line-height:1.65}
+.vx-client-next-step>span{display:inline-flex;align-items:center;justify-content:center;flex:none;padding:8px 11px;border-radius:30px;background:#eaf2e3;color:#5d784d;font-size:10px;font-weight:800;white-space:nowrap}
+.vx-client-next-step>span.needs-action{background:#fff2df;color:#94652d}
+@media(max-width:650px){.vx-client-next-step{align-items:flex-start;flex-direction:column;padding:16px}.vx-client-next-step>span{align-self:flex-start}}
