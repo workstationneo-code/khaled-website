@@ -67,6 +67,8 @@ export default function ProposalGenerator({db}){
  const [clientEmail,setClientEmail]=useState('');
  const [projectTitle,setProjectTitle]=useState('');
  const [intro,setIntro]=useState('We have prepared a tailored digital experience to help your business grow.');
+ const [logoUrl,setLogoUrl]=useState('');
+ const [brandColor,setBrandColor]=useState('#829b70');
  const [customPrices,setCustomPrices]=useState({});
  const [carePrices,setCarePrices]=useState({'Basic Care':'4000','Complete Care':'10000'});
  const [customPrice,setCustomPrice]=useState('');
@@ -96,7 +98,7 @@ We look forward to hearing what you think!
   setNotice('');
   const token=globalThis.crypto?.randomUUID?.().replace(/-/g,'').slice(0,16)||Math.random().toString(36).slice(2,18);
   const slug=(businessName.toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,42)||'academy')+'-'+token.slice(0,7);
-  const record={clientName:clientName.trim(),businessName:businessName.trim(),clientEmail:clientEmail.trim(),projectTitle:projectTitle.trim()||template.name,template:template.name,templateId:template.id,package:null,packageSelection:'Client chooses one of the three packages',packages:template.packages.map(p=>({...p,price:packagePrice(p)})),price:null,carePlan:null,carePlanSelection:'Client chooses one of the two care plans',carePlans:[{name:'Basic Care',price:carePlanPrice('Basic Care')},{name:'Complete Care',price:carePlanPrice('Complete Care')}],intro,heroTitle:'Words matter.',heroAccent:'Make every one count.',createdAt:new Date().toISOString()};
+  const record={clientName:clientName.trim(),businessName:businessName.trim(),clientEmail:clientEmail.trim(),projectTitle:projectTitle.trim()||template.name,template:template.name,templateId:template.id,package:null,packageSelection:'Client chooses one of the three packages',packages:template.packages.map(p=>({...p,price:packagePrice(p)})),price:null,carePlan:null,carePlanSelection:'Client chooses one of the two care plans',carePlans:[{name:'Basic Care',price:carePlanPrice('Basic Care')},{name:'Complete Care',price:carePlanPrice('Complete Care')}],intro,heroTitle:'Words matter.',heroAccent:'Make every one count.',logoUrl:logoUrl.trim(),brandColor,createdAt:new Date().toISOString()};
   const{data,error}=await db.from('client_proposals').insert({slug,client_name:record.clientName,client_email:record.clientEmail||null,business_name:record.businessName,project_title:record.projectTitle,template_id:template.id,status:'draft',proposal_data:record}).select('id,slug,status').single();
   if(error){setNotice('Could not save this proposal: '+error.message);return}
   const url=window.location.origin+'/proposals/'+data.slug;
@@ -130,6 +132,8 @@ We look forward to hearing what you think!
      <label>Client name<input value={clientName} onChange={e=>setClientName(e.target.value)} placeholder="e.g. Khaled Ahmed"/></label>
      <label>Business / brand name<input value={businessName} onChange={e=>setBusinessName(e.target.value)} placeholder="e.g. Khaled SAT Academy"/></label>
      <label>Email address <small>Optional — used to pre-fill email sharing</small><input type="email" value={clientEmail} onChange={e=>setClientEmail(e.target.value)} placeholder="client@example.com"/></label>
+     <label>Academy logo URL <small>Optional — paste a public image link</small><input type="url" value={logoUrl} onChange={e=>setLogoUrl(e.target.value)} placeholder="https://example.com/logo.png"/></label>
+     <label>Brand accent color <small>Choose a color for the client proposal</small><input type="color" value={brandColor} onChange={e=>setBrandColor(e.target.value)}/></label>
      <label>Proposal title<input value={projectTitle} onChange={e=>setProjectTitle(e.target.value)} placeholder={template.name}/></label>
      <label className="wide">Personal introduction<textarea rows="3" value={intro} onChange={e=>setIntro(e.target.value)}/></label>
     </div>
