@@ -54,7 +54,7 @@ const designDirections={
  professional:{style:'Expertise-led professional services: restrained palette, editorial typography, clear credentials and confident case-study storytelling.',focus:'Build trust through specialist services, team credentials, client results and a low-friction consultation request.',references:[]}
 };
 
-export default function ProposalGenerator(){
+export default function ProposalGenerator({db}){
  const [templateId,setTemplateId]=useState('sat');
  const [templateSearch,setTemplateSearch]=useState('');
  const [categoryFilter,setCategoryFilter]=useState('All');
@@ -68,7 +68,7 @@ export default function ProposalGenerator(){
  const [projectTitle,setProjectTitle]=useState('');
  const [intro,setIntro]=useState('We have prepared a tailored digital experience to help your business grow.');
  const [customPrices,setCustomPrices]=useState({});
- const [carePrices,setCarePrices]=useState({'Basic Care':'4000','Complete Care':''});
+ const [carePrices,setCarePrices]=useState({'Basic Care':'4000','Complete Care':'10000'});
  const [customPrice,setCustomPrice]=useState('');
  const [generated,setGenerated]=useState(null);
  const [notice,setNotice]=useState('');
@@ -86,13 +86,27 @@ ${generated?.url||'[Proposal link]'}
 We look forward to hearing what you think!
 
 — Veltrix Team`;
- const createDraft=()=>{
-  if(!clientName.trim()||!businessName.trim()){setNotice('Please add the client name and business name first.');return}
+ const createDraft=async()=>{
+  if(!clientName.trim()||!businessName.trim()){setNotice('Please add the client name and academy name first.');return}
+  if(!db){setNotice('Proposal storage is not connected. Please check the Supabase configuration.');return}
+  setNotice('');
   const token=globalThis.crypto?.randomUUID?.().replace(/-/g,'').slice(0,16)||Math.random().toString(36).slice(2,18);
-  const url=window.location.origin+'/proposal/'+token;
-  const record={id:token,url,clientName:clientName.trim(),businessName:businessName.trim(),clientEmail:clientEmail.trim(),projectTitle:projectTitle.trim()||template.name,template:template.name,package:null,packageSelection:'Client chooses one of the three packages',packages:template.packages.map(p=>({...p,price:packagePrice(p)})),price:null,carePlan:null,carePlanSelection:'Client chooses one of the two care plans',carePlans:[{name:'Basic Care',price:carePlanPrice('Basic Care')},{name:'Complete Care',price:carePlanPrice('Complete Care')}],intro,createdAt:new Date().toISOString(),status:'Draft'};
-  setGenerated(record);setMessage('');setNotice('Proposal draft created. The public proposal page still needs its publishing backend before this link can be opened by clients.');
+  const slug=(businessName.toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,42)||'academy')+'-'+token.slice(0,7);
+  const record={clientName:clientName.trim(),businessName:businessName.trim(),clientEmail:clientEmail.trim(),projectTitle:projectTitle.trim()||template.name,template:template.name,templateId:template.id,package:null,packageSelection:'Client chooses one of the three packages',packages:template.packages.map(p=>({...p,price:packagePrice(p)})),price:null,carePlan:null,carePlanSelection:'Client chooses one of the two care plans',carePlans:[{name:'Basic Care',price:carePlanPrice('Basic Care')},{name:'Complete Care',price:carePlanPrice('Complete Care')}],intro,heroTitle:'Words matter.',heroAccent:'Make every one count.',createdAt:new Date().toISOString()};
+  const{data,error}=await db.from('client_proposals').insert({slug,client_name:record.clientName,client_email:record.clientEmail||null,business_name:record.businessName,project_title:record.projectTitle,template_id:template.id,status:'draft',proposal_data:record}).select('id,slug,status').single();
+  if(error){setNotice('Could not save this proposal: '+error.message);return}
+  const url=window.location.origin+'/proposals/'+data.slug;
+  setGenerated({...record,id:data.id,slug:data.slug,url,status:data.status});setMessage('');
+  setNotice('Draft saved securely. Publish it when you are ready to share it with the client.');
  };
+ const publishProposal=async()=>{
+  if(!generated?.id||!db)return;
+  setPublishing(true);setNotice('');
+  const{error}=await db.from('client_proposals').update({status:'published',published_at:new Date().toISOString(),updated_at:new Date().toISOString()}).eq('id',generated.id);
+  if(error){setNotice('Could not publish this proposal: '+error.message)}else{setGenerated(v=>({...v,status:'published'}));setNotice('Your proposal is published and ready to share.')}
+  setPublishing(false);
+ };
+ const [publishing,setPublishing]=useState(false);
  const copy=async value=>{try{await navigator.clipboard.writeText(value);setNotice('Copied to clipboard.')}catch{setNotice('Clipboard access was blocked. Please copy the text manually.')}};
  const shareText=message||makeMessage();
  const shareWhatsApp=()=>{if(!generated)return;window.open('https://wa.me/?text='+encodeURIComponent(shareText),'_blank','noopener,noreferrer')};
@@ -123,11 +137,13 @@ We look forward to hearing what you think!
    </section>
    <aside className="vx-proposal-live-preview"><div className="vx-proposal-preview-top"><span><Eye size={15}/> LIVE SUMMARY</span><small>CLIENT VIEW CONCEPT</small></div><div className="vx-proposal-preview-cover"><img src={template.image} alt=""/><span>VELTRIX / PERSONALIZED PROPOSAL</span></div><div className="vx-proposal-preview-content"><small>PREPARED FOR</small><h3>{clientName||'Your client name'}</h3><p>{businessName||'Your business name'}</p><div className="vx-proposal-preview-divider"/><small>PROPOSED SOLUTION</small><h4>{projectTitle||template.name}</h4><p>{intro}</p><div className="vx-proposal-preview-price"><span>Package selection</span><b>Client to choose</b></div><div className="vx-proposal-preview-package-options">{template.packages.map(p=><div key={p.name}><span>{p.name}</span><b>EGP {packagePrice(p).toLocaleString('en-US')}</b></div>)}</div><div className="vx-proposal-preview-price muted"><span>Monthly care plan</span><b>Client to choose</b></div><div className="vx-proposal-preview-package-options">{['Basic Care','Complete Care'].map(name=><div key={name}><span>{name}</span><b>{carePlanLabel(name)}</b></div>)}</div><small className="vx-proposal-preview-template">{template.name} · Template content preloaded</small></div></aside>
   </div>}
-  {generated&&<section className="vx-proposal-share-card"><div className="vx-proposal-share-heading"><div><div className="vx-kicker">03 / SHARE YOUR PROPOSAL</div><h3>Ready to share, {generated.clientName.split(' ')[0]}.</h3><p>Your proposal draft is saved in this browser session. Public publishing is the next backend step.</p></div><span className="vx-proposal-status-draft">DRAFT</span></div>
-   <div className="vx-proposal-link-box"><div><small>PROPOSAL URL · NOT YET PUBLIC</small><b>{generated.url}</b></div><button type="button" disabled title="Available after public proposal publishing is connected"><Copy size={15}/> Copy link after publishing</button></div>
-   <label className="vx-proposal-message-label">Message to send<textarea rows="7" value={message||makeMessage()} onChange={e=>setMessage(e.target.value)}/></label>
-   <div className="vx-proposal-share-actions"><button type="button" disabled title="Available after public proposal publishing is connected"><MessageCircle/> WhatsApp</button><button type="button" disabled title="Available after public proposal publishing is connected"><Hash/> Copy for Discord</button><button type="button" disabled title="Available after public proposal publishing is connected"><Mail/> Email</button></div>
-   <p className="vx-proposal-share-warning">Sharing is shown here as the intended workflow. Copying and sending will be enabled after we connect secure proposal storage, the public proposal page, and the publish action. This prevents sending a link that is not ready for your client.</p>
+  {generated&&<section className="vx-proposal-share-card"><div className="vx-proposal-share-heading"><div><div className="vx-kicker">03 / PUBLISH YOUR PROPOSAL</div><h3>{generated.status==='published'?'Your proposal is live.':'Your proposal draft is saved.'}</h3><p>{generated.status==='published'?'The client can now open their unique proposal link and submit their package and care-plan choices.':'Publish the proposal to make its unique client link accessible.'}</p></div><span className={generated.status==='published'?'vx-proposal-status-live':'vx-proposal-status-draft'}>{generated.status==='published'?'PUBLISHED':'DRAFT'}</span></div>
+   <div className="vx-proposal-link-box"><div><small>{generated.status==='published'?'PUBLIC CLIENT LINK':'DRAFT LINK · NOT PUBLIC YET'}</small><b>{generated.url}</b></div><button type="button" disabled={generated.status!=='published'} onClick={()=>copy(generated.url)}><Copy size={15}/> Copy link</button></div>
+   {generated.status!=='published'&&<button type="button" className="vx-btn-dark vx-proposal-create" disabled={publishing||template.id!=='sat'} onClick={publishProposal}>{publishing?'Publishing…':'Publish client proposal'} <ArrowUpRight size={16}/></button>}
+   {template.id!=='sat'&&<p className="vx-proposal-notice">The first live proposal page currently uses the SAT English Academy design. Other template publishing will be added after this version is verified.</p>}
+   {generated.status==='published'&&<div className="vx-proposal-share-actions"><button type="button" onClick={shareWhatsApp}><MessageCircle/> WhatsApp</button><button type="button" onClick={()=>copy(shareText)}><Hash/> Copy message</button><button type="button" onClick={shareEmail}><Mail/> Email</button><button type="button" onClick={()=>window.open(generated.url,'_blank','noopener,noreferrer')}><Eye/> Preview client page</button></div>}
+   {generated.status==='published'&&<label className="vx-proposal-message-label">Message to send<textarea rows="7" value={message||makeMessage()} onChange={e=>setMessage(e.target.value)}/></label>}
+   {notice&&<p className="vx-proposal-notice" role="status">{notice}</p>}
   </section>}
  </div>
 }
