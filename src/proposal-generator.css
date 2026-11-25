@@ -160,3 +160,35 @@
 .vx-proposal-response-list article{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;padding:14px;border:1px solid #edf0e9;border-radius:10px}
 .vx-proposal-response-list article p{grid-column:1/-1;margin:0;color:#6f7b70;font-size:10px;line-height:1.6}
 @media(max-width:650px){.vx-proposal-saved-list article{grid-template-columns:1fr auto}.vx-proposal-saved-list article>span{grid-column:2;grid-row:1}.vx-proposal-saved-list article button{justify-self:start}.vx-proposal-response-list article{grid-template-columns:1fr}.vx-proposal-management-head{align-items:flex-start}}
+
+
+/* Responsive proposal studio layout and controls */
+.vx-proposal-studio,.vx-proposal-builder,.vx-proposal-management,.vx-proposal-preview{min-width:0;max-width:100%}
+.vx-proposal-studio input,.vx-proposal-studio select,.vx-proposal-studio textarea,.vx-proposal-builder input,.vx-proposal-builder select,.vx-proposal-builder textarea{max-width:100%;min-width:0}
+.vx-proposal-saved-list,.vx-proposal-response-list,.vx-proposal-management-head,.vx-design-direction-head{min-width:0}
+.vx-proposal-saved-list article>div,.vx-proposal-response-list article>div{overflow-wrap:anywhere}
+@media(max-width:900px){
+ .vx-proposal-builder,.vx-proposal-layout,.vx-proposal-workspace{grid-template-columns:1fr!important}
+ .vx-proposal-preview{position:static!important;max-height:none!important}
+ .vx-proposal-form-grid,.vx-proposal-fields,.vx-proposal-settings-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .vx-proposal-template-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .vx-proposal-management-head{align-items:flex-start}
+}
+@media(max-width:650px){
+ .vx-proposal-studio,.vx-proposal-builder,.vx-proposal-management{padding:15px!important;border-radius:12px}
+ .vx-proposal-form-grid,.vx-proposal-fields,.vx-proposal-settings-grid,.vx-proposal-template-grid,.vx-proposal-care-list,.vx-design-direction-grid{grid-template-columns:1fr!important}
+ .vx-proposal-template-grid article{min-width:0}
+ .vx-proposal-management-head{flex-direction:column;gap:10px}
+ .vx-proposal-saved-list article{grid-template-columns:minmax(0,1fr)!important}
+ .vx-proposal-saved-list article>span{grid-column:auto!important;grid-row:auto!important}
+ .vx-proposal-saved-list article button{justify-self:start}
+ .vx-proposal-response-list article{grid-template-columns:1fr!important}
+ .vx-proposal-response-list article p{grid-column:auto}
+ .vx-proposal-library-tools{grid-template-columns:1fr!important}
+ .vx-proposal-library-tools input{grid-column:auto!important}
+ .vx-proposal-package-option{align-items:flex-start}
+ .vx-proposal-package-edit{width:100%;min-width:0}
+ .vx-proposal-actions,.vx-proposal-action-row{display:flex;flex-wrap:wrap;gap:8px}
+ .vx-proposal-actions button,.vx-proposal-action-row button{flex:1 1 140px}
+ .vx-proposal-studio button,.vx-proposal-builder button{min-height:40px}
+}
