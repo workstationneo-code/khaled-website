@@ -1,0 +1,76 @@
+.vx-proposal-generator{display:grid;gap:22px;padding:clamp(18px,3vw,30px);border:1px solid #e3eadc;border-radius:20px;background:rgba(255,255,255,.72);box-shadow:0 18px 50px rgba(43,62,40,.07)}
+.vx-proposal-generator-head{display:flex;align-items:flex-start;justify-content:space-between;gap:20px}
+.vx-proposal-generator-head h2{margin:8px 0;font:700 clamp(27px,4vw,38px) Manrope;letter-spacing:-.055em;color:#29392c}
+.vx-proposal-generator-head h2 em{color:#718b5d;font-style:normal}
+.vx-proposal-generator-head p{margin:0;color:#7b8875;font-size:13px;line-height:1.7}
+.vx-proposal-generator-mark{display:inline-flex;align-items:center;gap:8px;padding:10px 13px;border:1px solid #e1e9d9;border-radius:30px;color:#607750;background:#f6f9f2;font-size:9px;font-weight:800;letter-spacing:.1em;white-space:nowrap}
+.vx-proposal-template-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.vx-proposal-template{display:flex;overflow:hidden;min-width:0;padding:0;text-align:left;border:1px solid #e3eadd;border-radius:13px;background:#fff;color:#354331;cursor:pointer;transition:.2s}
+.vx-proposal-template:hover,.vx-proposal-template.active{border-color:#8da77a;box-shadow:0 9px 24px #344d3010}
+.vx-proposal-template.active{background:#f7faf3;outline:2px solid #dce8d2}
+.vx-proposal-template>img{width:34%;min-height:150px;object-fit:cover}
+.vx-proposal-template-body{display:flex;flex:1;flex-direction:column;align-items:flex-start;gap:6px;padding:15px}
+.vx-proposal-template-body>small{color:#829176;font-size:9px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+.vx-proposal-template-body>b{font-size:13px;line-height:1.4}
+.vx-proposal-template-body>span{color:#7d8977;font-size:10px;line-height:1.6}
+.vx-proposal-template-body>i{display:flex;align-items:center;gap:5px;margin-top:auto;color:#5b754b;font-size:10px;font-style:normal;font-weight:800}
+.vx-proposal-builder-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(270px,.75fr);align-items:start;gap:18px}
+.vx-proposal-builder-card,.vx-proposal-live-preview{min-width:0;padding:21px;border:1px solid #e6ebdf;border-radius:14px;background:#fff}
+.vx-proposal-card-title{display:flex;align-items:center;gap:11px;margin-bottom:17px}
+.vx-proposal-card-title>span{display:grid;place-items:center;width:30px;height:30px;border-radius:9px;background:#edf3e7;color:#678254;font-size:10px;font-weight:800}
+.vx-proposal-card-title>div{display:grid;gap:3px}
+.vx-proposal-card-title b{color:#354331;font-size:13px}
+.vx-proposal-card-title small{color:#8a9584;font-size:10px}
+.vx-proposal-form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.vx-proposal-form-grid label{display:grid;align-content:start;gap:7px;color:#596a52;font-size:10px;font-weight:800}
+.vx-proposal-form-grid label small{color:#929b8d;font-size:9px;font-weight:500;line-height:1.5}
+.vx-proposal-form-grid input,.vx-proposal-form-grid textarea,.vx-proposal-form-grid select{width:100%;min-width:0;min-height:42px;padding:10px 11px;border:1px solid #dfe7d9;border-radius:8px;background:#fcfdfb;color:#344432;font:12px Manrope}
+.vx-proposal-form-grid textarea{resize:vertical;line-height:1.6}
+.vx-proposal-form-grid .wide{grid-column:1/-1}
+.vx-proposal-card-title.package-title{margin-top:25px}
+.vx-proposal-package-list{display:grid;gap:8px}
+.vx-proposal-package{display:flex;align-items:center;gap:12px;width:100%;padding:12px;border:1px solid #e5ebdf;border-radius:9px;background:#fff;color:#344432;text-align:left;cursor:pointer}
+.vx-proposal-package.active{border-color:#8da77a;background:#f5f9f0}
+.vx-proposal-package>span{display:grid;flex:1;gap:4px;min-width:0}
+.vx-proposal-package b{font-size:12px}
+.vx-proposal-package small{color:#879281;font-size:9px;line-height:1.5}
+.vx-proposal-package strong{font-size:12px;white-space:nowrap}
+.vx-proposal-package>svg{color:#668052;flex:none}
+.vx-proposal-package i{width:max-content;padding:3px 6px;border-radius:20px;background:#e7f0df;color:#5e784d;font-size:8px;font-style:normal;letter-spacing:.06em}
+.vx-proposal-price-fields{margin-top:14px}
+.vx-proposal-create{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;margin-top:19px;min-height:47px}
+.vx-proposal-notice{margin:12px 0 0;padding:11px 13px;border:1px solid #e1e9d9;border-radius:8px;background:#f7faf3;color:#617751;font-size:10px;line-height:1.6}
+.vx-proposal-preview-top{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:13px}
+.vx-proposal-preview-top>span{display:flex;align-items:center;gap:7px;color:#526a48;font-size:9px;font-weight:800;letter-spacing:.08em}
+.vx-proposal-preview-top>small{color:#9aa394;font-size:8px}
+.vx-proposal-preview-cover{position:relative;overflow:hidden;height:145px;border-radius:9px;background:#e8eee2}
+.vx-proposal-preview-cover img{width:100%;height:100%;object-fit:cover}
+.vx-proposal-preview-cover span{position:absolute;left:12px;bottom:11px;padding:6px 8px;border-radius:4px;background:#ffffffdf;color:#3d5136;font-size:8px;font-weight:800;letter-spacing:.08em}
+.vx-proposal-preview-content{padding:18px 4px 2px}
+.vx-proposal-preview-content>small{color:#8c9983;font-size:8px;font-weight:800;letter-spacing:.1em}
+.vx-proposal-preview-content h3{margin:7px 0 2px;color:#29392c;font:700 23px Manrope;letter-spacing:-.04em}
+.vx-proposal-preview-content>p{margin:3px 0 15px;color:#7e8a78;font-size:10px;line-height:1.65}
+.vx-proposal-preview-content h4{margin:7px 0;color:#3c4e36;font-size:14px}
+.vx-proposal-preview-divider{height:1px;margin:15px 0;background:#edf0e9}
+.vx-proposal-preview-price{display:flex;justify-content:space-between;gap:8px;padding:11px 0;border-top:1px solid #edf0e9;color:#617653;font-size:10px}
+.vx-proposal-preview-price b{color:#344632;font-size:11px}
+.vx-proposal-preview-price.muted{color:#929b8d}
+.vx-proposal-preview-template{display:block;margin-top:13px;color:#9aa394;font-size:8px!important;line-height:1.6}
+.vx-proposal-share-card{display:grid;gap:16px;padding:22px;border:1px solid #dfe8d7;border-radius:15px;background:linear-gradient(135deg,#f8fbf5,#fff)}
+.vx-proposal-share-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:15px}
+.vx-proposal-share-heading h3{margin:7px 0;color:#30412e;font:700 23px Manrope;letter-spacing:-.04em}
+.vx-proposal-share-heading p{margin:0;color:#82907c;font-size:11px;line-height:1.6}
+.vx-proposal-status-draft{padding:7px 10px;border-radius:20px;background:#fff0d9;color:#966c32;font-size:9px;font-weight:900;letter-spacing:.08em}
+.vx-proposal-link-box{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px;border:1px solid #e3eadc;border-radius:9px;background:#fff}
+.vx-proposal-link-box>div{display:grid;gap:5px;min-width:0}
+.vx-proposal-link-box small{color:#9a7860;font-size:8px;font-weight:900;letter-spacing:.08em}
+.vx-proposal-link-box b{overflow-wrap:anywhere;color:#526a48;font-size:11px}
+.vx-proposal-link-box button,.vx-proposal-share-actions button{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:40px;padding:0 13px;border:1px solid #dfe7d9;border-radius:8px;background:#fff;color:#526a48;font:700 10px Manrope;cursor:pointer}
+.vx-proposal-share-actions{display:flex;flex-wrap:wrap;gap:9px}
+.vx-proposal-share-actions button:hover,.vx-proposal-link-box button:hover{border-color:#9caf8d;background:#f5f8f1}
+.vx-proposal-share-actions svg{width:16px;height:16px}
+.vx-proposal-message-label{display:grid;gap:7px;color:#53664b;font-size:10px;font-weight:800}
+.vx-proposal-message-label textarea{width:100%;padding:12px;border:1px solid #dfe7d9;border-radius:8px;background:#fff;color:#44533e;font:11px/1.7 Manrope;resize:vertical}
+.vx-proposal-share-warning{margin:0;padding:12px 14px;border-left:3px solid #d2a35d;background:#fff9ef;color:#856a43;font-size:10px;line-height:1.7}
+@media(max-width:850px){.vx-proposal-builder-grid{grid-template-columns:1fr}.vx-proposal-live-preview{max-width:none}}
+@media(max-width:650px){.vx-proposal-generator-head{flex-direction:column}.vx-proposal-template-grid{grid-template-columns:1fr}.vx-proposal-template>img{width:30%;min-height:125px}.vx-proposal-form-grid{grid-template-columns:1fr}.vx-proposal-form-grid .wide{grid-column:auto}.vx-proposal-builder-card,.vx-proposal-live-preview{padding:15px}.vx-proposal-share-heading{flex-direction:column}.vx-proposal-link-box{align-items:stretch;flex-direction:column}.vx-proposal-link-box button{width:100%}.vx-proposal-share-actions{display:grid;grid-template-columns:1fr}.vx-proposal-package{align-items:flex-start;flex-wrap:wrap}.vx-proposal-package>strong{margin-left:auto}}
