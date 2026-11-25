@@ -74,3 +74,20 @@
 .vx-proposal-share-warning{margin:0;padding:12px 14px;border-left:3px solid #d2a35d;background:#fff9ef;color:#856a43;font-size:10px;line-height:1.7}
 @media(max-width:850px){.vx-proposal-builder-grid{grid-template-columns:1fr}.vx-proposal-live-preview{max-width:none}}
 @media(max-width:650px){.vx-proposal-generator-head{flex-direction:column}.vx-proposal-template-grid{grid-template-columns:1fr}.vx-proposal-template>img{width:30%;min-height:125px}.vx-proposal-form-grid{grid-template-columns:1fr}.vx-proposal-form-grid .wide{grid-column:auto}.vx-proposal-builder-card,.vx-proposal-live-preview{padding:15px}.vx-proposal-share-heading{flex-direction:column}.vx-proposal-link-box{align-items:stretch;flex-direction:column}.vx-proposal-link-box button{width:100%}.vx-proposal-share-actions{display:grid;grid-template-columns:1fr}.vx-proposal-package{align-items:flex-start;flex-wrap:wrap}.vx-proposal-package>strong{margin-left:auto}}
+
+/* Pricing decision step */
+.vx-proposal-pricing-choice{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,.9fr);gap:22px;align-items:center;padding:clamp(18px,3vw,26px);border:1px solid #e3eadc;border-radius:15px;background:linear-gradient(135deg,#f8fbf5,#fff)}
+.vx-proposal-pricing-choice-copy h3{margin:8px 0;color:#30412e;font:700 clamp(20px,3vw,27px) Manrope;letter-spacing:-.04em}
+.vx-proposal-pricing-choice-copy p{max-width:540px;margin:0;color:#82907c;font-size:11px;line-height:1.75}
+.vx-proposal-pricing-choice-actions{display:grid;gap:9px}
+.vx-proposal-pricing-choice-actions button{display:flex;align-items:center;gap:11px;width:100%;padding:14px;border:1px solid #dfe7d9;border-radius:10px;background:#fff;color:#526a48;text-align:left;cursor:pointer;transition:.2s}
+.vx-proposal-pricing-choice-actions button:hover{transform:translateY(-1px);border-color:#91a982;box-shadow:0 8px 20px #344d3010}
+.vx-proposal-pricing-choice-actions button>span{display:grid;flex:1;gap:4px}
+.vx-proposal-pricing-choice-actions b{font:700 11px Manrope}
+.vx-proposal-pricing-choice-actions small{color:#899584;font-size:9px}
+.vx-proposal-pricing-choice-actions .vx-proposal-change-prices{background:#30412e;color:#fff;border-color:#30412e}
+.vx-proposal-pricing-choice-actions .vx-proposal-change-prices small{color:#d1dacb}
+.vx-proposal-pricing-mode{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 13px;border:1px solid #e3eadc;border-radius:9px;background:#f8fbf5;color:#617751;font-size:10px;font-weight:800}
+.vx-proposal-pricing-mode>span{display:flex;align-items:center;gap:7px}
+.vx-proposal-pricing-mode button{border:0;background:transparent;color:#718b5d;font:700 10px Manrope;text-decoration:underline;cursor:pointer}
+@media(max-width:650px){.vx-proposal-pricing-choice{grid-template-columns:1fr}.vx-proposal-pricing-mode{align-items:flex-start;flex-direction:column}}
