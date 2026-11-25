@@ -1,4 +1,4 @@
-import React,{useMemo,useState} from 'react';
+import React,{useEffect,useMemo,useState} from 'react';
 import {Copy,MessageCircle,Mail,Hash,Check,Sparkles,Eye,Plus,ArrowUpRight} from 'lucide-react';
 import './proposal-generator.css';
 
@@ -73,9 +73,13 @@ export default function ProposalGenerator({db}){
  const [generated,setGenerated]=useState(null);
  const [notice,setNotice]=useState('');
  const [message,setMessage]=useState('');
+ const [savedProposals,setSavedProposals]=useState([]);
+ const [responses,setResponses]=useState([]);
  const packagePrice=p=>customPrices[p.name]!==undefined&&customPrices[p.name]!==''?Number(customPrices[p.name]):p.price;
  const carePlanPrice=name=>carePrices[name]!==undefined&&carePrices[name]!==''?Number(carePrices[name]):null;
  const carePlanLabel=name=>carePlanPrice(name)===null?'Custom quote':'EGP '+carePlanPrice(name).toLocaleString('en-US')+'/month';
+ useEffect(()=>{if(!db)return;let live=true;(async()=>{const[{data:proposalRows},{data:responseRows}]=await Promise.all([db.from('client_proposals').select('id,slug,client_name,client_email,business_name,project_title,template_id,status,proposal_data,created_at').order('created_at',{ascending:false}).limit(50),db.from('client_proposal_responses').select('id,proposal_id,client_name,client_email,selected_package,package_price,selected_care_plan,care_price,message,created_at').order('created_at',{ascending:false}).limit(50)]);if(live){setSavedProposals(proposalRows||[]);setResponses(responseRows||[])}})();return()=>{live=false}},[db]);
+
  const makeMessage=()=>`Hello ${clientName||'there'}! 👋
 
 We've prepared a personalized website proposal for ${businessName||'your business'}.
@@ -96,14 +100,14 @@ We look forward to hearing what you think!
   const{data,error}=await db.from('client_proposals').insert({slug,client_name:record.clientName,client_email:record.clientEmail||null,business_name:record.businessName,project_title:record.projectTitle,template_id:template.id,status:'draft',proposal_data:record}).select('id,slug,status').single();
   if(error){setNotice('Could not save this proposal: '+error.message);return}
   const url=window.location.origin+'/proposals/'+data.slug;
-  setGenerated({...record,id:data.id,slug:data.slug,url,status:data.status});setMessage('');
+  setGenerated({...record,id:data.id,slug:data.slug,url,status:data.status});setSavedProposals(v=>[{...record,id:data.id,slug:data.slug,url,status:data.status,created_at:record.createdAt},...v]);setMessage('');
   setNotice('Draft saved securely. Publish it when you are ready to share it with the client.');
  };
  const publishProposal=async()=>{
   if(!generated?.id||!db)return;
   setPublishing(true);setNotice('');
   const{error}=await db.from('client_proposals').update({status:'published',published_at:new Date().toISOString(),updated_at:new Date().toISOString()}).eq('id',generated.id);
-  if(error){setNotice('Could not publish this proposal: '+error.message)}else{setGenerated(v=>({...v,status:'published'}));setNotice('Your proposal is published and ready to share.')}
+  if(error){setNotice('Could not publish this proposal: '+error.message)}else{setGenerated(v=>({...v,status:'published'}));setSavedProposals(v=>v.map(p=>p.id===generated.id?{...p,status:'published'}:p));setNotice('Your proposal is published and ready to share.')}
   setPublishing(false);
  };
  const [publishing,setPublishing]=useState(false);
@@ -137,6 +141,8 @@ We look forward to hearing what you think!
    </section>
    <aside className="vx-proposal-live-preview"><div className="vx-proposal-preview-top"><span><Eye size={15}/> LIVE SUMMARY</span><small>CLIENT VIEW CONCEPT</small></div><div className="vx-proposal-preview-cover"><img src={template.image} alt=""/><span>VELTRIX / PERSONALIZED PROPOSAL</span></div><div className="vx-proposal-preview-content"><small>PREPARED FOR</small><h3>{clientName||'Your client name'}</h3><p>{businessName||'Your business name'}</p><div className="vx-proposal-preview-divider"/><small>PROPOSED SOLUTION</small><h4>{projectTitle||template.name}</h4><p>{intro}</p><div className="vx-proposal-preview-price"><span>Package selection</span><b>Client to choose</b></div><div className="vx-proposal-preview-package-options">{template.packages.map(p=><div key={p.name}><span>{p.name}</span><b>EGP {packagePrice(p).toLocaleString('en-US')}</b></div>)}</div><div className="vx-proposal-preview-price muted"><span>Monthly care plan</span><b>Client to choose</b></div><div className="vx-proposal-preview-package-options">{['Basic Care','Complete Care'].map(name=><div key={name}><span>{name}</span><b>{carePlanLabel(name)}</b></div>)}</div><small className="vx-proposal-preview-template">{template.name} · Template content preloaded</small></div></aside>
   </div>}
+  <section className="vx-proposal-management"><div className="vx-proposal-management-head"><div><span className="vx-kicker">PROPOSAL LIBRARY</span><h3>Your saved client proposals</h3><p>Reopen a proposal to copy its link or publish a saved draft.</p></div><span>{savedProposals.length} saved</span></div>{savedProposals.length===0?<p className="vx-proposal-empty">Your generated proposals will appear here.</p>:<div className="vx-proposal-saved-list">{savedProposals.map(p=><article key={p.id}><div><b>{p.business_name}</b><small>{p.client_name} · {p.project_title}</small><code>{window.location.origin+'/proposals/'+p.slug}</code></div><span className={p.status==='published'?'vx-proposal-status-live':'vx-proposal-status-draft'}>{p.status}</span><button type="button" onClick={()=>{const d=p.proposal_data||{};setGenerated({...d,id:p.id,slug:p.slug,url:window.location.origin+'/proposals/'+p.slug,status:p.status});setClientName(p.client_name||'');setBusinessName(p.business_name||'');setNotice('Loaded proposal '+p.business_name+'.')}}>Manage</button></article>)}</div>}</section>
+  <section className="vx-proposal-management"><div className="vx-proposal-management-head"><div><span className="vx-kicker">CLIENT DECISIONS</span><h3>Proposal responses</h3><p>Package and care-plan choices submitted by clients.</p></div><span>{responses.length} responses</span></div>{responses.length===0?<p className="vx-proposal-empty">Client selections will appear here after a proposal is submitted.</p>:<div className="vx-proposal-response-list">{responses.map(r=><article key={r.id}><div><b>{r.client_name}</b><small>{r.client_email} · {new Date(r.created_at).toLocaleString()}</small></div><div><b>{r.selected_package}</b><small>EGP {Number(r.package_price).toLocaleString('en-US')} one-time</small></div><div><b>{r.selected_care_plan}</b><small>EGP {Number(r.care_price).toLocaleString('en-US')} / month</small></div>{r.message&&<p>{r.message}</p>}</article>)}</div>}</section>
   {generated&&<section className="vx-proposal-share-card"><div className="vx-proposal-share-heading"><div><div className="vx-kicker">03 / PUBLISH YOUR PROPOSAL</div><h3>{generated.status==='published'?'Your proposal is live.':'Your proposal draft is saved.'}</h3><p>{generated.status==='published'?'The client can now open their unique proposal link and submit their package and care-plan choices.':'Publish the proposal to make its unique client link accessible.'}</p></div><span className={generated.status==='published'?'vx-proposal-status-live':'vx-proposal-status-draft'}>{generated.status==='published'?'PUBLISHED':'DRAFT'}</span></div>
    <div className="vx-proposal-link-box"><div><small>{generated.status==='published'?'PUBLIC CLIENT LINK':'DRAFT LINK · NOT PUBLIC YET'}</small><b>{generated.url}</b></div><button type="button" disabled={generated.status!=='published'} onClick={()=>copy(generated.url)}><Copy size={15}/> Copy link</button></div>
    {generated.status!=='published'&&<button type="button" className="vx-btn-dark vx-proposal-create" disabled={publishing||template.id!=='sat'} onClick={publishProposal}>{publishing?'Publishing…':'Publish client proposal'} <ArrowUpRight size={16}/></button>}
