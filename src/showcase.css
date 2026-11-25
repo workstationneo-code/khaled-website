@@ -674,3 +674,29 @@
  .vx-chat-bubble{max-width:88%}
  .vx-chat-quick-replies{gap:6px}
 }
+
+
+/* Client portal usability refinements */
+.vx-portal-howto{align-items:flex-start}
+.vx-portal-howto p{max-width:760px}
+.vx-portal-project{display:flex;flex-direction:column}
+.vx-portal-project .vx-portal-progress{margin:20px 0 16px}
+.vx-portal-project .vx-portal-next{margin-top:0}
+.vx-portal-project .vx-btn-dark{width:100%;justify-content:center;margin-top:auto}
+.vx-client-quicklinks .vx-client-chat-link{border-color:#526b45;background:#526b45;color:#fff}
+.vx-client-quicklinks .vx-client-chat-link:hover{border-color:#405638;background:#405638;color:#fff}
+.vx-client-quicklinks button{min-height:44px;font-size:12px}
+.vx-project-workspace>section{scroll-margin-top:90px}
+.vx-live-chat{scroll-margin-top:90px}
+.vx-live-chat .vx-chat-compose textarea{font-size:13px}
+.vx-live-chat .vx-chat-compose .vx-btn-dark{min-width:82px}
+.vx-portal-login .vx-login-help{display:grid;gap:5px;margin-top:20px;padding:14px;border-radius:10px;background:#f7f9f4}
+.vx-portal-login .vx-portal-reset{min-height:38px}
+@media(max-width:650px){
+ .vx-portal-project .vx-btn-dark{min-height:48px}
+ .vx-client-quicklinks .vx-client-chat-link{grid-column:1/-1}
+ .vx-client-quicklinks button{min-height:46px;font-size:11px}
+ .vx-live-chat .vx-chat-compose{display:grid;grid-template-columns:44px minmax(0,1fr)}
+ .vx-live-chat .vx-chat-compose textarea{grid-column:2;grid-row:1}
+ .vx-live-chat .vx-chat-compose .vx-btn-dark{grid-column:1/-1;width:100%}
+}
