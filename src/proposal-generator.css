@@ -132,3 +132,14 @@
 .vx-proposal-preview-package-options>div{display:flex;justify-content:space-between;gap:8px;padding:7px 9px;border:1px solid #edf0e9;border-radius:6px;color:#718166;font-size:9px}
 .vx-proposal-preview-package-options b{color:#344632;font-size:9px}
 @media(max-width:650px){.vx-proposal-package-option{flex-wrap:wrap}.vx-proposal-package-edit{width:100%}}
+
+/* Client chooses one monthly care plan */
+.vx-proposal-care-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.vx-proposal-care-option{display:grid;align-content:start;gap:12px;min-width:0;padding:14px;border:1px solid #e3eadc;border-radius:10px;background:#fff}
+.vx-proposal-care-option>div{display:grid;gap:5px}
+.vx-proposal-care-option>div b{color:#354331;font-size:12px}
+.vx-proposal-care-option>div small{color:#879281;font-size:9px;line-height:1.55}
+.vx-proposal-care-option>strong{color:#526a48;font-size:12px}
+.vx-proposal-care-option>label{display:grid;gap:5px;color:#718166;font-size:8px;font-weight:800}
+.vx-proposal-care-option input{width:100%;min-height:35px;padding:7px 8px;border:1px solid #dfe7d9;border-radius:7px;background:#fff;color:#344432;font:11px Manrope}
+@media(max-width:650px){.vx-proposal-care-list{grid-template-columns:1fr}}
