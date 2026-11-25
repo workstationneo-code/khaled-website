@@ -91,3 +91,10 @@
 .vx-proposal-pricing-mode>span{display:flex;align-items:center;gap:7px}
 .vx-proposal-pricing-mode button{border:0;background:transparent;color:#718b5d;font:700 10px Manrope;text-decoration:underline;cursor:pointer}
 @media(max-width:650px){.vx-proposal-pricing-choice{grid-template-columns:1fr}.vx-proposal-pricing-mode{align-items:flex-start;flex-direction:column}}
+
+
+/* Search and category controls for the expanded template library */
+.vx-proposal-library-tools{display:grid;grid-template-columns:minmax(0,1fr) 220px auto;align-items:center;gap:10px}
+.vx-proposal-library-tools input,.vx-proposal-library-tools select{width:100%;min-height:43px;padding:10px 13px;border:1px solid #dfe7d9;border-radius:9px;background:#fff;color:#344432;font:12px Manrope}
+.vx-proposal-library-tools>span{color:#829176;font-size:10px;font-weight:800;white-space:nowrap}
+@media(max-width:650px){.vx-proposal-library-tools{grid-template-columns:1fr 1fr}.vx-proposal-library-tools input{grid-column:1/-1}}
