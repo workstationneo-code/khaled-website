@@ -143,3 +143,20 @@
 .vx-proposal-care-option>label{display:grid;gap:5px;color:#718166;font-size:8px;font-weight:800}
 .vx-proposal-care-option input{width:100%;min-height:35px;padding:7px 8px;border:1px solid #dfe7d9;border-radius:7px;background:#fff;color:#344432;font:11px Manrope}
 @media(max-width:650px){.vx-proposal-care-list{grid-template-columns:1fr}}
+
+.vx-proposal-status-live{display:inline-flex;align-items:center;padding:7px 11px;border-radius:20px;background:#edf6e8;color:#4f7441;font-size:9px;font-weight:900;letter-spacing:.1em}
+.vx-proposal-management{display:grid;gap:15px;padding:22px;border:1px solid #e3eadc;border-radius:15px;background:#fff}
+.vx-proposal-management-head{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.vx-proposal-management-head h3{margin:7px 0;font:700 20px Manrope;color:#29392c;letter-spacing:-.04em}
+.vx-proposal-management-head p,.vx-proposal-empty{margin:0;color:#7b8875;font-size:11px;line-height:1.7}
+.vx-proposal-management-head>span{padding:7px 10px;border-radius:20px;background:#f3f6ef;color:#71856a;font-size:9px;font-weight:800;white-space:nowrap}
+.vx-proposal-saved-list,.vx-proposal-response-list{display:grid;gap:9px}
+.vx-proposal-saved-list article{display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;gap:14px;padding:14px;border:1px solid #edf0e9;border-radius:10px}
+.vx-proposal-saved-list article>div,.vx-proposal-response-list article>div{display:grid;gap:5px;min-width:0}
+.vx-proposal-saved-list b,.vx-proposal-response-list b{font-size:11px;color:#354331}
+.vx-proposal-saved-list small,.vx-proposal-response-list small{font-size:9px;color:#879184}
+.vx-proposal-saved-list code{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#6d8063;font-size:9px}
+.vx-proposal-saved-list button{padding:8px 12px;border:1px solid #dce5d7;border-radius:20px;background:#f8faf5;color:#53684b;font-size:9px;font-weight:800;cursor:pointer}
+.vx-proposal-response-list article{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;padding:14px;border:1px solid #edf0e9;border-radius:10px}
+.vx-proposal-response-list article p{grid-column:1/-1;margin:0;color:#6f7b70;font-size:10px;line-height:1.6}
+@media(max-width:650px){.vx-proposal-saved-list article{grid-template-columns:1fr auto}.vx-proposal-saved-list article>span{grid-column:2;grid-row:1}.vx-proposal-saved-list article button{justify-self:start}.vx-proposal-response-list article{grid-template-columns:1fr}.vx-proposal-management-head{align-items:flex-start}}
