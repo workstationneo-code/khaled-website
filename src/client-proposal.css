@@ -75,3 +75,40 @@
  .cp-footer>span{font-size:7px;line-height:1.6}
 }
 @media(prefers-reduced-motion:reduce){.cp-loader{animation-duration:.01ms}}
+
+
+/* Automotive proposal art direction — premium editorial showroom */
+.cp-general-hero:has(.cp-auto-visual){background:radial-gradient(ellipse at 80% 48%,#d9e0df 0,transparent 48%),#101918;color:#f4f3ed}
+.cp-general-hero:has(.cp-auto-visual) .cp-kicker{color:#c1aa7d}
+.cp-general-hero:has(.cp-auto-visual) h1{color:#f5f3ec}
+.cp-general-hero:has(.cp-auto-visual) h1 em{color:#c6aa76}
+.cp-general-hero:has(.cp-auto-visual)>div:first-child>p{color:#c1c9c4}
+.cp-general-hero:has(.cp-auto-visual) .cp-button-dark{background:#c3a46b;color:#151b19}
+.cp-general-hero:has(.cp-auto-visual) .cp-text-link{color:#e4ddcf}
+.cp-general-hero:has(.cp-auto-visual) .cp-general-proof b{color:#f6f3eb}
+.cp-general-hero:has(.cp-auto-visual) .cp-general-proof small{color:#a9b2ad}
+.cp-auto-visual{background:#1b2422;border:1px solid #ffffff20;box-shadow:0 28px 80px #0005}
+.cp-auto-visual .cp-shop-feature{height:410px}
+.cp-auto-visual .cp-shop-feature img{filter:saturate(.78)}
+.cp-auto-visual .cp-shop-feature span{background:#c3a46b;color:#151b19}
+.cp-auto-visual .cp-shop-mini img{filter:saturate(.7);border:1px solid #ffffff25}
+.cp-auto-visual .cp-shop-stamp{background:#c3a46b;color:#171d1b}
+.cp-general:has(.cp-auto-visual) .cp-general-intro{background:#f3f1eb}
+.cp-general:has(.cp-auto-visual) .cp-general-intro h2 em,
+.cp-general:has(.cp-auto-visual) .cp-general-section-head h2 em{color:#9c7d49}
+.cp-general:has(.cp-auto-visual) .cp-general-products{background:#e9e7e0}
+.cp-general:has(.cp-auto-visual) .cp-general-product-grid article{padding:12px 12px 22px;background:#f9f8f4;border-radius:4px}
+.cp-general:has(.cp-auto-visual) .cp-general-product-grid img{height:245px;border-radius:2px;filter:saturate(.82)}
+.cp-general:has(.cp-auto-visual) .cp-general-product-grid h3{font-size:19px;letter-spacing:-.03em}
+.cp-general:has(.cp-auto-visual) .cp-general-product-grid p{color:#77776f}
+.cp-general:has(.cp-auto-visual) .cp-general-benefits{background:#151e1c}
+.cp-general:has(.cp-auto-visual) .cp-general-benefits .cp-kicker{color:#c3a46b}
+.cp-general:has(.cp-auto-visual) .cp-general-benefits h2 em{color:#c3a46b}
+.cp-general:has(.cp-auto-visual) .cp-pricing-intro{background:#c3a46b}
+.cp-general:has(.cp-auto-visual) .cp-pricing-intro .cp-kicker{color:#30362f}
+.cp-general:has(.cp-auto-visual) .cp-pricing-intro h2 em{color:#fff8e9}
+.cp-general:has(.cp-auto-visual) .cp-package-grid article.featured{border-color:#b08e55;box-shadow:0 16px 45px #8b6d3a20}
+.cp-general:has(.cp-auto-visual) .cp-package-head>span{background:#f1e5cd;color:#876638}
+.cp-general:has(.cp-auto-visual) .cp-package-grid article>button.selected{background:#17211e;border-color:#17211e}
+.cp-general:has(.cp-auto-visual) .cp-care-grid>button.selected{border-color:#b08e55;background:#f7f1e6}
+@media(max-width:760px){.cp-auto-visual .cp-shop-feature,.cp-auto-visual .cp-shop-mini{height:250px}}
