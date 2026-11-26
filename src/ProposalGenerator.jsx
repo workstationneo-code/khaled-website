@@ -109,10 +109,26 @@ We look forward to hearing what you think!
  };
  const publishProposal=async()=>{
   if(!generated?.id||!db)return;
+  if(generated.templateId!=='sat'){
+   setNotice('This proposal is saved safely as a draft. Publishing for this template is not enabled yet while its dedicated client design is being completed.');
+   return;
+  }
   setPublishing(true);setNotice('');
-  const{error}=await db.from('client_proposals').update({status:'published',published_at:new Date().toISOString(),updated_at:new Date().toISOString()}).eq('id',generated.id);
-  if(error){setNotice('Could not publish this proposal: '+error.message)}else{setGenerated(v=>({...v,status:'published'}));setSavedProposals(v=>v.map(p=>p.id===generated.id?{...p,status:'published'}:p));setNotice('Your proposal is published and ready to share.')}
-  setPublishing(false);
+  try{
+   const{data:published,error}=await db.from('client_proposals').update({status:'published',published_at:new Date().toISOString(),updated_at:new Date().toISOString()}).eq('id',generated.id).select('id,status').maybeSingle();
+   if(error)throw error;
+   if(!published){setNotice('The proposal was not published. Please sign in again with an administrator account, then retry.');return;}
+   setGenerated(v=>({...v,status:'published'}));
+   setSavedProposals(v=>v.map(p=>p.id===generated.id?{...p,status:'published'}:p));
+   setNotice('Your proposal is published and ready to share.');
+  }catch(error){
+   console.error('Proposal publishing failed:',error);
+   setNotice(error?.message==='Failed to fetch'||error?.name==='TypeError'
+    ?'The connection to the database was interrupted. Your draft is still saved. Check your connection and try again.'
+    :'Could not publish this proposal: '+(error?.message||'Unexpected error. Your draft is still saved.'));
+  }finally{
+   setPublishing(false);
+  }
  };
  const [publishing,setPublishing]=useState(false);
  const [saving,setSaving]=useState(false);
@@ -165,8 +181,8 @@ We look forward to hearing what you think!
   {generated&&<section className="vx-proposal-share-card"><div className="vx-proposal-share-heading"><div><div className="vx-kicker">03 / PUBLISH YOUR PROPOSAL</div><h3>{generated.status==='published'?'Your proposal is live.':'Your proposal draft is saved.'}</h3><p>{generated.status==='published'?'The client can now open their unique proposal link and submit their package and care-plan choices.':'Publish the proposal to make its unique client link accessible.'}</p></div><span className={generated.status==='published'?'vx-proposal-status-live':'vx-proposal-status-draft'}>{generated.status==='published'?'PUBLISHED':'DRAFT'}</span></div>
    <button type="button" className="vx-btn-outline vx-proposal-create" disabled={saving} onClick={saveProposalChanges}>{saving?'Saving changes…':'Save proposal changes'} <Check size={16}/></button>
    <div className="vx-proposal-link-box"><div><small>{generated.status==='published'?'PUBLIC CLIENT LINK':'DRAFT LINK · NOT PUBLIC YET'}</small><b>{generated.url}</b></div><button type="button" disabled={generated.status!=='published'} onClick={()=>copy(generated.url)}><Copy size={15}/> Copy link</button></div>
-   {generated.status!=='published'&&<button type="button" className="vx-btn-dark vx-proposal-create" disabled={publishing||template.id!=='sat'} onClick={publishProposal}>{publishing?'Publishing…':'Publish client proposal'} <ArrowUpRight size={16}/></button>}
-   {template.id!=='sat'&&<p className="vx-proposal-notice">The first live proposal page currently uses the SAT English Academy design. Other template publishing will be added after this version is verified.</p>}
+   {generated.status!=='published'&&<button type="button" className="vx-btn-dark vx-proposal-create" disabled={publishing||generated.templateId!=='sat'} onClick={publishProposal}>{publishing?'Publishing…':'Publish client proposal'} <ArrowUpRight size={16}/></button>}
+   {generated.templateId!=='sat'&&<p className="vx-proposal-notice">This proposal is saved safely as a draft. Its dedicated client design must be completed and verified before publishing is enabled.</p>}
    {generated.status==='published'&&<div className="vx-proposal-share-actions"><button type="button" onClick={shareWhatsApp}><MessageCircle/> WhatsApp</button><button type="button" onClick={()=>copy(shareText)}><Hash/> Copy message</button><button type="button" onClick={shareEmail}><Mail/> Email</button><button type="button" onClick={()=>window.open(generated.url,'_blank','noopener,noreferrer')}><Eye/> Preview client page</button></div>}
    {generated.status==='published'&&<label className="vx-proposal-message-label">Message to send<textarea rows="7" value={message||makeMessage()} onChange={e=>setMessage(e.target.value)}/></label>}
    {notice&&<p className="vx-proposal-notice" role="status">{notice}</p>}
