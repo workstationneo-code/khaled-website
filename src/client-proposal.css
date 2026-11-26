@@ -217,3 +217,202 @@
 .cp-theme-corporate{--cp-paper:#f7f8f6;--cp-panel:#e9ece8;--cp-deep:#202e2a;--cp-radius:8px;--cp-card-radius:8px}
 @media(max-width:850px){.cp-tailored-hero{grid-template-columns:1fr;gap:34px}.cp-tailored-art{min-height:390px!important}.cp-tailored-intro,.cp-tailored-features{grid-template-columns:1fr;gap:32px}.cp-tailored-section-head{display:block}.cp-tailored-section-head>p{max-width:600px}.cp-tailored-card-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.cp-tailored-card-grid article:last-child{grid-column:1/-1}.cp-tailored-card-grid article:last-child .cp-tailored-card-image{height:280px}}
 @media(max-width:600px){.cp-tailored-nav{padding:0 14px}.cp-tailored-nav nav{display:none}.cp-tailored-hero{padding:55px 18px 62px}.cp-tailored-copy h1{font-size:44px}.cp-tailored-art{min-height:310px!important}.cp-tailored-proof{gap:15px;flex-wrap:wrap}.cp-tailored-proof small{font-size:7px}.cp-tailored-intro,.cp-tailored-showcase,.cp-tailored-features,.cp-tailored-process,.cp-tailored-pricing{padding:58px 18px}.cp-tailored-card-grid{grid-template-columns:1fr}.cp-tailored-card-grid article:last-child{grid-column:auto}.cp-tailored-card-image,.cp-tailored-card-grid article:last-child .cp-tailored-card-image{height:250px}.cp-process-top{flex-direction:column}.cp-process-grid{grid-template-columns:1fr;gap:12px}.cp-process-grid article{padding:18px 0;border-bottom:1px solid color-mix(in srgb,var(--cp-accent) 20%,#fff)}.cp-tailored-pricing-intro{padding:60px 18px}}
+
+
+/* Distinct art direction pass — layouts, not just colour swaps */
+.cp-tailored{overflow:hidden}
+.cp-tailored-nav{position:relative;z-index:5;background:var(--cp-paper);border-color:color-mix(in srgb,var(--cp-ink) 12%,transparent)}
+.cp-tailored-hero{min-height:690px;padding:clamp(65px,8vw,120px) clamp(22px,7vw,105px);gap:5vw;background:var(--cp-paper)}
+.cp-tailored-copy h1{font-size:clamp(52px,7vw,100px)}
+.cp-tailored-art{min-height:560px}
+.cp-tailored-intro{padding-top:105px;padding-bottom:105px}
+.cp-tailored-showcase{padding-top:105px;padding-bottom:115px}
+.cp-tailored-card-grid article{transition:transform .35s ease,box-shadow .35s ease}
+.cp-tailored-card-grid article:hover{transform:translateY(-7px);box-shadow:0 22px 55px #1112}
+.cp-tailored-features{padding-top:105px;padding-bottom:105px}
+.cp-tailored-process{padding-top:75px;padding-bottom:90px}
+.cp-tailored-pricing-intro{padding-top:100px;padding-bottom:100px}
+.cp-tailored-pricing{padding-top:100px;padding-bottom:100px}
+.cp-tailored-pricing .cp-package-grid article{padding:26px;border-radius:var(--cp-card-radius,12px)}
+.cp-tailored-pricing .cp-package-grid article.featured{transform:translateY(-12px);box-shadow:0 24px 55px #101a1420}
+.cp-tailored-pricing .cp-package-grid button{min-height:48px}
+.cp-tailored-footer{padding:32px clamp(22px,7vw,105px)}
+
+/* E-commerce: editorial fashion campaign + product rail */
+.cp-theme-commerce .cp-tailored-hero{grid-template-columns:.78fr 1.22fr;min-height:760px}
+.cp-theme-commerce .cp-tailored-art{min-height:620px}
+.cp-theme-commerce .cp-tailored-art:after{inset:55% 0 0}
+.cp-theme-commerce .cp-tailored-showcase{background:#e9e4d9}
+.cp-theme-commerce .cp-tailored-card-grid{grid-template-columns:1.35fr 1fr 1fr;align-items:end}
+.cp-theme-commerce .cp-tailored-card-grid article:first-child .cp-tailored-card-image{height:390px}
+.cp-theme-commerce .cp-tailored-card-grid article:nth-child(2) .cp-tailored-card-image{height:285px}
+.cp-theme-commerce .cp-tailored-card-grid article:nth-child(3) .cp-tailored-card-image{height:330px}
+.cp-theme-commerce .cp-tailored-card-grid article{padding:0 0 22px;background:transparent}
+.cp-theme-commerce .cp-tailored-card-image{border-radius:0}
+.cp-theme-commerce .cp-tailored-intro{grid-template-columns:1.1fr .9fr}
+
+/* Property: cinematic listing hero and architectural listing cards */
+.cp-theme-property .cp-tailored-hero{grid-template-columns:.68fr 1.32fr;min-height:790px;background:#e8e5de}
+.cp-theme-property .cp-tailored-art{min-height:650px}
+.cp-theme-property .cp-tailored-art:after{inset:65% 0 0}
+.cp-theme-property .cp-tailored-intro{background:#222a2a;color:#fff}
+.cp-theme-property .cp-tailored-intro p{color:#c6cbc5}
+.cp-theme-property .cp-tailored-points>div{border-color:#ffffff30}
+.cp-theme-property .cp-tailored-points>div b{color:#fff}
+.cp-theme-property .cp-tailored-showcase{background:#f4f2ed}
+.cp-theme-property .cp-tailored-card-grid{grid-template-columns:1fr 1.2fr 1fr;align-items:center}
+.cp-theme-property .cp-tailored-card-grid article{padding:0;background:transparent}
+.cp-theme-property .cp-tailored-card-image{height:320px}
+.cp-theme-property .cp-tailored-card-grid article:nth-child(2) .cp-tailored-card-image{height:440px}
+
+/* Portfolio and agency: bold creative layouts */
+.cp-theme-portfolio .cp-tailored-hero{grid-template-columns:.9fr 1.1fr;align-items:end}
+.cp-theme-portfolio .cp-tailored-art{min-height:670px}
+.cp-theme-portfolio .cp-tailored-proof{border-top:1px solid #2223;padding-top:25px}
+.cp-theme-portfolio .cp-tailored-showcase{background:#1d1d20;color:#fff}
+.cp-theme-portfolio .cp-tailored-card-grid{grid-template-columns:1.2fr .8fr 1fr;align-items:start}
+.cp-theme-portfolio .cp-tailored-card-grid article{background:transparent;padding:0}
+.cp-theme-portfolio .cp-tailored-card-grid article:nth-child(2){margin-top:100px}
+.cp-theme-portfolio .cp-tailored-card-image{height:370px}
+.cp-theme-portfolio .cp-tailored-card-grid h3{font-size:24px}
+.cp-theme-portfolio .cp-tailored-card-grid p{color:#aaa}
+.cp-theme-agency .cp-tailored-hero{background:#20221f;color:#fff;grid-template-columns:1fr 1fr}
+.cp-theme-agency .cp-tailored-copy h1{color:#fff;font-size:clamp(58px,8vw,112px)}
+.cp-theme-agency .cp-tailored-copy>p{color:#c5c8c0}
+.cp-theme-agency .cp-tailored-art{min-height:620px;transform:none;border-radius:0 0 0 150px}
+.cp-theme-agency .cp-tailored-art:after{inset:45% 0 0}
+.cp-theme-agency .cp-tailored-showcase{background:#eae6dc}
+.cp-theme-agency .cp-tailored-card-grid{grid-template-columns:1fr 1.3fr 1fr}
+.cp-theme-agency .cp-tailored-card-grid article:nth-child(2){margin-top:65px}
+.cp-theme-agency .cp-tailored-card-image{height:340px}
+
+/* Restaurant and hotel: hospitality editorial / destination-led */
+.cp-theme-hospitality .cp-tailored-hero{display:flex;flex-direction:column;text-align:center;gap:35px;padding-left:10vw;padding-right:10vw}
+.cp-theme-hospitality .cp-tailored-copy{max-width:850px;margin:auto}
+.cp-theme-hospitality .cp-tailored-copy>p{margin:0 auto}
+.cp-theme-hospitality .cp-actions,.cp-theme-hospitality .cp-tailored-proof{justify-content:center}
+.cp-theme-hospitality .cp-tailored-art{width:100%;min-height:520px}
+.cp-theme-hospitality .cp-tailored-showcase{background:#33271f;color:#fff}
+.cp-theme-hospitality .cp-tailored-card-grid article{background:#45372e}
+.cp-theme-hospitality .cp-tailored-card-grid p{color:#d2c6b9}
+.cp-theme-hotel .cp-tailored-hero{grid-template-columns:1fr 1.25fr;background:#30241f;color:#fff}
+.cp-theme-hotel .cp-tailored-copy h1{color:#fff;font-size:clamp(56px,7vw,98px)}
+.cp-theme-hotel .cp-tailored-copy>p{color:#e0d7ca}
+.cp-theme-hotel .cp-tailored-art{min-height:660px}
+.cp-theme-hotel .cp-tailored-intro{background:#eee5d8}
+.cp-theme-hotel .cp-tailored-card-grid{grid-template-columns:repeat(3,1fr)}
+.cp-theme-hotel .cp-tailored-card-image{height:360px}
+
+/* Education and healthcare: clear, reassuring service journeys */
+.cp-theme-education .cp-tailored-hero{grid-template-columns:1fr 1fr;background:#f5f8f5}
+.cp-theme-education .cp-tailored-art{min-height:560px;border-radius:140px 18px 18px 18px}
+.cp-theme-education .cp-tailored-intro{background:#1d3838;color:#fff}
+.cp-theme-education .cp-tailored-intro p{color:#c5d5d0}
+.cp-theme-education .cp-tailored-showcase{background:#e9f0e9}
+.cp-theme-education .cp-tailored-card-grid article{border-radius:22px;overflow:hidden;padding:0 0 24px}
+.cp-theme-education .cp-tailored-card-image{height:300px;border-radius:0}
+.cp-theme-healthcare .cp-tailored-hero{grid-template-columns:.9fr 1.1fr;background:#e8f2f4}
+.cp-theme-healthcare .cp-tailored-art{min-height:600px;border-radius:160px 18px 18px 18px}
+.cp-theme-healthcare .cp-tailored-intro{background:#fff}
+.cp-theme-healthcare .cp-tailored-points>div{padding:22px 0}
+.cp-theme-healthcare .cp-tailored-showcase{background:#173d4a;color:#fff}
+.cp-theme-healthcare .cp-tailored-card-grid article{border-radius:24px;overflow:hidden}
+.cp-theme-healthcare .cp-tailored-card-image{height:290px}
+
+/* Travel: panoramic destination storytelling */
+.cp-theme-travel .cp-tailored-hero{display:flex;flex-direction:column;align-items:stretch;background:#e6eee8}
+.cp-theme-travel .cp-tailored-copy{max-width:850px}
+.cp-theme-travel .cp-tailored-copy h1{font-family:Georgia,serif;font-size:clamp(58px,8vw,110px)}
+.cp-theme-travel .cp-tailored-art{min-height:600px;border-radius:180px 8px 8px 8px}
+.cp-theme-travel .cp-tailored-showcase{background:#183c37;color:#fff}
+.cp-theme-travel .cp-tailored-card-grid{grid-template-columns:1.2fr 1fr 1fr}
+.cp-theme-travel .cp-tailored-card-grid article{background:#244b44;color:#fff}
+.cp-theme-travel .cp-tailored-card-image{height:330px}
+.cp-theme-travel .cp-tailored-card-grid p{color:#c5d6ce}
+
+/* Editorial and publishing: magazine cover + asymmetric story grid */
+.cp-theme-editorial .cp-tailored-hero{grid-template-columns:.85fr 1.15fr;min-height:760px}
+.cp-theme-editorial .cp-tailored-copy h1{font-size:clamp(60px,8vw,112px)}
+.cp-theme-editorial .cp-tailored-art{min-height:650px}
+.cp-theme-editorial .cp-tailored-intro{grid-template-columns:1fr 1fr}
+.cp-theme-editorial .cp-tailored-showcase{background:#efede7}
+.cp-theme-editorial .cp-tailored-card-grid{grid-template-columns:1.3fr .85fr .85fr}
+.cp-theme-editorial .cp-tailored-card-grid article{background:transparent;padding:0}
+.cp-theme-editorial .cp-tailored-card-grid article:first-child .cp-tailored-card-image{height:430px}
+.cp-theme-editorial .cp-tailored-card-grid article:nth-child(2){margin-top:80px}
+.cp-theme-editorial .cp-tailored-card-image{height:330px}
+
+/* SaaS and marketplace: product-interface led */
+.cp-theme-saas .cp-tailored-hero{grid-template-columns:.85fr 1.15fr;background:#f5f7fc}
+.cp-theme-saas .cp-tailored-art{min-height:610px;border:12px solid #fff;border-radius:24px}
+.cp-theme-saas .cp-tailored-intro{background:#171f38;color:#fff}
+.cp-theme-saas .cp-tailored-intro p{color:#c5cce0}
+.cp-theme-saas .cp-tailored-showcase{background:#e9edf7}
+.cp-theme-saas .cp-tailored-card-grid article{border:1px solid #d9dfed;box-shadow:0 18px 45px #17213a0d}
+.cp-theme-marketplace .cp-tailored-hero{grid-template-columns:1fr 1fr;background:#e9eee8}
+.cp-theme-marketplace .cp-tailored-art{min-height:540px;border-radius:12px}
+.cp-theme-marketplace .cp-tailored-intro{background:#24342c;color:#fff}
+.cp-theme-marketplace .cp-tailored-intro p{color:#c8d1c9}
+.cp-theme-marketplace .cp-tailored-showcase{background:#f6f7f4}
+.cp-theme-marketplace .cp-tailored-card-grid{grid-template-columns:repeat(3,1fr)}
+.cp-theme-marketplace .cp-tailored-card-image{height:280px}
+
+/* Campaign, fitness and automotive: high-impact conversion/showroom */
+.cp-theme-campaign .cp-tailored-hero{grid-template-columns:1fr 1fr;background:#20291e;color:#fff}
+.cp-theme-campaign .cp-tailored-copy h1{color:#fff;font-size:clamp(64px,9vw,124px)}
+.cp-theme-campaign .cp-tailored-copy>p{color:#d1d9c8}
+.cp-theme-campaign .cp-tailored-art{min-height:620px;border-radius:0}
+.cp-theme-campaign .cp-tailored-intro{display:none}
+.cp-theme-campaign .cp-tailored-showcase{padding-top:65px;padding-bottom:65px}
+.cp-theme-campaign .cp-tailored-card-grid{grid-template-columns:repeat(3,1fr)}
+.cp-theme-campaign .cp-tailored-card-image{height:250px}
+.cp-theme-fitness .cp-tailored-hero{grid-template-columns:1fr 1fr;background:#252d29;color:#fff}
+.cp-theme-fitness .cp-tailored-copy h1{color:#fff;font-size:clamp(60px,8vw,110px)}
+.cp-theme-fitness .cp-tailored-copy h1 em{color:#d6ef87}
+.cp-theme-fitness .cp-tailored-copy>p{color:#d0d5ce}
+.cp-theme-fitness .cp-tailored-art{min-height:630px;clip-path:polygon(7% 0,100% 0,100% 100%,0 100%)}
+.cp-theme-fitness .cp-tailored-showcase{background:#e9e9df}
+.cp-theme-fitness .cp-tailored-card-grid{grid-template-columns:1fr 1fr 1fr}
+.cp-theme-fitness .cp-tailored-card-grid article:nth-child(2){margin-top:50px}
+.cp-theme-automotive .cp-tailored-hero{display:flex;flex-direction:column;background:#151b1c;color:#fff}
+.cp-theme-automotive .cp-tailored-copy{max-width:900px}
+.cp-theme-automotive .cp-tailored-copy h1{color:#fff;font-size:clamp(62px,9vw,130px)}
+.cp-theme-automotive .cp-tailored-copy h1 em{color:#d4d8d5}
+.cp-theme-automotive .cp-tailored-copy>p{color:#c6ceca}
+.cp-theme-automotive .cp-tailored-art{width:100%;min-height:600px;border-radius:2px}
+.cp-theme-automotive .cp-tailored-intro{background:#e0e3e1}
+.cp-theme-automotive .cp-tailored-showcase{background:#151b1c;color:#fff}
+.cp-theme-automotive .cp-tailored-card-grid article{background:#222b2d}
+.cp-theme-automotive .cp-tailored-card-grid p{color:#c1c9c8}
+
+/* Professional services and corporate: restrained, grid-led authority */
+.cp-theme-professional .cp-tailored-hero{grid-template-columns:1.1fr .9fr;background:#f7f6f2}
+.cp-theme-professional .cp-tailored-copy h1{font-size:clamp(56px,7vw,96px)}
+.cp-theme-professional .cp-tailored-art{min-height:570px}
+.cp-theme-professional .cp-tailored-intro{background:#282b2c;color:#fff}
+.cp-theme-professional .cp-tailored-intro p{color:#c7cbc8}
+.cp-theme-professional .cp-tailored-showcase{background:#eceae4}
+.cp-theme-professional .cp-tailored-card-grid article{background:#f7f6f2}
+.cp-theme-corporate .cp-tailored-hero{grid-template-columns:1fr 1fr;background:#e9ece8}
+.cp-theme-corporate .cp-tailored-art{min-height:550px;border-radius:8px}
+.cp-theme-corporate .cp-tailored-intro{background:#202e2a;color:#fff}
+.cp-theme-corporate .cp-tailored-intro p{color:#c8d2cd}
+.cp-theme-corporate .cp-tailored-showcase{background:#f7f8f6}
+.cp-theme-corporate .cp-tailored-card-grid{grid-template-columns:repeat(3,1fr)}
+.cp-theme-corporate .cp-tailored-card-image{height:300px}
+
+@media(max-width:850px){
+ .cp-tailored-hero,.cp-theme-commerce .cp-tailored-hero,.cp-theme-property .cp-tailored-hero,.cp-theme-agency .cp-tailored-hero,.cp-theme-hotel .cp-tailored-hero,.cp-theme-editorial .cp-tailored-hero,.cp-theme-saas .cp-tailored-hero,.cp-theme-marketplace .cp-tailored-hero,.cp-theme-campaign .cp-tailored-hero,.cp-theme-fitness .cp-tailored-hero,.cp-theme-professional .cp-tailored-hero,.cp-theme-corporate .cp-tailored-hero{display:grid;grid-template-columns:1fr;min-height:0}
+ .cp-theme-hospitality .cp-tailored-hero,.cp-theme-travel .cp-tailored-hero,.cp-theme-automotive .cp-tailored-hero{display:flex;flex-direction:column}
+ .cp-theme-campaign .cp-tailored-intro{display:grid}
+ .cp-theme-portfolio .cp-tailored-card-grid,.cp-theme-editorial .cp-tailored-card-grid,.cp-theme-commerce .cp-tailored-card-grid,.cp-theme-property .cp-tailored-card-grid,.cp-theme-agency .cp-tailored-card-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:600px){
+ .cp-tailored-hero{min-height:0;padding:55px 18px 62px}
+ .cp-tailored-art{min-height:340px!important}
+ .cp-theme-hospitality .cp-tailored-hero{padding-left:18px;padding-right:18px}
+ .cp-theme-portfolio .cp-tailored-card-grid,.cp-theme-editorial .cp-tailored-card-grid,.cp-theme-commerce .cp-tailored-card-grid,.cp-theme-property .cp-tailored-card-grid,.cp-theme-agency .cp-tailored-card-grid,.cp-theme-travel .cp-tailored-card-grid,.cp-theme-fitness .cp-tailored-card-grid{grid-template-columns:1fr}
+ .cp-theme-portfolio .cp-tailored-card-grid article:nth-child(2),.cp-theme-editorial .cp-tailored-card-grid article:nth-child(2),.cp-theme-agency .cp-tailored-card-grid article:nth-child(2),.cp-theme-fitness .cp-tailored-card-grid article:nth-child(2){margin-top:0}
+ .cp-theme-commerce .cp-tailored-card-grid article:first-child .cp-tailored-card-image,.cp-theme-commerce .cp-tailored-card-grid article:nth-child(2) .cp-tailored-card-image,.cp-theme-commerce .cp-tailored-card-grid article:nth-child(3) .cp-tailored-card-image{height:260px}
+ .cp-tailored-pricing .cp-package-grid article.featured{transform:none}
+}
