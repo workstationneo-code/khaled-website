@@ -31,6 +31,8 @@ const templates=[
  {id:'professional',name:'Professional Services Website',category:'Professional services',description:'A trust-building website for legal, finance, consulting and specialist firms.',image:'https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=900&q=80',packages:makePackages(24000,40000,60000,['Practice and service pages','Professional team profiles','Insights and resources','Consultation request forms','Credentials and testimonials'])}
 ];
 
+const publishableTemplateIds=new Set(['sat','ecommerce','business','portfolio','agency','restaurant','education','realestate','healthcare','travel','hotel','events','nonprofit','blog','saas','marketplace','landing','fitness','automotive','professional']);
+
 const designDirections={
  sat:{style:'Premium learning platform: calm academic foundations, confident typography, generous whitespace, clear course pathways and friendly green/blue accents.',focus:'Lead with a confident tutor promise, show SAT Math and English pathways, build trust with outcomes and testimonials, then make booking or diagnostic testing the clearest action.',references:[['CambriLearn','https://www.awwwards.com/sites/cambrilearn'],['Brilliant','https://brilliant.org/'],['Duolingo','https://www.duolingo.com/'],['MasterClass','https://www.masterclass.com/']]},
  ecommerce:{style:'Editorial product-commerce: restrained typography, warm neutrals, large product photography and uncluttered product grids.',focus:'Prioritize product discovery, category navigation, product detail storytelling, trust signals and a friction-light checkout.',references:[['Everlane','https://www.everlane.com/']]},
@@ -109,8 +111,8 @@ We look forward to hearing what you think!
  };
  const publishProposal=async()=>{
   if(!generated?.id||!db)return;
-  if(generated.templateId!=='sat'){
-   setNotice('This proposal is saved safely as a draft. Publishing for this template is not enabled yet while its dedicated client design is being completed.');
+  if(!publishableTemplateIds.has(generated.templateId)){
+   setNotice('This proposal template is not yet available for publishing. Your draft remains safely saved.');
    return;
   }
   setPublishing(true);setNotice('');
@@ -181,8 +183,8 @@ We look forward to hearing what you think!
   {generated&&<section className="vx-proposal-share-card"><div className="vx-proposal-share-heading"><div><div className="vx-kicker">03 / PUBLISH YOUR PROPOSAL</div><h3>{generated.status==='published'?'Your proposal is live.':'Your proposal draft is saved.'}</h3><p>{generated.status==='published'?'The client can now open their unique proposal link and submit their package and care-plan choices.':'Publish the proposal to make its unique client link accessible.'}</p></div><span className={generated.status==='published'?'vx-proposal-status-live':'vx-proposal-status-draft'}>{generated.status==='published'?'PUBLISHED':'DRAFT'}</span></div>
    <button type="button" className="vx-btn-outline vx-proposal-create" disabled={saving} onClick={saveProposalChanges}>{saving?'Saving changes…':'Save proposal changes'} <Check size={16}/></button>
    <div className="vx-proposal-link-box"><div><small>{generated.status==='published'?'PUBLIC CLIENT LINK':'DRAFT LINK · NOT PUBLIC YET'}</small><b>{generated.url}</b></div><button type="button" disabled={generated.status!=='published'} onClick={()=>copy(generated.url)}><Copy size={15}/> Copy link</button></div>
-   {generated.status!=='published'&&<button type="button" className="vx-btn-dark vx-proposal-create" disabled={publishing||generated.templateId!=='sat'} onClick={publishProposal}>{publishing?'Publishing…':'Publish client proposal'} <ArrowUpRight size={16}/></button>}
-   {generated.templateId!=='sat'&&<p className="vx-proposal-notice">This proposal is saved safely as a draft. Its dedicated client design must be completed and verified before publishing is enabled.</p>}
+   {generated.status!=='published'&&<button type="button" className="vx-btn-dark vx-proposal-create" disabled={publishing||!publishableTemplateIds.has(generated.templateId)} onClick={publishProposal}>{publishing?'Publishing…':'Publish client proposal'} <ArrowUpRight size={16}/></button>}
+   {!publishableTemplateIds.has(generated.templateId)&&<p className="vx-proposal-notice">This proposal template is not yet available for publishing. Your draft remains safely saved.</p>}
    {generated.status==='published'&&<div className="vx-proposal-share-actions"><button type="button" onClick={shareWhatsApp}><MessageCircle/> WhatsApp</button><button type="button" onClick={()=>copy(shareText)}><Hash/> Copy message</button><button type="button" onClick={shareEmail}><Mail/> Email</button><button type="button" onClick={()=>window.open(generated.url,'_blank','noopener,noreferrer')}><Eye/> Preview client page</button></div>}
    {generated.status==='published'&&<label className="vx-proposal-message-label">Message to send<textarea rows="7" value={message||makeMessage()} onChange={e=>setMessage(e.target.value)}/></label>}
    {notice&&<p className="vx-proposal-notice" role="status">{notice}</p>}
