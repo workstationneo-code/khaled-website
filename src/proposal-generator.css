@@ -221,3 +221,32 @@
  .vx-proposal-step-footer button{width:100%}
  .vx-proposal-step-back{align-items:flex-start;flex-direction:column}
 }
+
+
+/* Friendlier proposal studio usability pass */
+.vx-proposal-quick-help{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:15px}
+.vx-proposal-quick-help span{display:inline-flex;align-items:center;gap:6px;color:#607650;font-size:10px;font-weight:700}
+.vx-proposal-wizard button{min-height:66px;gap:11px}
+.vx-proposal-wizard button .vx-proposal-step-label{display:grid;gap:4px;text-align:left}
+.vx-proposal-wizard button .vx-proposal-step-label b{font-size:11px}
+.vx-proposal-wizard button .vx-proposal-step-label small{color:#899483;font-size:9px;font-weight:500}
+.vx-required{margin-left:4px;color:#9a694d;font-size:9px;font-style:normal;font-weight:800;text-transform:uppercase;letter-spacing:.04em}
+.vx-proposal-step-tip{display:flex;align-items:center;gap:9px;margin:0;padding:12px 14px;border:1px solid #e3ebdc;border-radius:10px;background:#f7faf4;color:#627653;font-size:11px;line-height:1.5}
+.vx-proposal-step-tip svg{flex:none}
+.vx-proposal-optional{margin-top:2px}
+.vx-proposal-optional details{border:1px solid #e5ebdf;border-radius:10px;background:#fbfcfa}
+.vx-proposal-optional summary{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px;cursor:pointer;list-style:none;color:#526849}
+.vx-proposal-optional summary::-webkit-details-marker{display:none}
+.vx-proposal-optional summary>span{display:grid;gap:4px}
+.vx-proposal-optional summary b{font-size:11px}
+.vx-proposal-optional summary small{color:#899483;font-size:9px;font-weight:500}
+.vx-proposal-optional details[open] summary{border-bottom:1px solid #e5ebdf}
+.vx-proposal-optional details>.vx-proposal-form-grid{padding:14px}
+.vx-proposal-save-hint{display:block;margin-top:8px;color:#899483;font-size:10px;text-align:center}
+.vx-proposal-create:disabled{opacity:.48;cursor:not-allowed}
+@media(max-width:650px){
+ .vx-proposal-quick-help{gap:7px 11px}
+ .vx-proposal-wizard button{min-height:58px;padding:9px 7px}
+ .vx-proposal-wizard button .vx-proposal-step-label small{display:none}
+ .vx-proposal-optional details>.vx-proposal-form-grid{grid-template-columns:1fr}
+}
