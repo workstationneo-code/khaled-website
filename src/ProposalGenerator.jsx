@@ -133,6 +133,7 @@ We look forward to hearing what you think!
    setPublishing(false);
   }
  };
+ const [testingEmail,setTestingEmail]=useState(false);
  const [publishing,setPublishing]=useState(false);
  const [saving,setSaving]=useState(false);
  const saveProposalChanges=async()=>{
@@ -144,6 +145,22 @@ We look forward to hearing what you think!
   if(error)setNotice('Could not save proposal changes: '+error.message);
   else{setGenerated(v=>({...v,...record}));setSavedProposals(v=>v.map(p=>p.id===generated.id?{...p,...record,client_name:record.clientName,business_name:record.businessName,client_email:clientEmail.trim()||null,project_title:record.projectTitle,proposal_data:record}:p));setNotice('Proposal changes saved.');}
   setSaving(false);
+ };
+ const testEmailNotification=async()=>{
+  if(!db){setNotice('Email test is unavailable because the database connection is missing.');return}
+  setTestingEmail(true);setNotice('');
+  try{
+   const{data,error}=await db.functions.invoke('proposal-notifications',{body:{action:'test_email'}});
+   if(error)throw error;
+   const result=data?.results?.email;
+   if(result==='sent')setNotice('The email provider accepted the test email for work.station.neo@gmail.com. Please check your inbox and spam folder.');
+   else if(result==='not_configured')setNotice('The email test could not run: an email setting is missing. No test email was sent.');
+   else if(result==='disabled')setNotice('Email notifications are currently disabled. No test email was sent.');
+   else setNotice('The email provider did not accept the test email: '+(result?.error||'Unknown email error')+(result?.status?' (HTTP '+result.status+')':''));
+  }catch(error){
+   setNotice('Could not run the email test. Please sign in with the Veltrix administrator account and try again.');
+   console.error('Veltrix email test failed:',error);
+  }finally{setTestingEmail(false)}
  };
  const copy=async value=>{try{await navigator.clipboard.writeText(value);setNotice('Copied to clipboard.')}catch{setNotice('Clipboard access was blocked. Please copy the text manually.')}};
  const shareText=message||makeMessage();
@@ -189,6 +206,7 @@ We look forward to hearing what you think!
   </div>}
   </>}
   <section className="vx-proposal-management"><div className="vx-proposal-management-head"><div><span className="vx-kicker">PROPOSAL LIBRARY</span><h3>Your saved client proposals</h3><p>Reopen a proposal to copy its link or publish a saved draft.</p></div><span>{savedProposals.length} saved</span></div>{savedProposals.length===0?<p className="vx-proposal-empty">Your generated proposals will appear here.</p>:<div className="vx-proposal-saved-list">{savedProposals.map(p=><article key={p.id}><div><b>{p.business_name}</b><small>{p.client_name} · {p.project_title}</small><code>{window.location.origin+'/proposal/'+p.id}</code></div><span className={p.status==='published'?'vx-proposal-status-live':'vx-proposal-status-draft'}>{p.status}</span><button type="button" onClick={()=>{const d=p.proposal_data||{};setGenerated({...d,id:p.id,slug:p.slug,url:window.location.origin+'/proposal/'+p.id,status:p.status});setClientName(p.client_name||d.clientName||'');setBusinessName(p.business_name||d.businessName||'');setClientEmail(p.client_email||d.clientEmail||'');setProjectTitle(p.project_title||d.projectTitle||'');setIntro(d.intro||'');setLogoUrl(d.logoUrl||'');setBrandColor(d.brandColor||'#829b70');setHeroTitle(d.heroTitle||'Words matter.');setHeroAccent(d.heroAccent||'Make every one count.');setTemplateId(d.templateId||p.template_id||'sat');setCustomPrices(Object.fromEntries((d.packages||[]).map(x=>[x.name,String(x.price)])));setCarePrices(Object.fromEntries((d.carePlans||[]).map(x=>[x.name,x.price===null?'':String(x.price)])));setPricingDecision('custom');setCurrentStep(3);setNotice('Loaded proposal '+(p.business_name||d.businessName||p.project_title||d.projectTitle||'successfully')+'.')}}>Manage</button></article>)}</div>}</section>
+  <section className="vx-proposal-management"><div className="vx-proposal-management-head"><div><span className="vx-kicker">EMAIL NOTIFICATIONS</span><h3>Check your email connection</h3><p>Send a test email only to the Veltrix notification address. No SMS or WhatsApp messages will be sent.</p></div><button type="button" className="vx-btn-outline" onClick={testEmailNotification} disabled={testingEmail}>{testingEmail?'Sending test email…':'Send test email'}</button></div>{notice&&<p className="vx-proposal-notice" role="status">{notice}</p>}</section>
   <section className="vx-proposal-management"><div className="vx-proposal-management-head"><div><span className="vx-kicker">CLIENT DECISIONS</span><h3>Proposal responses</h3><p>Package and care-plan choices submitted by clients.</p></div><span>{responses.length} responses</span></div>{responses.length===0?<p className="vx-proposal-empty">Client selections will appear here after a proposal is submitted.</p>:<div className="vx-proposal-response-list">{responses.map(r=><article key={r.id}><div><b>{r.client_name}</b><small>{r.client_email} · {new Date(r.created_at).toLocaleString()}</small></div><div><b>{r.selected_package}</b><small>EGP {Number(r.package_price).toLocaleString('en-US')} one-time</small></div><div><b>{r.selected_care_plan}</b><small>{r.care_price===null?'Custom quote':'EGP '+Number(r.care_price).toLocaleString('en-US')+' / month'}</small></div>{r.message&&<p>{r.message}</p>}</article>)}</div>}</section>
   {generated&&<section className="vx-proposal-share-card"><div className="vx-proposal-share-heading"><div><div className="vx-kicker">03 / PUBLISH YOUR PROPOSAL</div><h3>{generated.status==='published'?'Your proposal is live.':'Your proposal draft is saved.'}</h3><p>{generated.status==='published'?'The client can now open their unique proposal link and submit their package and care-plan choices.':'Publish the proposal to make its unique client link accessible.'}</p></div><span className={generated.status==='published'?'vx-proposal-status-live':'vx-proposal-status-draft'}>{generated.status==='published'?'PUBLISHED':'DRAFT'}</span></div>
    <button type="button" className="vx-btn-outline vx-proposal-create" disabled={saving} onClick={saveProposalChanges}>{saving?'Saving changes…':'Save proposal changes'} <Check size={16}/></button>
