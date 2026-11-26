@@ -937,3 +937,18 @@ img,video,canvas,svg{max-width:100%}
  .vx-contact-form{padding:17px}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+
+/* Client portal welcome landing */
+.vx-client-welcome-screen{min-height:min(72vh,720px);display:grid;place-items:center;padding:55px 22px;text-align:center;background:radial-gradient(ellipse at 50% 42%,#e9efdf 0%,#f7f9f3 48%,transparent 76%);animation:vxWelcomeScreenIn 1.7s ease both}
+.vx-client-welcome-inner{max-width:680px;animation:vxWelcomeContentIn 2.2s cubic-bezier(.2,.75,.25,1) both}
+.vx-client-welcome-mark{width:58px;height:58px;margin:25px auto 28px;display:grid;place-items:center;border:1px solid #dce6d3;border-radius:18px;background:#fff;color:#829a58;font:900 30px Manrope;box-shadow:0 14px 45px #31472b12}
+.vx-client-welcome-screen h1{font:700 clamp(42px,7vw,76px)/1.04 Manrope;letter-spacing:-.075em;margin:0;color:#26372b}
+.vx-client-welcome-screen h1 em{font-style:normal;color:#829a58}
+.vx-client-welcome-screen p{margin:18px auto 0;color:#7b8678;font-size:13px;line-height:1.9;animation:vxWelcomeTextIn 2.8s ease both}
+.vx-welcome-loading{display:block;width:112px;height:2px;margin:38px auto 0;overflow:hidden;background:#e3eadd;border-radius:5px;animation:vxWelcomeTextIn 3s ease both}
+.vx-welcome-loading i{display:block;width:42%;height:100%;background:#829a58;animation:vxWelcomeProgress 3.8s ease-in-out both}
+@keyframes vxWelcomeScreenIn{from{opacity:0}to{opacity:1}}
+@keyframes vxWelcomeContentIn{0%{opacity:0;transform:translateY(22px);filter:blur(5px)}65%{opacity:1;filter:blur(0)}100%{opacity:1;transform:translateY(0);filter:blur(0)}}
+@keyframes vxWelcomeTextIn{0%,28%{opacity:0;transform:translateY(9px)}100%{opacity:1;transform:translateY(0)}}
+@keyframes vxWelcomeProgress{from{transform:translateX(-110%)}to{transform:translateX(250%)}}
+@media(prefers-reduced-motion:reduce){.vx-client-welcome-screen,.vx-client-welcome-inner,.vx-client-welcome-screen p,.vx-welcome-loading,.vx-welcome-loading i{animation:none!important;opacity:1!important;transform:none!important;filter:none!important}}
