@@ -133,3 +133,136 @@
  .subject-contact{padding:22px;margin-bottom:45px}
  .subject-price-row{grid-template-columns:1fr;gap:8px}
 }
+
+
+/* Veltrix Admin — unified proposal-site visual system */
+.admin{
+  --admin-ink:#eaf2e9;--admin-muted:#91a396;--admin-line:#263b30;--admin-green:#14251b;--admin-panel:#0b130e;
+  min-height:100vh;grid-template-columns:248px minmax(0,1fr);gap:0;
+  background:#f4f6f1;color:#203326;font-family:'DM Sans',sans-serif;
+}
+.admin aside{
+  position:sticky;top:0;height:100vh;min-height:100vh;overflow:auto;
+  padding:30px 20px 24px;background:#101e16;color:#eef5ec;border-right:1px solid #26392d;
+}
+.admin aside .brand{font-size:14px;letter-spacing:.12em;color:#f4f7f1;gap:11px}
+.admin aside .brand b{width:38px;height:38px;border-radius:11px;background:#d9f078;color:#1c3023;font-size:22px}
+.admin aside .brand small{font-size:8px;letter-spacing:.14em;color:#9aaa9c}
+.admin aside>p{margin:48px 0 13px 10px;color:#7f9485;font-size:8px;letter-spacing:.18em}
+.admin aside .selected,.admin aside .back{
+  display:flex;align-items:center;gap:11px;min-height:43px;padding:12px 13px;margin:4px 0;
+  border:1px solid transparent;border-radius:7px;color:#b9c8bc;font-size:11px;font-weight:600;
+  transition:background .2s,border-color .2s,color .2s;
+}
+.admin aside .selected{background:#263b2d;border-color:#344d38;color:#d9f078}
+.admin aside .selected svg{width:15px;height:15px}
+.admin aside .back{margin-top:7px;color:#b7c6b8}
+.admin aside .back:hover{background:#1b2d22;color:#d9f078}
+.admin main{width:100%;max-width:1600px;margin:0 auto;padding:36px clamp(20px,4vw,58px) 70px}
+.admin main>header{position:sticky;top:0;z-index:8;margin:-36px calc(clamp(20px,4vw,58px)*-1) 0;padding:23px clamp(20px,4vw,58px);background:#f4f6f1ed;backdrop-filter:blur(16px);border-bottom:1px solid #e3e9df}
+.admin main>header small{font-size:8px;letter-spacing:.17em;color:#829080;font-weight:800}
+.admin h1{font:700 27px/1.15 Manrope,sans-serif;letter-spacing:-.045em;color:#203326;margin:7px 0 0}
+.admin main>header .outline{background:#fff;border:1px solid #dfe7dc;border-radius:6px;color:#334a38;padding:11px 14px}
+.admin .login{
+  width:min(470px,100%);margin:clamp(55px,10vh,105px) auto 55px;padding:38px;
+  background:#fff;border:1px solid #e4eae1;border-radius:12px;
+  box-shadow:0 24px 70px rgba(24,45,29,.09);
+}
+.admin .login .lock{width:46px;height:46px;margin-bottom:25px;background:#eaf1df;color:#718c4b;border-radius:9px}
+.admin .login .eyebrow{display:block;color:#7d925d;font-size:8px;letter-spacing:.18em}
+.admin .login h2{font:700 clamp(29px,4vw,36px)/1.05 Manrope,sans-serif;letter-spacing:-.06em;color:#203326;margin:12px 0}
+.admin .login>p{font-size:12px;line-height:1.75;color:#788477;max-width:340px}
+.admin .login form{display:grid;gap:13px;margin-top:25px}
+.admin .login label{display:block;margin:0;color:#52634f;font-size:10px;font-weight:700}
+.admin .login input{width:100%;height:46px;margin-top:8px;padding:0 13px;border:1px solid #dfe7db;border-radius:6px;background:#fbfcfa;color:#203326;font-size:12px;outline:none;transition:border .2s,box-shadow .2s}
+.admin .login input:focus{border-color:#91ad68;box-shadow:0 0 0 3px #d9f07840}
+.admin .login .dark{min-height:46px;margin-top:5px;background:#203629;color:#d9f078;border-radius:6px;font-size:11px;transition:transform .2s,background .2s}
+.admin .login .dark:hover{background:#294632;transform:translateY(-1px)}
+.admin .login>small{margin-top:20px;font-size:9px;color:#8b9788}
+.admin .login>small svg{color:#78934d}
+.admin .login .notice{margin-top:14px;background:#fff4ec;border:1px solid #f1ddcc;color:#985b37;border-radius:6px;padding:11px;font-size:10px}
+.admin .welcome{margin:30px 0 19px;align-items:flex-end}
+.admin .welcome h2{font:700 23px Manrope;letter-spacing:-.045em;color:#243829;margin:0}
+.admin .welcome p{font-size:11px;color:#839080;margin:7px 0 0}
+.admin .welcome .dark{border-radius:6px;padding:11px 14px;font-size:10px;background:#203629;color:#d9f078}
+.admin .stats{grid-template-columns:repeat(4,minmax(0,1fr));gap:13px}
+.admin .stats>div{position:relative;overflow:hidden;min-height:116px;padding:19px 18px;background:#fff;border:1px solid #e4eae1;border-radius:9px;box-shadow:0 5px 18px #243a2410;transition:transform .2s,box-shadow .2s}
+.admin .stats>div:hover{transform:translateY(-3px);box-shadow:0 12px 26px #243a2414}
+.admin .stats small{font-size:9px;color:#849080;font-weight:600;letter-spacing:.02em}
+.admin .stats b{font:700 29px Manrope;letter-spacing:-.05em;color:#203629;margin-top:15px}
+.admin .leads,.admin-chat-inbox,.vx-proposal-generator{
+  margin-top:20px;border:1px solid #e4eae1;border-radius:10px;background:#fff;
+  box-shadow:0 8px 26px rgba(30,49,32,.045);
+}
+.admin .lead-head{padding:20px 21px;border-bottom:1px solid #edf0ea}
+.admin .lead-head h3{font:700 15px Manrope;color:#26392b}
+.admin .lead-head p{font-size:10px;color:#879384}
+.admin .filters>span,.admin .filters select,.admin .table-wrap select{
+  min-height:34px;border:1px solid #e1e8dd;border-radius:5px;background:#fbfcfa;color:#52634f
+}
+.admin .filters input{font-size:10px}
+.admin .table-wrap th{background:#f7f9f5;color:#879384;font-size:8px;letter-spacing:.13em}
+.admin .table-wrap td{font-size:10px;color:#657362}
+.admin .table-wrap td b{font-size:11px;color:#2d4030}
+.admin .table-wrap td small{font-size:9px}
+.admin .table-wrap select{padding:7px 9px;font-size:9px}
+.admin .empty{min-height:180px;color:#849080}
+.admin .secure{margin-top:22px;padding:13px 0;border-top:1px solid #e5ebe2;color:#7d8c7d;font-size:9px}
+.admin-chat-inbox{padding:21px}
+.admin-chat-title{margin-bottom:18px}
+.admin-chat-title h3{font:700 15px Manrope;color:#26392b}
+.admin-chat-title p{font-size:10px;color:#879384}
+.admin-chat-title .outline,.admin-chat-room-head .outline{border-radius:5px;border-color:#dfe7dc;background:#fff;color:#435743}
+.admin-chat-layout{border:1px solid #e6ece3;border-radius:8px;min-height:390px}
+.admin-chat-list{background:#f8faf6;border-color:#e7ece4}
+.admin-chat-thread{padding:15px;border-color:#e9eee6}
+.admin-chat-thread.active{background:#edf4df}
+.admin-chat-thread b{font-size:11px;color:#314632}
+.admin-chat-thread small{font-size:9px}
+.admin-chat-room-head{padding:15px 17px;border-color:#e9eee6}
+.admin-chat-room-head b{font-size:11px;color:#2d4030}
+.admin-chat-room-head small{font-size:9px}
+.admin-chat-room-messages{background:#fbfcfa}
+.admin-chat-message span{padding:11px 13px;font-size:11px;border:1px solid #e6ecdf}
+.admin-chat-message.sent span{background:#eaf2dc;border-color:#dce8cc}
+.admin-chat-reply{padding:13px;border-color:#e9eee6}
+.admin-chat-reply input{border-radius:6px;font-size:10px}
+.admin-chat-reply button{border-radius:6px;background:#203629;color:#d9f078}
+.vx-proposal-generator{padding:clamp(18px,3vw,28px);gap:22px}
+.vx-proposal-generator-head h2{font-size:clamp(26px,3vw,35px)}
+.vx-proposal-builder-card,.vx-proposal-live-preview{border-radius:10px;border-color:#e5ebe2;box-shadow:0 4px 18px #243a2408}
+.vx-proposal-template{border-radius:9px}
+.vx-proposal-create{border-radius:6px;background:#203629;color:#d9f078}
+.admin button,.admin a,.admin input,.admin select{transition-timing-function:ease}
+@media(max-width:900px){
+ .admin{grid-template-columns:205px minmax(0,1fr)}
+ .admin main{padding-left:22px;padding-right:22px}
+ .admin main>header{margin-left:-22px;margin-right:-22px;padding-left:22px;padding-right:22px}
+ .admin .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:680px){
+ .admin{grid-template-columns:1fr}
+ .admin aside{position:relative;top:auto;height:auto;min-height:62px;padding:12px 16px;flex-direction:row;align-items:center;justify-content:space-between}
+ .admin aside .brand b{width:34px;height:34px}
+ .admin aside>p,.admin aside .selected,.admin .back{display:none}
+ .admin main{padding:0 14px 42px}
+ .admin main>header{position:relative;top:auto;margin:0 -14px;padding:17px 14px}
+ .admin h1{font-size:22px}
+ .admin .login{margin:42px auto;padding:25px 21px}
+ .admin .welcome{align-items:flex-start;flex-direction:column;gap:13px;margin:24px 0 17px}
+ .admin .stats{gap:9px}
+ .admin .stats>div{min-height:98px;padding:14px}
+ .admin .stats b{font-size:25px}
+ .admin .lead-head{padding:15px;display:block}
+ .admin .filters{margin-top:12px;flex-wrap:wrap}
+ .admin .filters>span{flex:1;min-width:130px}
+ .admin .filters input{width:100%}
+ .admin-chat-inbox{padding:14px}
+ .admin-chat-layout{grid-template-columns:1fr}
+ .admin-chat-list{max-height:190px;border-right:0;border-bottom:1px solid #e7ece4}
+ .admin-chat-room{min-height:300px}
+ .vx-proposal-template-grid{grid-template-columns:1fr}
+ .vx-proposal-builder-grid{grid-template-columns:1fr}
+ .vx-proposal-generator-head{flex-direction:column}
+}
+@media(prefers-reduced-motion:reduce){.admin *{transition:none!important;scroll-behavior:auto!important}}
