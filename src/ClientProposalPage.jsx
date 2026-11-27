@@ -46,7 +46,7 @@ export default function ClientProposalPage({db,slug,id}){
     if(verifyError||!verified?.ok){setNotice(verified?.error||verifyError?.message||'We could not verify that code. Please try again.');setNoticeType('verify');setBusy(false);return}
     setEmailVerified(true);setVerificationPending(false);
    }
-   const{data:account,error:accountError}=await db.functions.invoke('provision-proposal-client',{body:{response_id:responseId}});
+   const{data:account,error:accountError}=await db.functions.invoke('provision-proposal-client-preview',{body:{response_id:responseId}});
    if(accountError||!account?.ok){
     const detail=String(account?.error||accountError?.message||'');
     console.error('Client account provisioning failed:',detail);
