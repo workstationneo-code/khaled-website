@@ -5,7 +5,7 @@ import gsap from 'gsap';
 import {ScrollTrigger} from 'gsap/ScrollTrigger';
 
 // Animate only top-level page sections. Avoid nested targets that can be hidden twice.
-const revealTargets = '.vx main > section';
+const revealTargets = '.vx main > section,.vx .vx-sat-experience > section';
 
 export default function MotionLayer({page}) {
   const frame = useRef(0);
