@@ -4,7 +4,7 @@ import './client-proposal.css';
 import ProposalTemplateExperience from './ProposalTemplateExperience.jsx';
 
 export default function ClientProposalPage({db,slug,id}){
- const [proposal,setProposal]=useState(null),[loading,setLoading]=useState(true),[error,setError]=useState(''),[packageChoice,setPackageChoice]=useState(''),[careChoice,setCareChoice]=useState(''),[clientName,setClientName]=useState(''),[clientEmail,setClientEmail]=useState(''),[message,setMessage]=useState(''),[busy,setBusy]=useState(false),[notice,setNotice]=useState(''),[credentials,setCredentials]=useState(null),[welcomeVisible,setWelcomeVisible]=useState(false);
+ const [proposal,setProposal]=useState(null),[loading,setLoading]=useState(true),[error,setError]=useState(''),[packageChoice,setPackageChoice]=useState(''),[careChoice,setCareChoice]=useState(''),[clientName,setClientName]=useState(''),[clientEmail,setClientEmail]=useState(''),[message,setMessage]=useState(''),[busy,setBusy]=useState(false),[notice,setNotice]=useState(''),[credentials,setCredentials]=useState(null),[welcomeVisible,setWelcomeVisible]=useState(false),[pendingResponseId,setPendingResponseId]=useState(null),[noticeType,setNoticeType]=useState('');
  useEffect(()=>{let live=true;(async()=>{if(!db){if(live){setError('This proposal is temporarily unavailable. Please contact Veltrix.');setLoading(false)}return}const{data,error}=await db.from('client_proposals').select('id,slug,client_name,business_name,project_title,template_id,status,proposal_data,published_at,created_at,updated_at').eq(id?'id':'slug',id||slug).eq('status','published').maybeSingle();if(!live)return;if(error||!data){setError('We could not find this proposal. Please check the link or contact Veltrix.')}else{setProposal(data);setClientName(data.client_name||'');setClientEmail('');setWelcomeVisible(true)}setLoading(false)})();return()=>{live=false}},[db,slug,id]);
  useEffect(()=>{if(!proposal?.id)return;const timer=window.setTimeout(()=>setWelcomeVisible(false),3200);return()=>window.clearTimeout(timer)},[proposal?.id]);
  const data=proposal?.proposal_data||{},packages=Array.isArray(data.packages)?data.packages:[],carePlans=Array.isArray(data.carePlans)?data.carePlans:[];
@@ -14,37 +14,55 @@ export default function ClientProposalPage({db,slug,id}){
  const money=n=>n===null||n===undefined||n===''?'Custom quote':'EGP '+Number(n).toLocaleString('en-US');
  const submit=async e=>{
   e.preventDefault();
-  if(!chosenPackage||!chosenCare){setNotice('Please choose one website package and one care plan.');return}
-  if(!clientName.trim()||!clientEmail.trim()){setNotice('Enter your name and email address to continue.');return}
-  setBusy(true);setNotice('');
-  const{data:responseId,error:saveError}=await db.rpc('submit_client_proposal_response',{
-   p_proposal_id:proposal.id,p_client_name:clientName.trim(),p_client_email:clientEmail.trim(),
-   p_selected_package:chosenPackage.name,p_package_price:Number(chosenPackage.price),
-   p_selected_care_plan:chosenCare.name,p_care_price:chosenCare.price===null||chosenCare.price===undefined?null:Number(chosenCare.price),
-   p_message:message.trim()||null
-  });
-  if(saveError||!responseId){setNotice('We could not submit your choices. Please try again or contact Veltrix.');setBusy(false);return}
-  const{data:account,error:accountError}=await db.functions.invoke('provision-proposal-client',{body:{response_id:responseId}});
-  if(accountError||!account?.ok){
-   console.error('Client account provisioning failed:',accountError?.message||account?.error);
-   setNotice(account?.error||'Your choices were received, but we could not create the client portal account. Please contact Veltrix so the team can complete setup.');
-   setBusy(false);return;
-  }
-  setCredentials({name:account.client_name,username:account.username,password:account.temporary_password});
-  setPackageChoice('');setCareChoice('');
+  if(!pendingResponseId&&(!chosenPackage||!chosenCare)){setNotice('Please choose one website package and one care plan.');setNoticeType('selection');return}
+  if(!pendingResponseId&&(!clientName.trim()||!clientEmail.trim())){setNotice('Enter your name and email address to continue.');setNoticeType('selection');return}
+  if(!db){setNotice('We cannot connect to the proposal service right now. Please try again.');setNoticeType('connection');return}
+  setBusy(true);setNotice('');setNoticeType('');
+  let responseId=pendingResponseId;
   try{
-   const{data:notificationData,error:notificationError}=await db.functions.invoke('proposal-notifications',{body:{action:'notify',response_id:responseId}});
-   if(notificationError||notificationData?.results?.email!=='sent'){
-    console.warn('Proposal email notification was not confirmed:',notificationError?.message||notificationData?.results?.email);
-    setNotice('Your portal account is ready. Veltrix will review your selection shortly.');
-   }else setNotice('Your choices were submitted and Veltrix has been notified.');
-  }catch(notificationError){console.warn('Proposal notification failed:',notificationError);setNotice('Your portal account is ready. Veltrix will review your selection shortly.')}
+   if(!responseId){
+    const{data:response,error:saveError}=await db.rpc('submit_client_proposal_response',{
+     p_proposal_id:proposal.id,p_client_name:clientName.trim(),p_client_email:clientEmail.trim(),
+     p_selected_package:chosenPackage.name,p_package_price:Number(chosenPackage.price),
+     p_selected_care_plan:chosenCare.name,p_care_price:chosenCare.price===null||chosenCare.price===undefined?null:Number(chosenCare.price),
+     p_message:message.trim()||null
+    });
+    if(saveError||!response){
+     const detail=saveError?.message||'';
+     const invalid=/package|care plan|selection|published/i.test(detail);
+     setNotice(invalid?'One of your selected options is no longer available. Please review the proposal and choose again.':'We could not save your choices. Please check your connection and try again.');
+     setNoticeType(invalid?'selection':'connection');setBusy(false);return;
+    }
+    responseId=response;setPendingResponseId(responseId);
+   }
+   const{data:account,error:accountError}=await db.functions.invoke('provision-proposal-client',{body:{response_id:responseId}});
+   if(accountError||!account?.ok){
+    const detail=String(account?.error||accountError?.message||'');
+    console.error('Client account provisioning failed:',detail);
+    const existing=/already exists|already registered|user_already_exists|email.*exists/i.test(detail);
+    setNotice(existing?'An account with this email already exists. Please sign in to your client portal or reset your password. Your proposal choices are safely saved.':'Your choices have been received, but we could not create your portal account right now. Your choices are safely saved, so you can try again without submitting a duplicate.');
+    setNoticeType(existing?'existing':'account');setBusy(false);return;
+   }
+   setCredentials({name:account.client_name,username:account.username,password:account.temporary_password});
+   setPendingResponseId(null);setPackageChoice('');setCareChoice('');
+   try{
+    const{data:notificationData,error:notificationError}=await db.functions.invoke('proposal-notifications',{body:{action:'notify',response_id:responseId}});
+    if(notificationError||notificationData?.results?.email!=='sent'){
+     console.warn('Proposal email notification was not confirmed:',notificationError?.message||notificationData?.results?.email);
+     setNotice('Your portal account is ready. Veltrix will review your selection shortly.');
+    }else setNotice('Your choices were submitted and Veltrix has been notified.');
+   }catch(notificationError){console.warn('Proposal notification failed:',notificationError);setNotice('Your portal account is ready. Veltrix will review your selection shortly.')}
+  }catch(err){
+   console.error('Proposal submission failed:',err);
+   setNotice(responseId?'Your choices are saved, but we could not finish creating your portal account. Please try again.':'We could not connect to the server. Your choices have not been confirmed; please try again.');
+   setNoticeType(responseId?'account':'connection');
+  }
   setBusy(false);
  };
  if(loading)return <main className="client-proposal-state"><div className="cp-loader"/><p>Preparing your proposal…</p></main>;
  if(error)return <main className="client-proposal-state"><div className="cp-error-mark">v.</div><h1>Proposal unavailable</h1><p>{error}</p><a href="/">Visit Veltrix <ArrowUpRight size={15}/></a></main>;
  if(welcomeVisible&&proposal)return <main className="cp-welcome-screen" aria-live="polite"><div className="cp-welcome-inner"><span className="cp-kicker">A PERSONAL WELCOME FROM VELTRIX</span><div className="cp-welcome-mark">v.</div><h1>Welcome, <em>{proposal.client_name||'there'}</em></h1><p>Your personalized proposal is ready. Take a moment to explore what we have prepared for you.</p><span className="cp-welcome-progress"><i/></span><small>PREPARING YOUR EXPERIENCE</small></div></main>;
- if(proposal.template_id!=='sat') return <><ProposalTemplateExperience proposal={proposal} data={data} packages={packages} carePlans={carePlans} logoUrl={logoUrl} brandColor={brandColor} money={money} packageChoice={packageChoice} setPackageChoice={setPackageChoice} careChoice={careChoice} setCareChoice={setCareChoice} chosenPackage={chosenPackage} chosenCare={chosenCare} clientName={clientName} setClientName={setClientName} clientEmail={clientEmail} setClientEmail={setClientEmail} message={message} setMessage={setMessage} busy={busy} submit={submit} notice={notice}/>{credentials&&<AccountCreatedModal credentials={credentials} onClose={()=>setCredentials(null)}/>}</>;
+ if(proposal.template_id!=='sat') return <><ProposalTemplateExperience proposal={proposal} data={data} packages={packages} carePlans={carePlans} logoUrl={logoUrl} brandColor={brandColor} money={money} packageChoice={packageChoice} setPackageChoice={setPackageChoice} careChoice={careChoice} setCareChoice={setCareChoice} chosenPackage={chosenPackage} chosenCare={chosenCare} clientName={clientName} setClientName={setClientName} clientEmail={clientEmail} setClientEmail={setClientEmail} message={message} setMessage={setMessage} busy={busy} submit={submit} notice={notice} noticeType={noticeType}/>{credentials&&<AccountCreatedModal credentials={credentials} onClose={()=>setCredentials(null)}/>}</>;
  return <main className="client-proposal" style={{'--cp-accent':brandColor}}>
   <header className="cp-nav"><a href="/" className="cp-brand">{logoUrl?<img src={logoUrl} alt={proposal.business_name+" logo"}/>:<b>{proposal.business_name.slice(0,1).toUpperCase()}</b>} {proposal.business_name}</a><nav><a href="#learning">The experience</a><a href="#platform">Platform</a><a href="#pricing">Packages</a></nav><a className="cp-nav-cta" href="#pricing">View packages <ArrowUpRight size={15}/></a></header>
   <section className="cp-hero"><div className="cp-hero-copy"><div className="cp-kicker">A PERSONALIZED PROPOSAL / PREPARED FOR {proposal.client_name.toUpperCase()} / {proposal.project_title.toUpperCase()}</div><h1>{data.heroTitle||'Words matter.'}<br/><em>{data.heroAccent||'Make every one count.'}</em></h1><p>{data.intro||'Build reading confidence, sharpen writing and master the skills behind every great SAT score.'}</p><div className="cp-actions"><a className="cp-button-dark" href="#learning">Explore the experience <ArrowRight size={16}/></a><a className="cp-text-link" href="#pricing">See packages & pricing <ArrowUpRight size={15}/></a></div><div className="cp-proof"><span><b>4.9/5</b><small>LEARNER EXPERIENCE</small></span><span><b>1:1</b><small>PERSONAL GUIDANCE</small></span><span><b>100%</b><small>FOCUSED ON PROGRESS</small></span></div></div>
@@ -57,7 +75,7 @@ export default function ClientProposalPage({db,slug,id}){
   <section className="cp-pricing-intro"><span className="cp-kicker">READY WHEN YOU ARE</span><h2>Make your next SAT goal <em>feel achievable.</em></h2><p>Explore the packages and choose the learning experience that fits your goals.</p><a className="cp-button-light" href="#pricing">Explore packages <ArrowUpRight size={15}/></a></section>
   <section className="cp-pricing" id="pricing"><div className="cp-section-heading"><div><span className="cp-kicker">CLEAR OPTIONS / TRANSPARENT PRICING</span><h2>Choose the right <em>starting point.</em></h2><p>Every package is a one-time project price in Egyptian pounds. Choose a package and tell us what you need.</p></div><span className="cp-price-note">EGP · ONE-TIME</span></div><div className="cp-package-grid">{packages.map(p=><article className={p.featured?'featured':''}><div className="cp-package-head">{p.featured&&<span>MOST POPULAR</span>}<small>VELTRIX PACKAGE</small><h3>{p.name}</h3><p>{p.description||''}</p></div><div className="cp-price"><b>{money(p.price)}</b><small>one-time payment</small></div><ul>{(p.features||[]).map(f=><li><Check size={14}/>{f}</li>)}</ul><button type="button" className={packageChoice===p.name?'selected':''} onClick={()=>setPackageChoice(p.name)}>{packageChoice===p.name?'Selected':'Choose '+p.name} <Check size={15}/></button></article>)}</div>
    <div className="cp-care-heading"><span className="cp-kicker">ONGOING WEBSITE CARE</span><h3>Choose your monthly care plan.</h3><p>This is a separate choice from your website package.</p></div><div className="cp-care-grid">{carePlans.map(p=><button type="button" className={careChoice===p.name?'selected':''} onClick={()=>setCareChoice(p.name)}><span><b>{p.name}</b><small>{p.name==='Basic Care'?'Essential ongoing website care':'Comprehensive ongoing website care'}</small></span><strong>{money(p.price)}<small> / month</small></strong>{careChoice===p.name&&<Check size={18}/>}</button>)}</div>
-   <form className="cp-response" onSubmit={submit}><div><span className="cp-kicker">YOUR DECISION</span><h3>Let's take the next step.</h3><p>Your selected package and care plan will be sent directly to Veltrix.</p></div><div className="cp-form-grid"><label>Your name<input required maxLength="120" value={clientName} onChange={e=>setClientName(e.target.value)} placeholder="Your full name"/></label><label>Email address<input required type="email" maxLength="254" value={clientEmail} onChange={e=>setClientEmail(e.target.value)} placeholder="you@example.com"/></label><label className="wide">Anything you'd like us to know? <textarea rows="3" maxLength="2000" value={message} onChange={e=>setMessage(e.target.value)} placeholder="Questions, preferences or notes…"/></label></div><div className="cp-submit-row"><span>{chosenPackage?chosenPackage.name+' · '+money(chosenPackage.price):'Choose a package'}<i>+</i>{chosenCare?chosenCare.name+' · '+money(chosenCare.price)+'/month':'Choose a care plan'}</span><button type="submit" disabled={busy||!chosenPackage||!chosenCare}>{busy?'Sending…':'Submit my choices'} <Send size={15}/></button></div>{notice&&<p className="cp-notice" role="status">{notice}</p>}<small className="cp-privacy"><LockKeyhole size={13}/> Your details and selection are shared only with Veltrix for this proposal.</small></form>
+   <form className="cp-response" onSubmit={submit}><div><span className="cp-kicker">YOUR DECISION</span><h3>Let's take the next step.</h3><p>Your selected package and care plan will be sent directly to Veltrix.</p></div><div className="cp-form-grid"><label>Your name<input required maxLength="120" value={clientName} onChange={e=>setClientName(e.target.value)} placeholder="Your full name"/></label><label>Email address<input required type="email" maxLength="254" value={clientEmail} onChange={e=>setClientEmail(e.target.value)} placeholder="you@example.com"/></label><label className="wide">Anything you'd like us to know? <textarea rows="3" maxLength="2000" value={message} onChange={e=>setMessage(e.target.value)} placeholder="Questions, preferences or notes…"/></label></div><div className="cp-submit-row"><span>{chosenPackage?chosenPackage.name+' · '+money(chosenPackage.price):'Choose a package'}<i>+</i>{chosenCare?chosenCare.name+' · '+money(chosenCare.price)+'/month':'Choose a care plan'}</span><button type="submit" disabled={busy||!chosenPackage||!chosenCare}>{busy?'Sending…':'Submit my choices'} <Send size={15}/></button></div>{notice&&<ProposalNotice notice={notice} type={noticeType} busy={busy}/ >}<small className="cp-privacy"><LockKeyhole size={13}/> Your details and selection are shared only with Veltrix for this proposal.</small></form>
   </section>
   {credentials&&<AccountCreatedModal credentials={credentials} onClose={()=>setCredentials(null)}/>}
   <footer className="cp-footer"><a href="/" className="cp-brand">{logoUrl?<img src={logoUrl} alt={proposal.business_name+" logo"}/>:<b>v.</b>} VELTRIX</a><p>Thoughtful digital experiences, built around people.</p><span>© 2026 VELTRIX STUDIO · PROPOSAL FOR {proposal.business_name.toUpperCase()}</span></footer>
@@ -82,5 +100,15 @@ function AccountCreatedModal({credentials,onClose}){
    <a className="cp-account-open" href="/?portal=1">Open Portal <LogIn size={16}/></a>
    <button type="button" className="cp-account-later" onClick={onClose}>Stay on this proposal</button>
   </section>
+ </div>;
+}
+
+function ProposalNotice({notice,type,busy}){
+ return <div className={'cp-submit-notice cp-submit-notice-'+(type||'info')} role="status" aria-live="polite">
+  <div className="cp-submit-notice-copy"><b>{type==='existing'?'An account already exists':type==='selection'?'Please review your selection':type==='connection'?'Connection problem':type==='account'?'Your choices are saved':'Update'}</b><p>{notice}</p></div>
+  {type==='account'&&<button type="submit" disabled={busy}>Try account setup again</button>}
+  {type==='existing'&&<div className="cp-submit-notice-actions"><a href="/?portal=1">Go to Client Portal <LogIn size={14}/></a><a href="/?portal=1">Password help</a></div>}
+  {type==='connection'&&<button type="submit" disabled={busy}>Try again</button>}
+  {type==='selection'&&<a href="#pricing">Review proposal <ArrowUpRight size={14}/></a>}
  </div>;
 }
