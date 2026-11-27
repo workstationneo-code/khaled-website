@@ -1183,3 +1183,61 @@ img,video,canvas,svg{max-width:100%}
  .vx-portal-project{transition:none}
  .vx-portal-project:hover{transform:none}
 }
+
+
+/* Veltrix admin dashboard — simplified control room */
+.vx-admin-page{background:radial-gradient(ellipse at 12% 0%,#e9efdf 0,transparent 34%),#f5f7f2;padding-top:22px}
+.vx-admin-top{max-width:1440px;margin:0 auto 0;padding:0 0 17px}
+.vx-admin-content.vx-admin-dashboard{max-width:1440px;margin:30px auto 70px}
+.vx-admin-dashboard .vx-admin-heading{align-items:center;margin:0 0 24px;padding:28px 30px;background:linear-gradient(115deg,#20372b,#314b38 72%,#526d48);border-radius:18px;color:#fff;box-shadow:0 18px 45px #1c35251c}
+.vx-admin-dashboard .vx-admin-heading .vx-kicker{color:#c2d3ad}
+.vx-admin-dashboard .vx-admin-heading h1{color:#fff;font-size:clamp(30px,4vw,46px);margin:10px 0}
+.vx-admin-dashboard .vx-admin-heading h1 em{color:#c6d99e}
+.vx-admin-dashboard .vx-admin-heading p,.vx-admin-dashboard .vx-admin-heading small{color:#d4dfd0}
+.vx-admin-dashboard .vx-admin-heading .vx-btn-outline{border-color:#ffffff50;background:#ffffff12;color:#fff}
+.vx-admin-tabs{position:sticky;top:8px;z-index:20;display:flex;gap:6px;overflow-x:auto;padding:9px;margin:0 0 24px;border:1px solid #e1e8dc;border-radius:13px;background:#ffffffed;box-shadow:0 8px 24px #2438290a;backdrop-filter:blur(14px);scrollbar-width:thin}
+.vx-admin-tabs button{display:flex;align-items:center;justify-content:center;gap:8px;flex:0 0 auto;min-height:42px;padding:0 14px;border:0;border-radius:8px;background:transparent;color:#63705f;font-size:11px;font-weight:700;white-space:nowrap;cursor:pointer;transition:background .2s,color .2s}
+.vx-admin-tabs button:hover{background:#f1f5ed;color:#2d4533}
+.vx-admin-tabs button.active{background:#294332;color:#fff;box-shadow:0 5px 14px #29433224}
+.vx-admin-tabs button small{display:grid;place-items:center;min-width:19px;height:19px;padding:0 5px;border-radius:20px;background:#e8eee1;color:#506b42;font-size:9px}
+.vx-admin-tabs button.active small{background:#ffffff24;color:#fff}
+.vx-admin-overview{gap:20px}
+.vx-admin-welcome{padding:2px 3px 3px}
+.vx-admin-stats{gap:14px}
+.vx-admin-stats article{min-height:148px;padding:21px;border-radius:14px;border-color:#e3e9df;box-shadow:0 10px 28px #263b2608;transition:transform .22s,box-shadow .22s}
+.vx-admin-stats article:hover{transform:translateY(-3px);box-shadow:0 16px 32px #263b2612}
+.vx-admin-stats article>strong{font-size:36px}
+.vx-admin-shortcuts{gap:14px}
+.vx-admin-shortcuts button{min-height:92px;padding:17px;border:1px solid #e2e9de;border-radius:13px;background:#fff;box-shadow:0 8px 22px #263b2607;transition:transform .2s,border-color .2s,box-shadow .2s}
+.vx-admin-shortcuts button:hover{transform:translateY(-3px);border-color:#bdcdae;box-shadow:0 15px 30px #263b2610}
+.vx-admin-recent,.vx-admin-projects-view>.vx-leads-panel,.vx-admin-inbox>.vx-leads-panel,.vx-project-manager,.vx-pricing-workspace{border:1px solid #e2e9de;border-radius:15px;background:#fff;box-shadow:0 10px 30px #263b2608}
+.vx-admin-recent{padding:22px}
+.vx-admin-project-row{border:1px solid #edf0ea;border-radius:10px;background:#fbfcfa;padding:15px 17px;transition:border-color .2s,background .2s}
+.vx-admin-project-row:hover,.vx-admin-project-row.active{border-color:#bdcdae;background:#f5f8f1}
+.vx-admin-projects-view,.vx-admin-inbox{gap:20px}
+.vx-admin-projects-view>.vx-leads-panel,.vx-admin-inbox>.vx-leads-panel{padding:22px}
+.vx-project-manager{padding:22px}
+.vx-admin-dashboard .vx-client-project-form{gap:15px}
+.vx-admin-dashboard input,.vx-admin-dashboard select,.vx-admin-dashboard textarea{border-radius:9px}
+.vx-admin-dashboard .vx-project-action-form{padding:20px;border:1px solid #e8ede5;border-radius:12px;background:#fbfcfa}
+.vx-admin-dashboard .vx-project-action-form h3{margin-top:0;color:#2b4030}
+.vx-admin-dashboard .vx-pricing-titlebar{align-items:center}
+.vx-admin-dashboard .vx-lead-card{border-radius:12px}
+@media(max-width:760px){
+ .vx-admin-page{padding:16px 15px 60px}
+ .vx-admin-top{padding-bottom:14px}
+ .vx-admin-content.vx-admin-dashboard{margin:20px auto 50px}
+ .vx-admin-dashboard .vx-admin-heading{padding:22px 20px;display:flex;align-items:flex-start}
+ .vx-admin-tabs{top:5px;margin:0 -2px 18px}
+ .vx-admin-stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .vx-admin-shortcuts{grid-template-columns:1fr}
+ .vx-admin-shortcuts button{min-height:78px}
+ .vx-admin-recent,.vx-admin-projects-view>.vx-leads-panel,.vx-admin-inbox>.vx-leads-panel,.vx-project-manager{padding:16px}
+}
+@media(max-width:480px){
+ .vx-admin-dashboard .vx-admin-heading{display:block}
+ .vx-admin-dashboard .vx-admin-heading>.vx-btn-outline{margin-top:16px}
+ .vx-admin-stats article{min-height:122px}
+ .vx-admin-stats article>strong{font-size:30px}
+ .vx-admin-tabs button{padding:0 11px}
+}
