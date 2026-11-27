@@ -78,3 +78,25 @@
 .vx-sat-app-preview.is-mobile .vx-sat-preview-sidebar{display:none}
 .vx-sat-app-preview.is-mobile .vx-sat-preview-main{padding:23px 17px}
 .vx-sat-app-preview.is-mobile .vx-sat-preview-greeting h3{font-size:22px}
+
+
+/* Hands-on SAT preview playground */
+.vx-sat-quiz-playground{margin-top:18px;padding:22px;border:1px solid #e4eae0;border-radius:14px;background:linear-gradient(135deg,#fbfcf8,#f1f5ed)}
+.vx-sat-quiz-heading{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.vx-sat-quiz-heading>span:last-child{font-size:8px;letter-spacing:.13em;color:#899487;font-weight:800}
+.vx-sat-quiz-playground h3{font:500 clamp(18px,2.4vw,24px)/1.3 Georgia,serif;color:#294331;margin:17px 0}
+.vx-sat-quiz-options{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px}
+.vx-sat-quiz-options button{display:flex;align-items:center;gap:9px;min-height:48px;padding:10px;border:1px solid #e2e9dc;border-radius:9px;background:#fff;text-align:left;color:#52644f;font-size:11px;transition:border-color .2s,background .2s,transform .2s}
+.vx-sat-quiz-options button:hover{transform:translateY(-2px);border-color:#9fb48e}
+.vx-sat-quiz-options button.selected{border-color:#6d8d60;background:#eaf1e4;color:#294331;box-shadow:inset 0 0 0 1px #6d8d60}
+.vx-sat-quiz-options button>b{display:grid;place-items:center;width:25px;height:25px;border-radius:7px;background:#f0f4ec;color:#57734e;font-size:10px;flex:none}
+.vx-sat-quiz-footer{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:16px}
+.vx-sat-quiz-footer>span{font-size:9px;color:#899487}
+.vx-sat-quiz-footer>button{display:flex;align-items:center;gap:8px;padding:10px 13px;border:0;border-radius:8px;background:#294331;color:#fff;font-size:10px;font-weight:700}
+.vx-sat-quiz-footer>button:disabled{opacity:.4;cursor:not-allowed}
+.vx-sat-quiz-feedback{display:grid;gap:4px;margin-top:13px;padding:12px 14px;border-radius:8px;font-size:10px;line-height:1.6}
+.vx-sat-quiz-feedback.correct{background:#e7f0e2;color:#41653d}.vx-sat-quiz-feedback.incorrect{background:#f7eee7;color:#8a654d}
+.vx-sat-experience.is-arabic .vx-sat-quiz-options button{text-align:right}
+.vx-sat-experience.is-arabic .vx-sat-quiz-footer{direction:rtl}
+@media(max-width:650px){.vx-sat-quiz-options{grid-template-columns:repeat(2,minmax(0,1fr))}.vx-sat-quiz-playground{padding:16px}.vx-sat-quiz-heading{align-items:flex-start;flex-direction:column}.vx-sat-quiz-footer{align-items:flex-start;flex-direction:column}}
+@media(prefers-reduced-motion:reduce){.vx-sat-quiz-options button{transition:none}}
