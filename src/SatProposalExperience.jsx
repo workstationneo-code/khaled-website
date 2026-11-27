@@ -59,7 +59,7 @@ export default function SatProposalExperience({plans=plansFallback,prices={},onC
  };
  const ask=(raw)=>{const clean=raw.trim();if(!clean)return;setHistory(v=>[...v,{role:'user',text:clean},{role:'assistant',text:reply(clean)}]);setQuestion('')};
  return <div className={'vx-sat-experience '+(lang==='ar'?'is-arabic':'')} dir={lang==='ar'?'rtl':'ltr'}>
-  <SatProposalSignature lang={lang} plans={plans} prices={prices}/>
+  <SatProposalSignature lang={lang} plans={plans} prices={prices} onChoosePackage={onChoosePackage}/>
   <section className="vx-sat-preview" id="sat-platform-preview">
    <div className="vx-sat-section-intro"><span className="vx-kicker">01 / {t.eyebrow}</span><div><h2>{t.preview}<br/><em>{lang==='ar'?'تجربة قبل التنفيذ':'before it is built.'}</em></h2><p>{t.intro}</p></div></div>
    <div className="vx-sat-preview-shell">
