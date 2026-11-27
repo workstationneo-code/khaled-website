@@ -40,7 +40,7 @@ const plansFallback=[
 
 export default function SatProposalExperience({plans=plansFallback,prices={},onChoosePackage,lang='en'}){
  const t=copy[lang==='ar'?'ar':'en'];
- const [view,setView]=useState('student'),[question,setQuestion]=useState(''),[history,setHistory]=useState([]),[expanded,setExpanded]=useState('professional');
+ const [view,setView]=useState('student'),[device,setDevice]=useState('desktop'),[question,setQuestion]=useState(''),[history,setHistory]=useState([]),[expanded,setExpanded]=useState('professional');
  const localizedPlans=useMemo(()=>plans.map(p=>({...p,amount:Number(prices[p.key]?.amount??fallbackPrices[p.key]??Number(String(p.price).replace(/,/g,'')))})),[plans,prices]);
  const reply=(raw)=>{
   const q=raw.toLowerCase();
@@ -58,9 +58,9 @@ export default function SatProposalExperience({plans=plansFallback,prices={},onC
   <section className="vx-sat-preview" id="sat-platform-preview">
    <div className="vx-sat-section-intro"><span className="vx-kicker">01 / {t.eyebrow}</span><div><h2>{t.preview}<br/><em>{lang==='ar'?'تجربة قبل التنفيذ':'before it is built.'}</em></h2><p>{t.intro}</p></div></div>
    <div className="vx-sat-preview-shell">
-    <div className="vx-sat-preview-top"><div><span className="vx-sat-live-dot"/><b>{t.live}</b><small>{t.demo}</small></div><div className="vx-sat-device-icons"><Monitor size={16}/><Smartphone size={16}/></div></div>
+    <div className="vx-sat-preview-top"><div><span className="vx-sat-live-dot"/><b>{t.live}</b><small>{t.demo}</small></div><div className="vx-sat-device-icons"><button type="button" className={device==='desktop'?'active':''} onClick={()=>setDevice('desktop')} aria-label="Desktop preview"><Monitor size={16}/></button><button type="button" className={device==='mobile'?'active':''} onClick={()=>setDevice('mobile')} aria-label="Mobile preview"><Smartphone size={16}/></button></div></div>
     <div className="vx-sat-preview-tabs">{[['student',t.student],['teacher',t.teacher],['parent',t.parent]].map(([id,label])=><button key={id} type="button" className={view===id?'active':''} onClick={()=>setView(id)}>{label}</button>)}</div>
-    <div className="vx-sat-app-preview">
+    <div className={'vx-sat-app-preview '+(device==='mobile'?'is-mobile':'')}>
      <aside className="vx-sat-preview-sidebar"><div className="vx-sat-preview-brand"><span>V.</span><b>SAT ACADEMY</b></div><div className="vx-sat-preview-user"><span>{view==='student'?'MA':view==='teacher'?'TH':'FH'}</span><div><b>{view==='student'?'Mariam Ahmed':view==='teacher'?'Teacher workspace':'Family account'}</b><small>{view==='student'?'Student dashboard':view==='teacher'?'Teacher dashboard':'Parent dashboard'}</small></div></div><div className="vx-sat-preview-menu"><span className="active"><BookOpen size={14}/> {t.lessons}</span><span><BarChart3 size={14}/> {t.progress}</span><span><CalendarDays size={14}/> {t.tasks}</span></div></aside>
      <div className="vx-sat-preview-main"><div className="vx-sat-preview-greeting"><div><small>{t.week}</small><h3>{view==='teacher'?t.teacherTitle:view==='parent'?t.parentTitle:'Good morning, Mariam'}</h3><p>{t.course}</p></div><span className="vx-sat-avatar">{view==='teacher'?'T':view==='parent'?'F':'M'}</span></div>
       <div className="vx-sat-metrics"><article><small>{view==='teacher'?t.classes:t.progress}</small><b>{view==='teacher'?'08':'78%'}</b><span>{view==='teacher'?'+2 this term':'↗ 12% this month'}</span></article><article><small>{view==='teacher'?t.submissions:view==='parent'?t.sessions:t.score}</small><b>{view==='teacher'?'12':view==='parent'?'16':'1420'}</b><span>{view==='teacher'?'Needs attention':view==='parent'?'On track':'Latest practice'}</span></article><article><small>{view==='teacher'?t.attendance:t.tasks}</small><b>{view==='teacher'?'94%':view==='parent'?'4':'03'}</b><span>{view==='teacher'?'This week':view==='parent'?'This month':'Due soon'}</span></article></div>
