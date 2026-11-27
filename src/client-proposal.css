@@ -457,3 +457,17 @@
 @keyframes cpWelcomeText{0%,28%{opacity:0;transform:translateY(9px)}100%{opacity:1;transform:translateY(0)}}
 @keyframes cpWelcomeProgress{from{transform:translateX(-110%)}to{transform:translateX(250%)}}
 @media(prefers-reduced-motion:reduce){.cp-welcome-screen,.cp-welcome-inner,.cp-welcome-screen p,.cp-welcome-progress i{animation:none!important;opacity:1!important;transform:none!important;filter:none!important}}
+
+/* Clear proposal submission and account setup recovery states */
+.cp-submit-notice{display:flex;align-items:center;justify-content:space-between;gap:18px;margin:18px 0 0;padding:17px 19px;border:1px solid #e1e7dc;border-radius:13px;background:#f7f9f4;color:#334238}
+.cp-submit-notice-copy{min-width:0}
+.cp-submit-notice b{display:block;font-size:12px;font-weight:900}
+.cp-submit-notice p{margin:5px 0 0;color:#6e7c70;font-size:11px;line-height:1.7}
+.cp-submit-notice button,.cp-submit-notice-actions a,.cp-submit-notice>a{flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:10px 13px;border:1px solid #d6e0d0;border-radius:24px;background:#fff;color:#526b49;text-decoration:none;font-size:10px;font-weight:900;cursor:pointer}
+.cp-submit-notice button:disabled{opacity:.55;cursor:wait}
+.cp-submit-notice-account{border-color:#eadfc9;background:#fbf8f1}
+.cp-submit-notice-existing{border-color:#d9e2d3;background:#f3f7f0}
+.cp-submit-notice-connection{border-color:#e7dfd2;background:#faf7f1}
+.cp-submit-notice-selection{border-color:#e8dfd2;background:#faf8f4}
+.cp-submit-notice-actions{display:flex;gap:8px;flex-wrap:wrap}
+@media(max-width:650px){.cp-submit-notice{align-items:flex-start;flex-direction:column}.cp-submit-notice button,.cp-submit-notice-actions,.cp-submit-notice-actions a,.cp-submit-notice>a{width:100%}}
