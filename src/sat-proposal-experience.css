@@ -100,3 +100,23 @@
 .vx-sat-experience.is-arabic .vx-sat-quiz-footer{direction:rtl}
 @media(max-width:650px){.vx-sat-quiz-options{grid-template-columns:repeat(2,minmax(0,1fr))}.vx-sat-quiz-playground{padding:16px}.vx-sat-quiz-heading{align-items:flex-start;flex-direction:column}.vx-sat-quiz-footer{align-items:flex-start;flex-direction:column}}
 @media(prefers-reduced-motion:reduce){.vx-sat-quiz-options button{transition:none}}
+
+
+/* Guided package recommendation */
+.vx-sat-package-finder{display:grid;grid-template-columns:1fr 1.15fr;gap:18px 30px;align-items:center;margin-top:22px;padding:22px;border:1px solid #e4eae0;border-radius:14px;background:#fff}
+.vx-sat-package-finder h3{font:500 23px Georgia,serif;color:#294331;margin:9px 0 7px}
+.vx-sat-package-finder p{font-size:10px;line-height:1.7;color:#899487;margin:0;max-width:340px}
+.vx-sat-package-choices{display:grid;gap:8px}
+.vx-sat-package-choices button{display:flex;align-items:center;gap:10px;padding:11px 12px;border:1px solid #e5ebe2;border-radius:9px;background:#fbfcf9;text-align:left;color:#687767;font-size:10px;line-height:1.5;transition:border-color .2s,background .2s}
+.vx-sat-package-choices button>span{color:#8ba17d;font-size:13px}
+.vx-sat-package-choices button.selected{border-color:#91aa82;background:#edf3e8;color:#304b34;font-weight:700}
+.vx-sat-package-recommendation{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:15px;padding:15px 17px;border-radius:10px;background:#263f2d;color:#fff}
+.vx-sat-package-recommendation>div{display:grid;grid-template-columns:auto auto;gap:4px 12px;align-items:center}
+.vx-sat-package-recommendation small{grid-column:1/-1;font-size:8px;letter-spacing:.13em;color:#c6d5bd}
+.vx-sat-package-recommendation b{font:500 21px Georgia,serif}
+.vx-sat-package-recommendation strong{font-size:12px;color:#d8e8c7}
+.vx-sat-package-recommendation button{display:flex;align-items:center;gap:7px;padding:10px 13px;border:0;border-radius:8px;background:#dce9cf;color:#2c4932;font-size:10px;font-weight:800;white-space:nowrap}
+.vx-sat-experience.is-arabic .vx-sat-package-choices button{text-align:right}
+.vx-sat-experience.is-arabic .vx-sat-package-recommendation{direction:rtl}
+@media(max-width:700px){.vx-sat-package-finder{grid-template-columns:1fr;padding:17px}.vx-sat-package-recommendation{align-items:flex-start;flex-direction:column}.vx-sat-package-recommendation>div{grid-template-columns:1fr}.vx-sat-package-recommendation strong{font-size:11px}}
+@media(prefers-reduced-motion:reduce){.vx-sat-package-choices button{transition:none}}
