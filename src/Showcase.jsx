@@ -1,7 +1,7 @@
 import React,{useEffect,useMemo,useState} from 'react';
 import {createPortal} from 'react-dom';
 import {createClient} from '@supabase/supabase-js';
-import {ArrowUpRight,ArrowLeft,ArrowRight,BookOpen,Calculator,GraduationCap,ShoppingBag,Building2,Briefcase,UserRound,Check,Menu,X,Plus,Minus,Search,Star,Sparkles,ChartNoAxesCombined,Users,Globe,Mail,Play,ChevronDown,ShoppingCart,Heart,Download,CalendarDays,ShieldCheck,MessageCircle,Send,Bot,Headphones,Image} from 'lucide-react';
+import {ArrowUpRight,ArrowLeft,ArrowRight,CreditCard,Folder,BookOpen,Calculator,GraduationCap,ShoppingBag,Building2,Briefcase,UserRound,Check,Menu,X,Plus,Minus,Search,Star,Sparkles,ChartNoAxesCombined,Users,Globe,Mail,Play,ChevronDown,ShoppingCart,Heart,Download,CalendarDays,ShieldCheck,MessageCircle,Send,Bot,Headphones,Image} from 'lucide-react';
 import './showcase.css';
 import './veltrix-reference.css';
 import './veltrix-global.css';
