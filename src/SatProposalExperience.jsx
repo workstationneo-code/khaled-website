@@ -40,7 +40,7 @@ const plansFallback=[
 
 export default function SatProposalExperience({plans=plansFallback,prices={},onChoosePackage,lang='en'}){
  const t=copy[lang==='ar'?'ar':'en'];
- const [view,setView]=useState('student'),[device,setDevice]=useState('desktop'),[question,setQuestion]=useState(''),[history,setHistory]=useState([]),[expanded,setExpanded]=useState('professional');
+ const [view,setView]=useState('student'),[device,setDevice]=useState('desktop'),[question,setQuestion]=useState(''),[history,setHistory]=useState([]),[expanded,setExpanded]=useState('professional'),[quizChoice,setQuizChoice]=useState(''),[quizChecked,setQuizChecked]=useState(false);
  const localizedPlans=useMemo(()=>plans.map(p=>({...p,amount:Number(prices[p.key]?.amount??fallbackPrices[p.key]??Number(String(p.price).replace(/,/g,'')))})),[plans,prices]);
  const reply=(raw)=>{
   const q=raw.toLowerCase();
@@ -67,6 +67,13 @@ export default function SatProposalExperience({plans=plansFallback,prices={},onC
       <div className="vx-sat-preview-lower"><article className="vx-sat-practice-card"><div><small>{t.practice}</small><b>{t.question}</b><p>{t.course}</p></div><button type="button" onClick={()=>setView(view==='student'?'teacher':'student')}>{t.continue} <ChevronRight size={14}/></button></article><article className="vx-sat-week-card"><small>{t.weekly}</small><div className="vx-sat-bars">{[42,68,54,82,63,94,76].map((h,i)=><i key={i} style={{height:h+'%'}}/>)}</div></article></div>
      </div>
     </div>
+   </div>
+   <div className="vx-sat-quiz-playground">
+    <div className="vx-sat-quiz-heading"><span className="vx-kicker">{lang==='ar'?'جرّب بنفسك':'TRY IT YOURSELF'}</span><span>{lang==='ar'?'سؤال SAT تجريبي':'SAMPLE SAT MATH QUESTION'}</span></div>
+    <h3>{lang==='ar'?'إذا كان x² − 5x + 6 = 0، فما جذرا المعادلة؟':'If x² − 5x + 6 = 0, what are the two roots?'}</h3>
+    <div className="vx-sat-quiz-options">{[['A','1 and 6','١ و٦'],['B','2 and 3','٢ و٣'],['C','−2 and −3','−٢ و−٣'],['D','3 and 5','٣ و٥']].map(([id,en,ar])=><button key={id} type="button" className={quizChoice===id?'selected':''} onClick={()=>{setQuizChoice(id);setQuizChecked(false)}}><b>{id}</b><span>{lang==='ar'?ar:en}</span></button>)}</div>
+    <div className="vx-sat-quiz-footer"><span>{lang==='ar'?'اختر إجابة ثم تحقق منها.':'Select an answer, then check it.'}</span><button type="button" disabled={!quizChoice} onClick={()=>{if(quizChecked){setQuizChoice('');setQuizChecked(false)}else setQuizChecked(true)}}>{quizChecked?(lang==='ar'?'حاول مرة أخرى':'Try again'):(lang==='ar'?'تحقق من الإجابة':'Check answer')} <ArrowRight size={14}/></button></div>
+    {quizChecked&&<div className={'vx-sat-quiz-feedback '+(quizChoice==='B'?'correct':'incorrect')} role="status"><b>{quizChoice==='B'?(lang==='ar'?'إجابة صحيحة!':'Correct!'):(lang==='ar'?'ليست هذه الإجابة.':'Not quite.')}</b><span>{lang==='ar'?'نحلل المعادلة إلى (x − 2)(x − 3) = 0، إذن الجذران هما ٢ و٣.':'Factor the equation: (x − 2)(x − 3) = 0. The roots are 2 and 3.'}</span></div>}
    </div>
    <div className="vx-sat-preview-foot"><span><Check size={14}/> {lang==='ar'?'نموذج تفاعلي لتوضيح الإمكانيات':'Switch between student, teacher and parent views.'}</span><span>{lang==='ar'?'التصميم النهائي يعتمد بعد تحديد النطاق':'Final screens are agreed during discovery.'}</span></div>
   </section>
