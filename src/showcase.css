@@ -1241,3 +1241,22 @@ img,video,canvas,svg{max-width:100%}
  .vx-admin-stats article>strong{font-size:30px}
  .vx-admin-tabs button{padding:0 11px}
 }
+
+
+/* Admin client directory */
+.vx-admin-clients-view{display:grid;gap:18px}
+.vx-admin-clients-view>.vx-leads-panel{padding:22px;border:1px solid #e2e9de;border-radius:15px;background:#fff;box-shadow:0 10px 30px #263b2608}
+.vx-admin-client-search{display:flex;align-items:center;gap:10px;max-width:520px;margin:20px 0;padding:0 14px;border:1px solid #e0e8dc;border-radius:10px;background:#fbfcfa;color:#788675}
+.vx-admin-client-search input{width:100%;min-width:0;border:0!important;outline:0;background:transparent!important;padding:13px 0!important;font:inherit;font-size:12px}
+.vx-admin-client-list{display:grid;gap:10px}
+.vx-admin-client-card{display:grid;grid-template-columns:42px minmax(0,1fr) auto;align-items:center;gap:13px;padding:15px;border:1px solid #e9eee5;border-radius:12px;background:#fff;transition:border-color .2s,background .2s}
+.vx-admin-client-card:hover{border-color:#bdcdae;background:#fbfcf9}
+.vx-admin-client-avatar{width:42px;height:42px;display:grid;place-items:center;border-radius:12px;background:#edf3e7;color:#536d43;font:700 17px Manrope}
+.vx-admin-client-main{min-width:0;display:grid;gap:4px}
+.vx-admin-client-main b{font-size:13px;color:#2b4030}
+.vx-admin-client-main a{width:max-content;max-width:100%;overflow:hidden;text-overflow:ellipsis;color:#708366;font-size:11px;text-decoration:none}
+.vx-admin-client-main small{font-size:10px;color:#899586}
+.vx-admin-client-status{padding:6px 9px;border-radius:30px;background:#f0f4eb;color:#60794d;font-size:9px;font-weight:800;white-space:nowrap}
+.vx-admin-client-actions{grid-column:2/-1;display:flex;gap:8px;flex-wrap:wrap}
+.vx-admin-client-actions button{font-size:10px;padding:9px 12px}
+@media(max-width:640px){.vx-admin-clients-view>.vx-leads-panel{padding:15px}.vx-admin-client-card{grid-template-columns:38px minmax(0,1fr);gap:10px}.vx-admin-client-avatar{width:38px;height:38px}.vx-admin-client-status{grid-column:2;justify-self:start}.vx-admin-client-actions{grid-column:1/-1}.vx-admin-client-actions button{flex:1}}
