@@ -59,6 +59,7 @@ export default function SatProposalExperience({plans=plansFallback,prices={},onC
  };
  const ask=(raw)=>{const clean=raw.trim();if(!clean)return;setHistory(v=>[...v,{role:'user',text:clean},{role:'assistant',text:reply(clean)}]);setQuestion('')};
  return <div className={'vx-sat-experience '+(lang==='ar'?'is-arabic':'')} dir={lang==='ar'?'rtl':'ltr'}>
+  <SatProposalSignature lang={lang} plans={plans} prices={prices}/>
   <section className="vx-sat-preview" id="sat-platform-preview">
    <div className="vx-sat-section-intro"><span className="vx-kicker">01 / {t.eyebrow}</span><div><h2>{t.preview}<br/><em>{lang==='ar'?'تجربة قبل التنفيذ':'before it is built.'}</em></h2><p>{t.intro}</p></div></div>
    <div className="vx-sat-preview-shell">
@@ -102,7 +103,6 @@ export default function SatProposalExperience({plans=plansFallback,prices={},onC
    <div className="vx-sat-assistant-copy"><span className="vx-kicker">04 / {lang==='ar'?'معاينة المساعد الذكي':'AI ASSISTANT PREVIEW'}</span><h2>{t.assistant}</h2><p>{t.assistantText}</p><div className="vx-sat-assistant-disclaimer"><Sparkles size={15}/><span>{t.disclaimer}</span></div></div>
    <div className="vx-sat-assistant-box"><div className="vx-sat-assistant-head"><span><Sparkles size={16}/><b>{lang==='ar'?'مساعد Veltrix':'Veltrix assistant'}</b></span><small>{lang==='ar'?'نسخة تجريبية':'DEMO MODE'}</small></div><div className="vx-sat-assistant-messages" aria-live="polite">{history.length===0?<div className="vx-sat-assistant-welcome"><span><MessageCircle size={17}/></span><p>{lang==='ar'?'مرحباً! اسألني عن باقات SAT أو خصائص المنصة.':'Hi! Ask me about the SAT packages or platform features.'}</p></div>:history.map((m,i)=><div key={i} className={'vx-sat-assistant-message '+m.role}>{m.text}</div>)}</div><div className="vx-sat-assistant-suggestions">{t.suggestions.map(q=><button type="button" key={q} onClick={()=>ask(q)}>{q}</button>)}</div><form onSubmit={e=>{e.preventDefault();ask(question)}}><input value={question} onChange={e=>setQuestion(e.target.value)} placeholder={t.placeholder} aria-label={t.placeholder}/><button type="submit" disabled={!question.trim()}>{t.send}<ArrowRight size={14}/></button></form></div>
   </section>
-  <SatProposalSignature lang={lang} plans={plans} prices={prices}/>
   <SatProposalExtras lang={lang}/>
  </div>
 }
