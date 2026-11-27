@@ -54,7 +54,6 @@ export default function SatProposalExperience({plans=plansFallback,prices={},onC
   const found=t.answers.find(([key])=>q.includes(key)||aliases[key]);return found?.[1]||t.fallback;
  };
  const ask=(raw)=>{const clean=raw.trim();if(!clean)return;setHistory(v=>[...v,{role:'user',text:clean},{role:'assistant',text:reply(clean)}]);setQuestion('')};
- const selected=localizedPlans.find(p=>p.key===expanded)||localizedPlans[1];
  return <div className={'vx-sat-experience '+(lang==='ar'?'is-arabic':'')} dir={lang==='ar'?'rtl':'ltr'}>
   <section className="vx-sat-preview" id="sat-platform-preview">
    <div className="vx-sat-section-intro"><span className="vx-kicker">01 / {t.eyebrow}</span><div><h2>{t.preview}<br/><em>{lang==='ar'?'تجربة قبل التنفيذ':'before it is built.'}</em></h2><p>{t.intro}</p></div></div>
@@ -78,7 +77,7 @@ export default function SatProposalExperience({plans=plansFallback,prices={},onC
   </section>
   <section className="vx-sat-journey" id="sat-project-journey">
    <div className="vx-sat-section-intro"><span className="vx-kicker">03 / {t.journey}</span><div><h2>{t.journeyTitle}<br/><em>{t.journeyAccent}</em></h2><p>{t.journeyText}</p></div></div>
-   <div className="vx-sat-journey-grid">{t.steps.map(([n,title,desc],i)=><article key={n}><span className="vx-sat-step-number">{n}</span><div className="vx-sat-step-line"><i style={{'--step-index':i}}/></div><small>{['01 — ALIGN','02 — DESIGN','03 — BUILD','04 — LAUNCH'][i]}</small><h3>{title}</h3><p>{desc}</p></article>)}</div>
+   <div className="vx-sat-journey-grid">{t.steps.map(([n,title,desc],i)=><article key={n} style={{'--step-index':i}}><span className="vx-sat-step-number">{n}</span><div className="vx-sat-step-line"><i style={{'--step-index':i}}/></div><small>{['01 — ALIGN','02 — DESIGN','03 — BUILD','04 — LAUNCH'][i]}</small><h3>{title}</h3><p>{desc}</p></article>)}</div>
   </section>
   <section className="vx-sat-assistant" id="sat-proposal-assistant">
    <div className="vx-sat-assistant-copy"><span className="vx-kicker">04 / {lang==='ar'?'مساعد العرض':'PROPOSAL GUIDE'}</span><h2>{t.assistant}</h2><p>{t.assistantText}</p><div className="vx-sat-assistant-disclaimer"><Sparkles size={15}/><span>{t.disclaimer}</span></div></div>
