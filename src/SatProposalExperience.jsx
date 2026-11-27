@@ -40,8 +40,10 @@ const plansFallback=[
 
 export default function SatProposalExperience({plans=plansFallback,prices={},onChoosePackage,lang='en'}){
  const t=copy[lang==='ar'?'ar':'en'];
- const [view,setView]=useState('student'),[device,setDevice]=useState('desktop'),[question,setQuestion]=useState(''),[history,setHistory]=useState([]),[expanded,setExpanded]=useState('professional'),[quizChoice,setQuizChoice]=useState(''),[quizChecked,setQuizChecked]=useState(false);
+ const [view,setView]=useState('student'),[device,setDevice]=useState('desktop'),[question,setQuestion]=useState(''),[history,setHistory]=useState([]),[expanded,setExpanded]=useState('professional'),[quizChoice,setQuizChoice]=useState(''),[quizChecked,setQuizChecked]=useState(false),[packageNeed,setPackageNeed]=useState('academy');
  const localizedPlans=useMemo(()=>plans.map(p=>({...p,amount:Number(prices[p.key]?.amount??fallbackPrices[p.key]??Number(String(p.price).replace(/,/g,'')))})),[plans,prices]);
+ const recommendedKey=packageNeed==='presence'?'starter':packageNeed==='ai'?'elite':'professional';
+ const recommendation=localizedPlans.find(p=>p.key===recommendedKey)||localizedPlans[1];
  const reply=(raw)=>{
   const q=raw.toLowerCase();
   const aliases={
@@ -79,8 +81,16 @@ export default function SatProposalExperience({plans=plansFallback,prices={},onC
   </section>
   <section className="vx-sat-packages" id="sat-package-comparison">
    <div className="vx-sat-section-intro"><span className="vx-kicker">02 / {t.compare}</span><div><h2>{t.compareTitle}<br/><em>{t.compareAccent}</em></h2><p>{t.compareText}</p></div></div>
-   <div className="vx-sat-plan-grid">{localizedPlans.map(p=><article key={p.key} className={'vx-sat-plan '+(p.hot?'is-featured':'')}><div className="vx-sat-plan-top"><span>{p.name}</span>{p.hot&&<b>{t.popular}</b>}</div><h3>{money(p.amount)}</h3><small>{t.oneTime}</small><p>{p.desc}</p><button type="button" className={p.hot?'primary':''} onClick={()=>onChoosePackage?.(p)}>{t.choose}<ArrowRight size={15}/></button><button type="button" className="vx-sat-plan-expand" onClick={()=>setExpanded(expanded===p.key?'':p.key)}>{expanded===p.key?(lang==='ar'?'إخفاء المميزات':'Hide features'):t.included}<ChevronRight size={15}/></button>{expanded===p.key&&<ul>{p.items.map((item,i)=><li key={i}><Check size={14}/>{item}</li>)}</ul>}</article>)}</div>
+   <div className="vx-sat-plan-grid">{localizedPlans.map(p=><article id={'sat-plan-'+p.key} key={p.key} className={'vx-sat-plan '+(p.hot?'is-featured':'')}><div className="vx-sat-plan-top"><span>{p.name}</span>{p.hot&&<b>{t.popular}</b>}</div><h3>{money(p.amount)}</h3><small>{t.oneTime}</small><p>{p.desc}</p><button type="button" className={p.hot?'primary':''} onClick={()=>onChoosePackage?.(p)}>{t.choose}<ArrowRight size={15}/></button><button type="button" className="vx-sat-plan-expand" onClick={()=>setExpanded(expanded===p.key?'':p.key)}>{expanded===p.key?(lang==='ar'?'إخفاء المميزات':'Hide features'):t.included}<ChevronRight size={15}/></button>{expanded===p.key&&<ul>{p.items.map((item,i)=><li key={i}><Check size={14}/>{item}</li>)}</ul>}</article>)}</div>
    <p className="vx-sat-price-note">{lang==='ar'?'الأسعار بالجنيه المصري. أسعار الباقات المعتمدة لا تشمل خدمات الرعاية الشهرية.':'Prices are in EGP. Monthly care plans are optional and separate from the one-time package fees.'}</p>
+   <div className="vx-sat-package-finder">
+    <div><span className="vx-kicker">{lang==='ar'?'مساعد اختيار الباقة':'NOT SURE WHICH PACKAGE?'}</span><h3>{lang==='ar'?'ما أهم شيء تحتاجه الآن؟':'What matters most to your business?'}</h3><p>{lang==='ar'?'اختر هدفك الأساسي وسنقترح نقطة بداية مناسبة.':'Choose your main goal and we’ll suggest a sensible starting point.'}</p></div>
+    <div className="vx-sat-package-choices">
+     {[['presence',lang==='ar'?'موقع احترافي وحضور رقمي':'A polished website and online presence'],['academy',lang==='ar'?'منصة متكاملة لأكاديمية تنمو':'A complete platform for a growing academy'],['ai',lang==='ar'?'أدوات تعليمية متقدمة بالذكاء الاصطناعي':'Advanced AI-powered teaching tools']].map(([id,label])=><button key={id} type="button" className={packageNeed===id?'selected':''} onClick={()=>setPackageNeed(id)}><span>{packageNeed===id?'●':'○'}</span>{label}</button>)}
+    </div>
+    <div className="vx-sat-package-recommendation"><div><small>{lang==='ar'?'نقترح أن تبدأ بـ':'OUR SUGGESTION'}</small><b>{recommendation?.name||'Professional'}</b><strong>{money(recommendation?.amount??49000)}</strong></div><button type="button" onClick={()=>{setExpanded(recommendedKey);document.getElementById('sat-plan-'+recommendedKey)?.scrollIntoView({behavior:'smooth',block:'center'})}}>{lang==='ar'?'استكشف الباقة':'Explore package'} <ArrowRight size={15}/></button></div>
+   </div>
+
   </section>
   <section className="vx-sat-journey" id="sat-project-journey">
    <div className="vx-sat-section-intro"><span className="vx-kicker">03 / {t.journey}</span><div><h2>{t.journeyTitle}<br/><em>{t.journeyAccent}</em></h2><p>{t.journeyText}</p></div></div>
