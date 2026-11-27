@@ -952,3 +952,26 @@ img,video,canvas,svg{max-width:100%}
 @keyframes vxWelcomeTextIn{0%,28%{opacity:0;transform:translateY(9px)}100%{opacity:1;transform:translateY(0)}}
 @keyframes vxWelcomeProgress{from{transform:translateX(-110%)}to{transform:translateX(250%)}}
 @media(prefers-reduced-motion:reduce){.vx-client-welcome-screen,.vx-client-welcome-inner,.vx-client-welcome-screen p,.vx-welcome-loading,.vx-welcome-loading i{animation:none!important;opacity:1!important;transform:none!important;filter:none!important}}
+
+
+/* SAT proposal journey and accessible enquiry details */
+.vx-selected-package{gap:16px;padding:20px 22px}
+.vx-selected-package-top{display:grid;grid-template-columns:minmax(0,1fr) minmax(180px,.8fr);gap:18px;align-items:start}
+.vx-selected-package-top>div{display:grid;gap:7px}
+.vx-selected-package-top>div>span{font:700 20px Manrope,sans-serif;color:#273a2d}
+.vx-selected-package-top>div>strong{font-size:16px;color:#536f3f}
+.vx-selected-package-top>div>strong small{font-size:10px;font-weight:600;color:#7d887a}
+.vx-selected-package-top>p{font-size:11px;line-height:1.65;color:#6f7d6c;margin:0}
+.vx-selected-features{border-top:1px solid #dfe8d7;padding-top:14px}
+.vx-selected-features>b{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:#697b60}
+.vx-selected-features ul{list-style:none;padding:10px 0 0;margin:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px 18px}
+.vx-selected-features li{display:flex;align-items:flex-start;gap:7px;font-size:10px;line-height:1.5;color:#596657}
+.vx-selected-features li svg{color:#78964d;flex-shrink:0;margin-top:1px}
+.vx-care-select{display:grid;gap:7px;font-size:10px;font-weight:700;color:#40513b}
+.vx-care-select select{max-width:100%;border:1px solid #dce5d5;border-radius:6px;background:#fff;padding:11px 12px;font:500 11px Manrope,sans-serif;color:#394b36}
+.vx-selected-care-price{font-size:11px;font-weight:700;color:#607d45}
+.vx-required{color:#a33d36;font-weight:800}
+.vx-field-error{display:block;color:#a33d36!important;font-size:10px!important;line-height:1.45}
+.vx-contact-form input[aria-invalid="true"]{border-color:#c96b61;background:#fff8f7}
+.vx-contact-form input:focus-visible,.vx-contact-form select:focus-visible,.vx-contact-form textarea:focus-visible{outline:2px solid #8da86a;outline-offset:2px}
+@media(max-width:650px){.vx-selected-package-top{grid-template-columns:1fr}.vx-selected-features ul{grid-template-columns:1fr}.vx-selected-package{padding:17px 15px}.vx-contact-form{padding:18px 15px}}
