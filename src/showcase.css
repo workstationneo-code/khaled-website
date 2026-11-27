@@ -986,3 +986,200 @@ img,video,canvas,svg{max-width:100%}
 .vx-proposal-steps article>p{font-size:10px;line-height:1.65;color:#788675;margin:0}
 .vx-proposal-disclaimer{font-size:10px;line-height:1.6;color:#7b8776;margin:18px 0 0;padding-top:15px;border-top:1px solid #e9eee6}
 @media(max-width:650px){.vx-proposal-next{padding:20px 16px}.vx-proposal-steps{grid-template-columns:1fr}.vx-proposal-steps article{padding:15px}}
+
+
+/* Client portal redesign — calm, premium, clear and mobile-first */
+.vx-client-portal{
+  min-height:100vh;
+  padding:26px clamp(18px,4vw,64px) 90px;
+  color:#26372b;
+  background:
+    radial-gradient(ellipse at 88% 4%,rgba(218,231,201,.55),transparent 34%),
+    linear-gradient(180deg,#f7f9f4 0%,#f3f6ef 48%,#f8f9f6 100%);
+}
+.vx-portal-top{
+  max-width:1240px;
+  margin:0 auto 54px;
+  padding:0 0 18px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+  border-bottom:1px solid #e1e8dc;
+}
+.vx-portal-top>span{font-size:9px;font-weight:900;letter-spacing:.16em;color:#7e8e73}
+.vx-client-portal .vx-back{border:0;background:transparent;color:#66765e;padding:8px 0;font-size:11px}
+.vx-portal-dashboard{max-width:1240px}
+.vx-portal-welcome{
+  align-items:flex-end;
+  margin-bottom:26px;
+  padding:clamp(24px,4vw,42px);
+  border:1px solid #e3eadc;
+  border-radius:18px;
+  background:linear-gradient(115deg,#fff 0%,#fbfcf8 60%,#edf3e6 100%);
+  box-shadow:0 18px 55px rgba(39,57,40,.055);
+}
+.vx-portal-welcome .vx-kicker{color:#84966d}
+.vx-portal-welcome h1{font-size:clamp(36px,5vw,58px);margin:12px 0 10px}
+.vx-portal-welcome p{max-width:590px;font-size:13px;line-height:1.8}
+.vx-portal-welcome>.vx-btn-outline{flex:none;border-radius:9px;padding:12px 17px;background:#fff}
+.vx-portal-howto{
+  display:flex;align-items:flex-start;gap:14px;
+  margin:0 0 36px;padding:18px 20px;
+  border:1px solid #e1e9d9;border-radius:12px;
+  background:#f0f5e9;color:#4d6144;
+}
+.vx-portal-howto>span{width:34px;height:34px;flex:none;display:grid;place-items:center;border-radius:10px;background:#fff;color:#78945a}
+.vx-portal-howto b{font:700 13px Manrope;color:#344632}
+.vx-portal-howto p{margin:5px 0 0;font-size:11px;line-height:1.7;color:#71806a}
+.vx-portal-section-heading{display:flex;align-items:end;justify-content:space-between;gap:16px;margin:0 0 17px}
+.vx-portal-section-heading h2{font:700 clamp(25px,3vw,34px) Manrope;letter-spacing:-.05em;color:#29392c;margin:8px 0 0}
+.vx-portal-section-heading>span{padding:8px 12px;border:1px solid #e1e8da;border-radius:30px;background:#fff;color:#78866d;font-size:10px;font-weight:700}
+.vx-portal-project-grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,330px),1fr));gap:18px}
+.vx-portal-project{
+  position:relative;overflow:hidden;
+  padding:25px;border:1px solid #e1e8dc;border-radius:15px;
+  background:rgba(255,255,255,.92);
+  box-shadow:0 12px 38px rgba(36,54,38,.045);
+  transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease;
+}
+.vx-portal-project::before{content:"";position:absolute;inset:0 0 auto;height:4px;background:linear-gradient(90deg,#91aa70,#d9e7c5)}
+.vx-portal-project:hover{transform:translateY(-3px);border-color:#cbd9be;box-shadow:0 20px 45px rgba(36,54,38,.09)}
+.vx-portal-project.selected{border-color:#91a975;box-shadow:0 15px 40px rgba(111,140,78,.13)}
+.vx-portal-project-top{align-items:center;font-size:9px;letter-spacing:.07em}
+.vx-portal-project-top>span:last-child{padding:7px 10px;border-radius:30px;background:#f0f5e9;color:#66804e}
+.vx-portal-project h2{font-size:26px;margin:22px 0 8px}
+.vx-portal-project>p{font-size:11px;line-height:1.7}
+.vx-portal-progress{margin:23px 0}
+.vx-portal-progress>div{font-size:11px}
+.vx-portal-progress i{height:8px;background:#edf1e9}
+.vx-portal-progress i span{background:linear-gradient(90deg,#829c60,#b4cb8f)}
+.vx-portal-next{padding:15px;border:1px solid #e8eee2;background:#f7f9f4;border-radius:10px}
+.vx-portal-next small{font-size:9px}
+.vx-portal-next b{font-size:12px;line-height:1.55}
+.vx-portal-project>.vx-btn-dark{width:100%;justify-content:center;border-radius:9px;padding:13px 16px}
+.vx-portal-empty,.vx-portal-loading{
+  max-width:760px;margin:24px auto;padding:clamp(32px,5vw,58px);
+  border:1px solid #e2e9dc;border-radius:16px;background:#fff;
+  box-shadow:0 15px 45px rgba(39,57,40,.045);
+}
+.vx-portal-empty h2{font-size:28px}
+.vx-portal-empty p{max-width:520px;margin:10px auto;font-size:12px;line-height:1.8}
+.vx-project-workspace{
+  margin-top:30px;padding:clamp(20px,3.5vw,38px);
+  border:1px solid #e0e8da;border-radius:18px;
+  box-shadow:0 18px 55px rgba(39,57,40,.06);
+}
+.vx-project-workspace-head{align-items:flex-start;padding-bottom:24px}
+.vx-project-workspace-head h2{font-size:clamp(27px,3.5vw,38px)}
+.vx-project-workspace-head p{max-width:650px;font-size:12px;line-height:1.8;color:#788575}
+.vx-client-next-step{
+  display:flex;justify-content:space-between;align-items:center;gap:20px;
+  margin:22px 0;padding:20px;border:1px solid #e2eada;border-radius:13px;
+  background:linear-gradient(110deg,#f5f8f0,#fbfcf9);
+}
+.vx-client-next-step>div{display:grid;gap:7px}
+.vx-client-next-step>div>b{font:700 16px Manrope;color:#344632}
+.vx-client-next-step>div>p{margin:0;font-size:11px;line-height:1.7;color:#788575}
+.vx-client-next-step>span{flex:none;padding:8px 12px;border-radius:30px;background:#fff;border:1px solid #e1e8da;color:#72875d;font-size:9px;font-weight:800}
+.vx-client-next-step>span.needs-action{background:#fff5e5;border-color:#f1dfbb;color:#9a7438}
+.vx-client-quicklinks{
+  position:sticky;top:12px;z-index:8;
+  display:flex;flex-wrap:wrap;gap:8px;
+  margin:20px 0 28px;padding:10px;
+  border:1px solid #e3e9df;border-radius:13px;
+  background:rgba(250,252,248,.94);
+  box-shadow:0 10px 28px rgba(39,57,40,.06);
+  backdrop-filter:blur(14px);
+}
+.vx-client-quicklinks button{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  min-height:40px;padding:9px 13px;border:1px solid transparent;border-radius:9px;
+  background:transparent;color:#596b50;font:700 10px Manrope;cursor:pointer;
+  transition:background .2s ease,border-color .2s ease;
+}
+.vx-client-quicklinks button:hover,.vx-client-quicklinks button:focus-visible{background:#edf3e7;border-color:#dce7d2;outline:none}
+.vx-client-quicklinks .vx-client-chat-link{background:#263c2d;color:#fff}
+.vx-client-quicklinks .vx-client-chat-link:hover{background:#36533e}
+.vx-project-workspace>section{scroll-margin-top:92px;padding:27px 0}
+.vx-project-workspace>section>h3{font-size:19px;letter-spacing:-.025em;margin-bottom:8px}
+.vx-project-workspace>section>.vx-section-help{max-width:760px;margin:0 0 18px;font-size:11px;line-height:1.8;color:#7b8876}
+.vx-project-workspace #client-message,.vx-project-workspace #client-payments,.vx-project-workspace #client-updates,.vx-project-workspace #client-files,.vx-project-workspace #client-approvals{
+  scroll-margin-top:95px;
+}
+.vx-client-instapay{
+  display:flex;align-items:center;flex-wrap:wrap;gap:12px;
+  margin:18px 0;padding:18px 20px;border:1px solid #dfe8d7;border-radius:13px;
+  background:linear-gradient(110deg,#f4f8ef,#fff);
+}
+.vx-client-instapay>b{width:100%;font-size:10px;color:#7b8973}
+.vx-client-instapay>strong{font:800 23px Manrope;letter-spacing:.04em;color:#2f4432}
+.vx-client-instapay .vx-btn-outline{margin-left:auto;border-radius:8px;padding:11px 14px}
+.vx-client-invoice,.vx-project-workspace #client-payments>article{
+  display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;
+  margin:12px 0;padding:19px;border:1px solid #e4eadf;border-radius:12px;background:#fff;
+}
+.vx-client-invoice>div{display:grid;gap:6px}
+.vx-client-invoice>div>b{font-size:13px;color:#344632}
+.vx-client-invoice>div>small{font-size:9px;color:#899584}
+.vx-client-invoice>strong{font-size:15px;color:#536f3f}
+.vx-client-invoice>p,.vx-client-invoice>form{grid-column:1/-1}
+.vx-client-invoice form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding-top:13px;border-top:1px solid #edf1e9}
+.vx-client-invoice form label{display:grid;gap:7px;font-size:10px;font-weight:700;color:#566650}
+.vx-client-invoice form input:not([type=file]){width:100%;min-width:0;padding:12px;border:1px solid #dfe6d9;border-radius:8px;font:12px Manrope;color:#344632}
+.vx-client-invoice form input[type=file]{width:100%;max-width:100%;font:10px Manrope;color:#788575}
+.vx-client-invoice form button{grid-column:1/-1;justify-self:start;border-radius:8px;padding:12px 17px}
+.vx-project-workspace #client-payments h4{margin:24px 0 12px;font:700 14px Manrope;color:#344632}
+.vx-project-workspace #client-payments>article{grid-template-columns:1fr auto;align-items:center}
+.vx-project-workspace #client-payments>article>b{font-size:13px;color:#344632}
+.vx-project-workspace #client-payments>article>span{font-size:9px;color:#7e8b77;text-align:right}
+.vx-portal-timeline article{grid-template-columns:18px 1fr;gap:15px;padding:7px 0 21px}
+.vx-portal-timeline article>i{width:10px;height:10px;background:#8ca66b;box-shadow:0 0 0 5px #eff4e8}
+.vx-portal-timeline b{font-size:13px}
+.vx-portal-timeline p{font-size:11px;line-height:1.8}
+.vx-portal-files a,.vx-portal-approvals article{padding:16px;border-radius:11px;border-color:#e2e9dc;background:#fff}
+.vx-portal-files a:hover{border-color:#b9cba9;background:#fbfcf9}
+.vx-portal-approvals article>div:first-child b{font-size:13px}
+.vx-portal-notice{position:fixed;right:24px;bottom:24px;z-index:9999;max-width:min(440px,calc(100vw - 32px));padding:14px 18px;border:1px solid #dce7d3;border-radius:11px;background:#fff;color:#43563b;box-shadow:0 15px 40px rgba(36,54,38,.14);font-size:11px;line-height:1.6}
+.vx-portal-login{
+  max-width:520px;margin:5vh auto;padding:clamp(26px,4vw,42px);
+  border:1px solid #e2e9dc;border-radius:18px;background:rgba(255,255,255,.95);
+  box-shadow:0 24px 70px rgba(39,57,40,.09);
+}
+.vx-portal-login h1{font-size:clamp(35px,5vw,49px)}
+.vx-portal-login form{gap:16px}
+.vx-portal-login label{font-size:11px}
+.vx-portal-login input{padding:14px;border-radius:9px;font-size:13px}
+.vx-portal-login form>.vx-btn-dark{min-height:48px;border-radius:9px}
+.vx-login-help{margin-top:24px;padding:16px;border-radius:10px;background:#f5f8f1}
+.vx-login-help b{font-size:11px}
+.vx-login-help span{font-size:10px;line-height:1.7}
+@media(max-width:760px){
+ .vx-client-portal{padding:18px 16px 76px}
+ .vx-portal-top{margin-bottom:28px}
+ .vx-portal-welcome{align-items:flex-start;padding:24px 20px}
+ .vx-portal-welcome>.vx-btn-outline{width:100%}
+ .vx-portal-howto{padding:15px}
+ .vx-client-next-step{align-items:flex-start;flex-direction:column}
+ .vx-client-quicklinks{position:static;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;padding:8px}
+ .vx-client-quicklinks button{min-width:0;padding:9px 7px;font-size:9px}
+ .vx-client-quicklinks .vx-client-chat-link{grid-column:1/-1}
+ .vx-client-instapay>strong{font-size:20px}
+ .vx-client-instapay .vx-btn-outline{margin-left:0}
+ .vx-client-invoice form{grid-template-columns:1fr}
+ .vx-client-invoice form button{width:100%}
+ .vx-project-workspace-head{flex-direction:column}
+}
+@media(max-width:440px){
+ .vx-portal-top>span{font-size:7px;letter-spacing:.1em}
+ .vx-portal-project{padding:20px}
+ .vx-portal-project h2{font-size:23px}
+ .vx-client-invoice,.vx-project-workspace #client-payments>article{grid-template-columns:1fr}
+ .vx-client-invoice>strong{justify-self:start}
+ .vx-project-workspace #client-payments>article>span{text-align:left}
+ .vx-portal-approvals article>div:first-child{align-items:flex-start;flex-direction:column}
+}
+@media(prefers-reduced-motion:reduce){
+ .vx-portal-project{transition:none}
+ .vx-portal-project:hover{transform:none}
+}
