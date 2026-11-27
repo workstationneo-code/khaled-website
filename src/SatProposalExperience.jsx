@@ -2,6 +2,7 @@ import React,{useMemo,useState} from 'react';
 import {ArrowRight,Check,ChevronRight,GraduationCap,BookOpen,BarChart3,CalendarDays,Sparkles,MessageCircle,Play,Monitor,Smartphone,Users,Clock3} from 'lucide-react';
 import './sat-proposal-experience.css';
 import SatProposalExtras from './SatProposalExtras';
+import SatProposalAdvanced from './SatProposalAdvanced';
 import SatProposalSignature from './SatProposalSignature';
 
 const copy={
@@ -104,5 +105,6 @@ export default function SatProposalExperience({plans=plansFallback,prices={},onC
    <div className="vx-sat-assistant-box"><div className="vx-sat-assistant-head"><span><Sparkles size={16}/><b>{lang==='ar'?'مساعد Veltrix':'Veltrix assistant'}</b></span><small>{lang==='ar'?'نسخة تجريبية':'DEMO MODE'}</small></div><div className="vx-sat-assistant-messages" aria-live="polite">{history.length===0?<div className="vx-sat-assistant-welcome"><span><MessageCircle size={17}/></span><p>{lang==='ar'?'مرحباً! اسألني عن باقات SAT أو خصائص المنصة.':'Hi! Ask me about the SAT packages or platform features.'}</p></div>:history.map((m,i)=><div key={i} className={'vx-sat-assistant-message '+m.role}>{m.text}</div>)}</div><div className="vx-sat-assistant-suggestions">{t.suggestions.map(q=><button type="button" key={q} onClick={()=>ask(q)}>{q}</button>)}</div><form onSubmit={e=>{e.preventDefault();ask(question)}}><input value={question} onChange={e=>setQuestion(e.target.value)} placeholder={t.placeholder} aria-label={t.placeholder}/><button type="submit" disabled={!question.trim()}>{t.send}<ArrowRight size={14}/></button></form></div>
   </section>
   <SatProposalExtras lang={lang}/>
+  <SatProposalAdvanced lang={lang}/>
  </div>
 }
