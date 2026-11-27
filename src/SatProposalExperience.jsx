@@ -43,7 +43,15 @@ export default function SatProposalExperience({plans=plansFallback,prices={},onC
  const [view,setView]=useState('student'),[question,setQuestion]=useState(''),[history,setHistory]=useState([]),[expanded,setExpanded]=useState('professional');
  const localizedPlans=useMemo(()=>plans.map(p=>({...p,amount:Number(prices[p.key]?.amount??fallbackPrices[p.key]??Number(String(p.price).replace(/,/g,'')))})),[plans,prices]);
  const reply=(raw)=>{
-  const q=raw.toLowerCase();const found=t.answers.find(([key])=>q.includes(key)||((key==='professional'||key==='elite')&&q.includes('49')));return found?.[1]||t.fallback;
+  const q=raw.toLowerCase();
+  const aliases={
+   professional:/professional|49|احترافية|الاحترافية/.test(q),
+   student:/student|dashboard|طالب|الطالب|لوحة/.test(q),
+   time:/time|duration|how long|مدة|يستغرق|الوقت/.test(q),
+   price:/price|cost|39|49|60|سعر|الأسعار|تكلفة/.test(q),
+   elite:/elite|60|النخبة/.test(q)
+  };
+  const found=t.answers.find(([key])=>q.includes(key)||aliases[key]);return found?.[1]||t.fallback;
  };
  const ask=(raw)=>{const clean=raw.trim();if(!clean)return;setHistory(v=>[...v,{role:'user',text:clean},{role:'assistant',text:reply(clean)}]);setQuestion('')};
  const selected=localizedPlans.find(p=>p.key===expanded)||localizedPlans[1];
