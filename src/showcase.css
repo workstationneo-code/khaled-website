@@ -1301,3 +1301,91 @@ img,video,canvas,svg{max-width:100%}
 .vx-admin-temp-password-value>div{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .vx-admin-temp-password-value code{font-size:15px;overflow-wrap:anywhere;color:#17231e}
 .vx-admin-temp-password>small{display:block;margin-top:12px;color:#68736d;line-height:1.55}
+
+
+/* 2026 usability simplification — client and admin */
+.vx-client-portal{max-width:1180px;margin:0 auto;padding:26px clamp(16px,3vw,34px) 76px;background:#f7f8f5;color:#243329}
+.vx-portal-top{max-width:100%;margin-bottom:22px;padding-bottom:14px;border-bottom:1px solid #e5e9e2}
+.vx-portal-welcome{padding:24px 26px;border:1px solid #e7ebe4;border-radius:16px;background:#fff;box-shadow:0 6px 22px rgba(28,43,32,.035)}
+.vx-portal-welcome h1{font-size:clamp(28px,4vw,40px);letter-spacing:-.045em}
+.vx-portal-welcome p{font-size:13px;line-height:1.65}
+.vx-portal-howto{display:none!important}
+.vx-portal-section-heading{margin:28px 0 14px}
+.vx-portal-section-heading h2{font-size:22px;letter-spacing:-.035em}
+.vx-portal-project-grid{gap:13px}
+.vx-portal-project{padding:21px;border:1px solid #e7ebe4;border-radius:13px;box-shadow:0 5px 18px rgba(28,43,32,.035)}
+.vx-portal-project::before{height:2px;background:#81966f}
+.vx-portal-project:hover{transform:translateY(-1px);box-shadow:0 9px 22px rgba(28,43,32,.06)}
+.vx-portal-project h2{margin:16px 0 5px;font-size:21px}
+.vx-portal-progress{margin:17px 0}
+.vx-portal-next{padding:12px;border-radius:9px}
+.vx-project-workspace{margin-top:22px;padding:clamp(16px,2.5vw,28px);border:1px solid #e6ebe3;border-radius:15px;background:#fff;box-shadow:0 8px 26px rgba(28,43,32,.04)}
+.vx-project-workspace-head{padding-bottom:16px}
+.vx-project-workspace-head h2{font-size:clamp(23px,3vw,31px)}
+.vx-client-next-step{margin:15px 0;padding:16px;border-radius:10px;background:#f6f8f3}
+.vx-client-next-step>div>b{font-size:14px}
+.vx-client-quicklinks{position:static;display:flex;gap:5px;margin:15px 0 18px;padding:5px;border:1px solid #e8ece5;border-radius:10px;background:#f8faf7;box-shadow:none}
+.vx-client-quicklinks button{min-height:36px;padding:8px 10px;font-size:10px;color:#526252}
+.vx-client-quicklinks .vx-client-chat-link{background:#2d4535;color:#fff}
+.vx-project-workspace>section{padding:20px 0}
+.vx-project-workspace>section>h3{font-size:17px;margin-bottom:5px}
+.vx-project-workspace>section>.vx-section-help{font-size:11px;margin-bottom:13px}
+.vx-client-invoice,.vx-project-workspace #client-payments>article{padding:15px;border-radius:10px}
+.vx-portal-timeline article{padding:5px 0 15px}
+.vx-portal-files a,.vx-portal-approvals article{padding:13px;border-radius:9px}
+.vx-admin-page{background:#f6f7f5;padding:18px clamp(14px,2.5vw,28px) 70px}
+.vx-admin-top{max-width:1440px;padding-bottom:12px;border-bottom:1px solid #e7ebe5}
+.vx-admin-content.vx-admin-dashboard{max-width:1440px;margin:22px auto 50px}
+.vx-admin-dashboard .vx-admin-heading{margin-bottom:17px;padding:21px 24px;background:#fff;border:1px solid #e7ebe5;border-radius:13px;color:#26372c;box-shadow:0 5px 18px rgba(28,43,32,.035)}
+.vx-admin-dashboard .vx-admin-heading .vx-kicker{color:#788b6c}
+.vx-admin-dashboard .vx-admin-heading h1{margin:6px 0;font-size:clamp(24px,3vw,34px);color:#26372c}
+.vx-admin-dashboard .vx-admin-heading h1 em{color:#6f875f}
+.vx-admin-dashboard .vx-admin-heading p,.vx-admin-dashboard .vx-admin-heading small{color:#748074}
+.vx-admin-dashboard .vx-admin-heading .vx-btn-outline{border-color:#dfe6dc;background:#fff;color:#405342}
+.vx-admin-tabs{position:static;display:flex;flex-wrap:wrap;gap:4px;margin-bottom:18px;padding:5px;border:1px solid #e7ebe5;border-radius:10px;background:#fff;box-shadow:none}
+.vx-admin-tabs button{min-height:36px;padding:0 12px;font-size:10px}
+.vx-admin-tabs button.active{background:#2f4937;box-shadow:none}
+.vx-admin-overview{gap:14px}
+.vx-admin-welcome{padding:0 2px}
+.vx-admin-welcome h2{font-size:22px;letter-spacing:-.03em}
+.vx-admin-welcome p{font-size:11px}
+.vx-admin-stats{gap:10px}
+.vx-admin-stats article{min-height:112px;padding:15px;border-radius:11px;box-shadow:none}
+.vx-admin-stats article:hover{transform:none;box-shadow:none}
+.vx-admin-stats article>strong{font-size:29px}
+.vx-admin-shortcuts{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.vx-admin-shortcuts button{min-height:70px;padding:12px;border-radius:10px;box-shadow:none}
+.vx-admin-shortcuts button:hover{transform:none;box-shadow:none}
+.vx-admin-shortcuts button>b{font-size:11px}
+.vx-admin-shortcuts button>small{font-size:9px}
+.vx-admin-recent,.vx-admin-projects-view>.vx-leads-panel,.vx-admin-inbox>.vx-leads-panel,.vx-project-manager,.vx-pricing-workspace{border-radius:12px;box-shadow:none}
+.vx-admin-recent{padding:17px}
+.vx-admin-project-row{padding:12px;border-radius:8px}
+.vx-admin-projects-view,.vx-admin-inbox{gap:13px}
+.vx-admin-projects-view>.vx-leads-panel,.vx-admin-inbox>.vx-leads-panel,.vx-project-manager{padding:17px}
+.vx-admin-clients-view>.vx-leads-panel{padding:17px;border-radius:12px;box-shadow:none}
+.vx-admin-clients-intro{padding:18px 20px;border-radius:12px;box-shadow:none}
+.vx-admin-clients-intro h2{font-size:25px}
+.vx-admin-client-card{padding:12px;border-radius:9px;box-shadow:none}
+.vx-admin-client-actions button{font-size:10px}
+.vx-admin-account-profile{box-shadow:none}
+.vx-admin-account-profile .vx-price-editor-head h2{font-size:23px}
+.vx-admin-account-stats article{padding:12px;border-radius:9px}
+.vx-admin-temp-password{padding:16px;border-radius:12px}
+@media(max-width:760px){
+ .vx-client-portal{padding:16px 14px 60px}
+ .vx-portal-welcome{padding:19px}
+ .vx-client-quicklinks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));position:static}
+ .vx-client-quicklinks button{min-width:0}
+ .vx-client-quicklinks .vx-client-chat-link{grid-column:1/-1}
+ .vx-admin-dashboard .vx-admin-heading{padding:18px}
+ .vx-admin-tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));position:static}
+ .vx-admin-tabs button{justify-content:flex-start}
+ .vx-admin-stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .vx-admin-shortcuts{grid-template-columns:1fr}
+}
+@media(max-width:440px){
+ .vx-portal-project{padding:17px}
+ .vx-admin-stats article{min-height:104px;padding:12px}
+ .vx-admin-stats article>strong{font-size:26px}
+}
