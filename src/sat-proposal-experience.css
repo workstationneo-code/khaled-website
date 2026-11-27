@@ -70,3 +70,11 @@
 @media(max-width:850px){.vx-sat-plan-grid{grid-template-columns:1fr}.vx-sat-journey-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.vx-sat-assistant{grid-template-columns:1fr;gap:22px}.vx-sat-section-intro{grid-template-columns:1fr;gap:12px}}
 @media(max-width:600px){.vx-sat-experience{width:calc(100% - 28px);margin-top:15px}.vx-sat-app-preview{grid-template-columns:1fr}.vx-sat-preview-sidebar{display:none}.vx-sat-preview-main{padding:18px 13px}.vx-sat-metrics{gap:6px}.vx-sat-metrics article{padding:10px}.vx-sat-metrics b{font-size:21px}.vx-sat-preview-lower{grid-template-columns:1fr}.vx-sat-preview-foot{flex-direction:column}.vx-sat-journey-grid{grid-template-columns:1fr}.vx-sat-preview-tabs{overflow-x:auto}.vx-sat-preview-tabs button{white-space:nowrap}.vx-sat-plan{padding:20px}.vx-sat-assistant-box form{gap:5px}.vx-sat-assistant-box form button{padding:0 10px}}
 @media(prefers-reduced-motion:reduce){.vx-sat-plan,.vx-sat-journey-grid article{transition:none}.vx-sat-bars i{animation:none}}
+
+
+.vx-sat-device-icons button{display:grid;place-items:center;width:30px;height:30px;border:0;border-radius:7px;background:transparent;color:#8a9588;cursor:pointer}
+.vx-sat-device-icons button.active{background:#e8eee2;color:#34543a}
+.vx-sat-app-preview.is-mobile{max-width:470px;min-height:0;margin:18px auto;border:1px solid #e1e9dc;border-radius:20px;box-shadow:0 12px 35px rgba(35,55,36,.08);grid-template-columns:1fr}
+.vx-sat-app-preview.is-mobile .vx-sat-preview-sidebar{display:none}
+.vx-sat-app-preview.is-mobile .vx-sat-preview-main{padding:23px 17px}
+.vx-sat-app-preview.is-mobile .vx-sat-preview-greeting h3{font-size:22px}
