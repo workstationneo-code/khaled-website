@@ -1271,3 +1271,24 @@ img,video,canvas,svg{max-width:100%}
 .vx-admin-clients-total span{color:#84917d;font-size:8px;font-weight:800;letter-spacing:.12em}
 .vx-admin-client-actions button{min-height:36px}
 @media(max-width:640px){.vx-admin-clients-intro{align-items:flex-start;padding:19px;flex-direction:column}.vx-admin-clients-total{display:flex;align-items:center;gap:10px;padding:9px 13px}.vx-admin-clients-total strong{font-size:21px}}
+
+
+/* Client account profile */
+.vx-admin-client-card.is-selected{border-color:#879b7c;background:#f7faf5}
+.vx-admin-account-profile{margin-top:20px}
+.vx-admin-account-profile .vx-price-editor-head h2{margin:7px 0 4px;font-size:27px;letter-spacing:-.035em;color:#293f2e}
+.vx-admin-account-profile .vx-price-editor-head>div>span:not(.vx-kicker){font-size:12px;color:#7b8876}
+.vx-admin-account-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:20px 0}
+.vx-admin-account-stats article{display:grid;gap:7px;padding:15px;border:1px solid #e7ebe3;border-radius:11px;background:#fafbf9}
+.vx-admin-account-stats small{font-size:9px;font-weight:800;letter-spacing:.1em;color:#899383}
+.vx-admin-account-stats strong{font-size:20px;color:#2d4632;overflow-wrap:anywhere}
+.vx-admin-account-columns{display:grid;grid-template-columns:1.15fr .85fr;gap:22px;margin-top:22px}
+.vx-admin-account-columns>section,.vx-admin-account-payments{min-width:0}
+.vx-admin-account-columns h3,.vx-admin-account-payments h3{margin:0 0 12px;font-size:15px;color:#2d4030}
+.vx-admin-account-project,.vx-admin-account-line{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:13px 0;border-top:1px solid #edf0ea}
+.vx-admin-account-project>div,.vx-admin-account-line{min-width:0}
+.vx-admin-account-project b,.vx-admin-account-line b{display:block;font-size:12px;color:#344537}
+.vx-admin-account-project span,.vx-admin-account-project small,.vx-admin-account-line span,.vx-admin-account-line small{display:block;margin-top:4px;font-size:10px;line-height:1.55;color:#7d8879}
+.vx-admin-account-line{display:block}
+.vx-admin-account-payments{margin-top:22px}
+@media(max-width:760px){.vx-admin-account-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.vx-admin-account-columns{grid-template-columns:1fr}.vx-admin-account-profile .vx-price-editor-head{align-items:flex-start;flex-direction:column}.vx-admin-account-project{align-items:flex-start;flex-direction:column}}
