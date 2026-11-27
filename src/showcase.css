@@ -1292,3 +1292,12 @@ img,video,canvas,svg{max-width:100%}
 .vx-admin-account-line{display:block}
 .vx-admin-account-payments{margin-top:22px}
 @media(max-width:760px){.vx-admin-account-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.vx-admin-account-columns{grid-template-columns:1fr}.vx-admin-account-profile .vx-price-editor-head{align-items:flex-start;flex-direction:column}.vx-admin-account-project{align-items:flex-start;flex-direction:column}}
+
+/* Admin-only temporary password controls */
+.vx-admin-temp-password{margin:22px 0;padding:22px;border:1px solid rgba(35,47,42,.13);border-radius:18px;background:rgba(245,247,244,.72)}
+.vx-admin-temp-password>p{margin:7px 0 14px;color:var(--vx-muted,#68736d);font-size:13px;line-height:1.6}
+.vx-admin-temp-password-value{margin:16px 0 10px;padding:13px 15px;border-radius:12px;background:#fff;border:1px solid rgba(35,47,42,.12)}
+.vx-admin-temp-password-value label{display:block;margin-bottom:8px;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#68736d}
+.vx-admin-temp-password-value>div{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.vx-admin-temp-password-value code{font-size:15px;overflow-wrap:anywhere;color:#17231e}
+.vx-admin-temp-password>small{display:block;margin-top:12px;color:#68736d;line-height:1.55}
