@@ -440,3 +440,20 @@
 @keyframes cpAccountRise{from{opacity:0;transform:translateY(18px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
 @media(max-width:600px){.cp-account-modal{padding-top:38px}.cp-credential>div{align-items:flex-start}.cp-credential>div>b{max-width:72%}}
 @media(prefers-reduced-motion:reduce){.cp-account-overlay,.cp-account-modal{animation:none}}
+
+
+/* Personalized welcome before the proposal experience */
+.cp-welcome-screen{min-height:100vh;display:grid;place-items:center;padding:50px 22px;text-align:center;background:radial-gradient(ellipse at 50% 43%,#e9f0e4 0%,#f7f9f3 48%,#fbfcf8 78%);animation:cpWelcomeFade 1.2s ease both}
+.cp-welcome-inner{max-width:720px;animation:cpWelcomeRise 1.8s cubic-bezier(.2,.75,.25,1) both}
+.cp-welcome-mark{width:62px;height:62px;margin:25px auto 30px;display:grid;place-items:center;border:1px solid #dce6d3;border-radius:19px;background:#fff;color:#829a58;font:900 31px Manrope,Arial,sans-serif;box-shadow:0 14px 45px #31472b12}
+.cp-welcome-screen h1{margin:0;color:#26372b;font:700 clamp(42px,7vw,76px)/1.04 Manrope,Arial,sans-serif;letter-spacing:-.075em}
+.cp-welcome-screen h1 em{color:#829a58;font-style:normal}
+.cp-welcome-screen p{max-width:510px;margin:20px auto 0;color:#7b8678;font-size:13px;line-height:1.9;animation:cpWelcomeText 2.2s ease both}
+.cp-welcome-progress{display:block;width:112px;height:2px;margin:36px auto 14px;overflow:hidden;background:#e3eadd;border-radius:5px}
+.cp-welcome-progress i{display:block;width:42%;height:100%;background:#829a58;animation:cpWelcomeProgress 3.1s ease-in-out both}
+.cp-welcome-inner>small{color:#94a08d;font-size:8px;font-weight:800;letter-spacing:.16em}
+@keyframes cpWelcomeFade{from{opacity:0}to{opacity:1}}
+@keyframes cpWelcomeRise{0%{opacity:0;transform:translateY(22px);filter:blur(5px)}65%{opacity:1;filter:blur(0)}100%{opacity:1;transform:translateY(0);filter:blur(0)}}
+@keyframes cpWelcomeText{0%,28%{opacity:0;transform:translateY(9px)}100%{opacity:1;transform:translateY(0)}}
+@keyframes cpWelcomeProgress{from{transform:translateX(-110%)}to{transform:translateX(250%)}}
+@media(prefers-reduced-motion:reduce){.cp-welcome-screen,.cp-welcome-inner,.cp-welcome-screen p,.cp-welcome-progress i{animation:none!important;opacity:1!important;transform:none!important;filter:none!important}}
