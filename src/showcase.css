@@ -1490,3 +1490,44 @@ img,video,canvas,svg{max-width:100%}
  .vx-client-overview-links{grid-template-columns:1fr}
  .vx-admin-dashboard .vx-admin-heading{padding:20px}
 }
+
+
+/* Premium proposal and bilingual experience */
+.vx-language-toggle{border:1px solid rgba(72,95,66,.22);background:rgba(255,255,250,.62);border-radius:999px;padding:10px 14px;color:#344b36;font-size:11px;font-weight:700;transition:background .2s,transform .2s}
+.vx-language-toggle:hover{background:#e8eee1;transform:translateY(-1px)}
+.vx.is-arabic{direction:rtl;font-family:Tahoma,Arial,sans-serif}
+.vx.is-arabic .vx-nav,.vx.is-arabic .vx-admin-heading,.vx.is-arabic .vx-portal-welcome{direction:rtl}
+.vx.is-arabic .vx-nav nav{direction:rtl}
+.vx.is-arabic .vx-nav-cta,.vx.is-arabic .vx-admin-link,.vx.is-arabic .vx-language-toggle{font-family:Tahoma,Arial,sans-serif}
+.vx.is-arabic .vx-admin-dashboard,.vx.is-arabic .vx-client-portal{direction:rtl;text-align:right}
+.vx.is-arabic .vx-admin-tabs,.vx.is-arabic .vx-workspace-nav{direction:rtl}
+.vx.is-arabic .vx-admin-action-grid,.vx.is-arabic .vx-client-action-grid{direction:rtl}
+.vx-client-action-center{margin:18px 0 22px;padding:19px;border:1px solid #e5ebe2;border-radius:15px;background:#fbfcf9}
+.vx-client-action-heading{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:13px}
+.vx-client-action-heading>b{font-size:11px;color:#778476;font-weight:500}
+.vx-client-action-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.vx-client-action-grid button{position:relative;display:grid;grid-template-columns:1fr auto;gap:5px 12px;align-items:center;min-height:92px;padding:15px;border:1px solid #e5ebe2;border-radius:11px;background:#fff;text-align:left;color:#294331;transition:transform .2s,border-color .2s,box-shadow .2s}
+.vx-client-action-grid button:hover{transform:translateY(-3px);border-color:#b8c9ad;box-shadow:0 10px 25px #2943310b}
+.vx-client-action-grid button>span{font-size:11px;font-weight:700}.vx-client-action-grid button>b{grid-column:2;grid-row:1/3;font:500 23px Georgia,serif;color:#7d986a}
+.vx-client-action-grid button>small{grid-column:1;font-size:9px;color:#899487}.vx-client-action-grid button>svg{position:absolute;right:13px;top:14px;color:#84937f}
+.vx-admin-action-center{margin:18px 0 22px;padding:22px;border:1px solid #e5ebe2;border-radius:16px;background:linear-gradient(135deg,#fbfcf8,#f0f4ec)}
+.vx-admin-action-title h2{margin:8px 0 5px;font:500 clamp(23px,3vw,32px) Georgia,serif;letter-spacing:-.04em;color:#294331}
+.vx-admin-action-title p{margin:0 0 17px;color:#7a8778;font-size:11px}
+.vx-admin-action-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.vx-admin-action-grid button{display:grid;grid-template-columns:1fr auto;gap:5px 8px;align-items:center;min-height:126px;padding:15px;border:1px solid #e5ebe2;border-radius:12px;background:#fff;text-align:left;color:#294331;transition:transform .2s,border-color .2s,box-shadow .2s}
+.vx-admin-action-grid button:hover{transform:translateY(-3px);border-color:#b8c9ad;box-shadow:0 10px 25px #2943310b}
+.vx-admin-action-grid button>span{grid-column:1/-1;color:#82987a}.vx-admin-action-grid button>b{font-size:11px}.vx-admin-action-grid button>strong{font:500 24px Georgia,serif;color:#78956c}.vx-admin-action-grid button>small{grid-column:1/-1;font-size:9px;line-height:1.5;color:#899487}.vx-admin-action-grid button>svg{grid-column:2;grid-row:2/4}
+.vx-sat-proposal-page{max-width:1440px!important}
+.vx-sat-proposal-page>.vx-inner-title,.vx-sat-proposal-page>.vx-inner-intro{max-width:900px}
+.vx-sat-proposal-page .vx-sat-experience{margin-top:38px}
+.vx-sat-proposal-page .vx-care{max-width:900px;margin:12px auto}
+.vx-sat-proposal-page .vx-note{max-width:900px;margin:24px auto}
+.vx-design-system .vx-sat-preview-shell{animation:sat-shell-in .85s cubic-bezier(.2,.8,.2,1) both}
+.vx-design-system .vx-sat-section-intro{animation:sat-heading-in .7s cubic-bezier(.2,.8,.2,1) both}
+.vx-design-system .vx-sat-journey-grid article{animation:sat-step-in .7s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--step-index,0)*80ms)}
+@keyframes sat-shell-in{from{opacity:0;transform:translateY(24px) scale(.985);filter:blur(5px)}to{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}}
+@keyframes sat-heading-in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@keyframes sat-step-in{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:900px){.vx-admin-action-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.vx-client-action-grid{grid-template-columns:1fr}}
+@media(max-width:760px){.vx-language-toggle{padding:8px 10px;font-size:10px}.vx-client-action-heading{align-items:flex-start;flex-direction:column}.vx-admin-action-grid{grid-template-columns:1fr 1fr}.vx-admin-action-grid button{min-height:115px}.vx-client-action-grid button{min-height:78px}.vx-sat-proposal-page{padding-inline:0!important}}
+@media(prefers-reduced-motion:reduce){.vx-design-system .vx-sat-preview-shell,.vx-design-system .vx-sat-section-intro,.vx-design-system .vx-sat-journey-grid article{animation:none!important}.vx-language-toggle,.vx-client-action-grid button,.vx-admin-action-grid button{transition:none}}
